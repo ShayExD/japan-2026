@@ -783,6 +783,7 @@ function initMap(){
   Object.keys(NODES).forEach(function(k){
     var p=NODES[k]; pts.push(p.ll);
     var ic = p.k==='air' ? pin('pin-air','✈') : p.k==='night' ? pin('pin-night',p.num) : pin('pin-stop');
+    if(k==='hakata') ic=L.divIcon({className:'',html:'<div class="pin pin-night">'+p.num+'</div>',iconSize:[28,28],iconAnchor:[14,46]});
     L.marker(p.ll,{icon:ic,zIndexOffset:p.k==='stop'?0:400}).addTo(layers.loop).bindPopup('<b>'+p.n+'</b><br>'+p.d);
   });
 

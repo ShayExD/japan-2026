@@ -6,6 +6,7 @@
 <title>יפן 2026</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@500;700;800&family=Heebo:wght@300;400;500;700&display=swap">
 <style>
 :root{
@@ -151,21 +152,38 @@ footer{margin-top:32px; padding-top:16px; border-top:1px solid var(--line); font
   .big{font-size:38px}
 }
 
-.mapcard{margin-top:16px; background:var(--surface); border:1px solid var(--line); border-radius:var(--r); padding:14px 12px 10px; box-shadow:var(--shadow)}
-.mapcard svg{display:block; width:100%; height:auto}
-.isle{fill:var(--surface-2); stroke:var(--muted); stroke-opacity:.35; stroke-width:2; stroke-linejoin:round}
-.route{fill:none; stroke:var(--accent); stroke-width:4.5; stroke-linejoin:round; stroke-linecap:round}
-.arw{fill:var(--accent)}
-.side{fill:none; stroke:var(--muted); stroke-width:2; stroke-dasharray:5 5; opacity:.7}
-.stop{fill:var(--surface); stroke:var(--accent); stroke-width:3}
-.stop-sm{fill:var(--muted); stroke:var(--surface); stroke-width:2}
-.mnum{fill:var(--accent-ink); font-family:"Heebo",sans-serif; font-size:15px; font-weight:700; text-anchor:middle}
-.mlbl{fill:var(--ink); font-family:"Heebo",sans-serif; font-size:16px; font-weight:700}
-.mlbl-sm{fill:var(--muted); font-family:"Heebo",sans-serif; font-size:14px}
-.mtime{fill:var(--warm); font-family:"Heebo",sans-serif; font-size:13.5px; font-weight:700; text-anchor:middle}
-.msea{fill:var(--muted); font-family:"Frank Ruhl Libre",serif; font-size:15px; opacity:.55; font-style:italic}
+.mapwrap{margin-top:16px; border:1px solid var(--line); border-radius:var(--r); overflow:hidden; box-shadow:var(--shadow)}
+#kmap{height:540px; background:#e8e6e1}
+@media(max-width:600px){#kmap{height:420px}}
+.maptools{display:flex; gap:8px; flex-wrap:wrap; padding:10px 12px; background:var(--surface); border-top:1px solid var(--line)}
+.mbtn{font:inherit; font-size:13px; font-weight:500; padding:7px 13px; border-radius:999px; border:1px solid var(--line); background:var(--surface-2); color:var(--ink); cursor:pointer}
+.mbtn[aria-pressed="true"]{background:var(--accent); border-color:var(--accent); color:#fff}
+.mbtn:focus-visible{outline:2px solid var(--accent); outline-offset:2px}
 .legend{display:flex; gap:14px; flex-wrap:wrap; margin-top:10px; font-size:12.5px; color:var(--muted); align-items:center}
-.legend i{display:inline-block; width:10px; height:10px; border-radius:50%; margin-inline-end:5px; vertical-align:-1px}
+.legend i{display:inline-block; width:11px; height:11px; border-radius:50%; margin-inline-end:5px; vertical-align:-1px}
+.pin{display:flex; align-items:center; justify-content:center; border-radius:50%; font-family:"Heebo",sans-serif; font-weight:700; box-shadow:0 1px 4px rgba(0,0,0,.35)}
+.pin-night{width:28px; height:28px; background:#22466F; color:#fff; font-size:12px; border:2px solid #fff}
+.pin-air{width:30px; height:30px; background:#15181D; color:#fff; font-size:15px; border:2px solid #fff}
+.pin-stop{width:14px; height:14px; background:#6B7686; border:2px solid #fff}
+.pin-alt{width:16px; height:16px; background:#AC4E2A; border:2px solid #fff}
+.tlabel{background:#fff; color:#AC4E2A; border:1px solid #E3C9BB; border-radius:999px; font:700 11.5px/1 "Heebo",sans-serif; padding:3px 6px; white-space:nowrap; box-shadow:0 1px 3px rgba(0,0,0,.2); text-align:center}
+.leaflet-popup-content{font-family:"Heebo",sans-serif; font-size:13.5px; direction:rtl; text-align:right; margin:12px 14px; line-height:1.55}
+.leaflet-popup-content b{font-size:14.5px}
+.leaflet-popup-content .dist{color:#AC4E2A; font-weight:700}
+.leaflet-container{font-family:"Heebo",sans-serif}
+.matrix table{min-width:620px}
+.matrix td:first-child, .matrix th:first-child{font-weight:700; background:var(--surface-2); position:sticky; inset-inline-start:0}
+.matrix td{text-align:center}
+.opt{display:flex; gap:12px; padding:12px 0; border-top:1px solid var(--line)}
+.opt:first-of-type{border-top:none}
+.opt .oi{flex:none; width:58px; text-align:center}
+.opt .oi .ot{font-family:"Frank Ruhl Libre",serif; font-size:15px; font-weight:700; color:var(--accent); line-height:1.2}
+.opt .oi .ok{font-size:10.5px; color:var(--muted)}
+.opt h4{margin:0 0 2px; font-size:14px}
+.opt p{font-size:13px; color:var(--muted)}
+.verdict{display:inline-block; font-size:11px; padding:1px 8px; border-radius:999px; margin-top:4px; border:1px solid var(--line); background:var(--surface-2); color:var(--muted)}
+.verdict.yes{color:var(--good); border-color:var(--good); background:var(--good-soft)}
+.verdict.maybe{color:var(--warm); border-color:var(--warm); background:var(--warm-soft)}
 @media print{header.top{position:static} .tab{display:none} section.panel{display:block!important}}
 </style>
 </head>
@@ -208,99 +226,56 @@ footer{margin-top:32px; padding-top:16px; border-top:1px solid var(--line); font
 
 
 <section class="panel" id="p-map" hidden>
-  <p class="eyebrow">שרטוט</p>
-  <h2 style="font-size:20px">הלולאה בקיושו, בלי הלוך חזור</h2>
-  <p class="lede" style="margin-top:6px">נוסעים במעגל אחד נגד כיוון השעון: מזרחה לבפו, דרומה לאורך הצד המזרחי אל טקאצ׳יהו, ואז חזרה צפונה דרך אסו וקורוקאווה. אף קטע כביש לא נוסע פעמיים.</p>
+  <p class="eyebrow">מפה</p>
+  <h2 style="font-size:20px">הלולאה בקיושו, וגם מה שמסביב</h2>
+  <p class="lede" style="margin-top:6px">הכחול הוא המסלול בפועל, מעגל אחד שמתחיל ונגמר בשדה פוקואוקה בלי לנסוע אף קטע פעמיים. הכתום הוא אטרקציות שלא נכנסו, כדי שתראו מה יש מסביב ומה המחיר בזמן נסיעה.</p>
 
-  <div class="mapcard">
-    <svg viewBox="0 0 620 560" role="img" aria-label="מפה סכמטית של צפון קיושו עם מסלול מעגלי מפוקואוקה דרך בפו, יופואין, טקאצ׳יהו, אסו וקורוקאווה וחזרה לפוקואוקה">
-      <path class="isle" d="M346,57 L242,92 L170,140 L91,216 L60,260 L34,386 L60,420 L110,450 L150,500 L190,548 L300,566 L420,562 L500,500 L560,430 L593,370 L560,320 L515,262 L505,200 L515,154 L470,130 L390,80 Z"/>
-      <text class="msea" x="470" y="110">ים סטו</text>
-      <text class="msea" x="80" y="150">ים גנקאי</text>
-
-      <path class="side" d="M203,172 L138,166"/>
-      <path class="side" d="M203,172 L234,194"/>
-      <path class="side" d="M203,172 L349,61"/>
-
-      <polyline class="route" points="203,172 487,268 453,274 471,364 440,445 391,411 380,373 396,330 343,256 203,172"/>
-
-      <path class="arw" transform="translate(345,220) rotate(18.7)" d="M-8,-6 L8,0 L-8,6 Z"/>
-      <path class="arw" transform="translate(462,319) rotate(78.7)" d="M-8,-6 L8,0 L-8,6 Z"/>
-      <path class="arw" transform="translate(455,404) rotate(111)" d="M-8,-6 L8,0 L-8,6 Z"/>
-      <path class="arw" transform="translate(415,428) rotate(214.8)" d="M-8,-6 L8,0 L-8,6 Z"/>
-      <path class="arw" transform="translate(388,351) rotate(290.4)" d="M-8,-6 L8,0 L-8,6 Z"/>
-      <path class="arw" transform="translate(273,214) rotate(211)" d="M-8,-6 L8,0 L-8,6 Z"/>
-
-      <text class="mtime" x="400" y="236">2:00</text>
-      <text class="mtime" x="497" y="300">0:25</text>
-      <text class="mtime" x="505" y="330">2:30</text>
-      <text class="mtime" x="402" y="452">1:10</text>
-      <text class="mtime" x="344" y="352">0:45</text>
-      <text class="mtime" x="248" y="196">2:00</text>
-
-      <circle class="stop-sm" cx="453" cy="274" r="6"/>
-      <circle class="stop-sm" cx="471" cy="364" r="6"/>
-      <circle class="stop-sm" cx="391" cy="411" r="6"/>
-      <circle class="stop-sm" cx="380" cy="373" r="6"/>
-      <circle class="stop-sm" cx="343" cy="256" r="6"/>
-      <circle class="stop-sm" cx="138" cy="166" r="5"/>
-      <circle class="stop-sm" cx="234" cy="194" r="5"/>
-      <circle class="stop-sm" cx="349" cy="61" r="5"/>
-
-      <circle class="stop" cx="203" cy="172" r="17"/><text class="mnum" x="203" y="178">4·5</text>
-      <circle class="stop" cx="487" cy="268" r="15"/><text class="mnum" x="487" y="274">1</text>
-      <circle class="stop" cx="440" cy="445" r="15"/><text class="mnum" x="440" y="451">2</text>
-      <circle class="stop" cx="396" cy="330" r="15"/><text class="mnum" x="396" y="336">3</text>
-
-      <text class="mlbl" x="203" y="142" text-anchor="middle">פוקואוקה</text>
-      <text class="mlbl-sm" x="203" y="124" text-anchor="middle">שדה ולינה</text>
-      <text class="mlbl" x="512" y="252" text-anchor="start">בפו</text>
-      <text class="mlbl-sm" x="440" y="292" text-anchor="end">יופואין</text>
-      <text class="mlbl-sm" x="488" y="370" text-anchor="start">מפל הארג׳ירי</text>
-      <text class="mlbl" x="458" y="478" text-anchor="middle">טקאצ׳יהו</text>
-      <text class="mlbl-sm" x="378" y="424" text-anchor="end">טקאמורי</text>
-      <text class="mlbl-sm" x="366" y="379" text-anchor="end">לוע אסו</text>
-      <text class="mlbl" x="372" y="304" text-anchor="end">קורוקאווה</text>
-      <text class="mlbl-sm" x="330" y="248" text-anchor="end">היטה</text>
-      <text class="mlbl-sm" x="128" y="160" text-anchor="end">איטושימה</text>
-      <text class="mlbl-sm" x="246" y="208" text-anchor="start">דזאיפו</text>
-      <text class="mlbl-sm" x="360" y="56" text-anchor="start">מוג׳יקו</text>
-    </svg>
-    <div class="legend">
-      <span><i style="background:var(--surface); border:3px solid var(--accent)"></i>לינה, המספר הוא הלילה בקיושו</span>
-      <span><i style="background:var(--muted)"></i>עצירה בדרך, בלי לינה</span>
-      <span><i style="background:var(--warm)"></i>זמן נהיגה נטו בין נקודות</span>
-      <span>קו מקווקו: אפשרויות טיול היום מפוקואוקה</span>
+  <div class="mapwrap">
+    <div id="kmap"></div>
+    <div class="maptools">
+      <button class="mbtn" type="button" id="btnLoop" aria-pressed="true">הלולאה</button>
+      <button class="mbtn" type="button" id="btnAlt" aria-pressed="true">אטרקציות נוספות</button>
+      <button class="mbtn" type="button" id="btnDay" aria-pressed="true">טיולי יום מפוקואוקה</button>
+      <button class="mbtn" type="button" id="btnFit">מרכוז הלולאה</button>
+      <button class="mbtn" type="button" id="btnFlight">איפה נוחתים, כולל אוסקה</button>
     </div>
+  </div>
+  <div class="legend">
+    <span><i style="background:#15181D"></i>שדה פוקואוקה, כאן נוחתים ואוספים רכב</span>
+    <span><i style="background:#22466F"></i>לינה, המספר הוא הלילה בקיושו</span>
+    <span><i style="background:#6B7686"></i>עצירה בדרך</span>
+    <span><i style="background:#AC4E2A"></i>אטרקציה מחוץ למסלול</span>
+    <span>המספרים על הקווים: זמן נהיגה נטו</span>
   </div>
 
   <div class="cards two">
     <div class="card">
       <h3>למה דווקא בכיוון הזה</h3>
       <ul class="muted" style="margin-top:8px">
-        <li>הצד המזרחי, מבפו ויופואין דרומה דרך בונגו אונו אל טקאצ׳יהו, הוא כביש אחד רצוף. הצד המערבי, מטקאצ׳יהו דרך טקאמורי ואסו אל קורוקאווה, הוא כביש אחר לגמרי. ביחד הם מעגל סגור</li>
-        <li>בכיוון ההפוך, נגד מה שמסומן, הייתם מגיעים לערוץ טקאצ׳יהו בשעות הצהריים העמוסות. בכיוון הזה אתם ישנים שם ויורדים לסירות בבוקר</li>
+        <li>הצד המזרחי, מבפו ויופואין דרומה דרך בונגו אונו אל טקאצ׳יהו, הוא כביש אחד. הצד המערבי, מטקאצ׳יהו דרך טקאמורי ואסו אל קורוקאווה, הוא כביש אחר. ביחד הם מעגל סגור</li>
+        <li>בכיוון ההפוך הייתם מגיעים לערוץ טקאצ׳יהו בצהריים העמוסים. בכיוון הזה אתם ישנים שם ויורדים לסירות בבוקר</li>
         <li>הלולאה נסגרת בפוקואוקה, ולכן הטיסה הלוך חזור לאותו שדה היא הנכונה</li>
       </ul>
-      <div class="note">הקטע היחיד שהוא בהכרח הלוך חזור הוא טיול היום מפוקואוקה ב־7.11, וזו בחירה שלכם: איטושימה מערבה, דזאיפו דרומה או מוג׳יקו צפונה.</div>
+      <div class="note">כ־600 ק״מ ובערך 8 שעות וחצי הגה, פרוסות על חמישה ימים. שום יום לא עובר שעתיים וחצי נהיגה.</div>
     </div>
     <div class="card">
-      <h3>הלולאה במספרים</h3>
-      <div class="tablewrap">
-        <table>
-          <thead><tr><th>קטע</th><th>נהיגה</th><th>ק״מ</th></tr></thead>
-          <tbody>
-            <tr><td>פוקואוקה אל בפו</td><td class="tnum">2:00</td><td class="tnum">150</td></tr>
-            <tr><td>בפו אל יופואין</td><td class="tnum">0:25</td><td class="tnum">25</td></tr>
-            <tr><td>יופואין אל טקאצ׳יהו</td><td class="tnum">2:30</td><td class="tnum">115</td></tr>
-            <tr><td>טקאצ׳יהו אל אסו</td><td class="tnum">1:10</td><td class="tnum">50</td></tr>
-            <tr><td>אסו אל קורוקאווה</td><td class="tnum">0:45</td><td class="tnum">35</td></tr>
-            <tr><td>קורוקאווה אל פוקואוקה</td><td class="tnum">2:00</td><td class="tnum">140</td></tr>
-            <tr><td>טיול יום מפוקואוקה</td><td class="tnum">1:30 עד 2:30</td><td class="tnum">60 עד 130</td></tr>
-          </tbody>
-        </table>
-      </div>
-      <p class="muted" style="font-size:12.5px; margin-top:8px">סך הכל כ־600 ק״מ בלולאה, בערך 9 שעות הגה פרוסות על חמישה ימים. הזמנים נטו, בלי עצירות ובלי פקקים.</p>
+      <h3>זמני נהיגה, מכל מקום לכל מקום</h3>
+      <div class="tablewrap matrix" id="matrix"></div>
+      <p class="muted" style="font-size:12.5px; margin-top:8px">שעות נטו ברכב, בכבישים המהירים היכן שיש, בלי עצירות. בהרים סביב אסו וטקאצ׳יהו הכבישים מפותלים והזמן בפועל ארוך יותר בעשרה עד עשרים אחוז.</p>
+    </div>
+  </div>
+
+  <p class="eyebrow" style="margin-top:26px">מה לא נכנס</p>
+  <h2 style="font-size:20px">אטרקציות שאתם מפספסים, ומה המחיר שלהן</h2>
+  <p class="lede" style="margin-top:6px">קיושו גדולה מחמישה לילות. אלה הדברים הגדולים שנשארו בחוץ, לפי כמה רחוק הם מהמסלול הנוכחי.</p>
+  <div class="cards two">
+    <div class="card">
+      <h3>אפשר להכניס בלי לשבור את המסלול</h3>
+      <div id="optEasy"></div>
+    </div>
+    <div class="card">
+      <h3>דורש לילה או יותר</h3>
+      <div id="optHard"></div>
     </div>
   </div>
 </section>
@@ -494,6 +469,7 @@ footer{margin-top:32px; padding-top:16px; border-top:1px solid var(--line); font
 <footer>עודכן ב־27.9.2026. שעות פתיחה, מעברי הרים, טיסות פנים ותעריפי השכרה משתנים, שווה אימות מול האתר הרשמי בשבוע שלפני היציאה.</footer>
 </div>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
 <script>
 var WD=['ראשון','שני','שלישי','רביעי','חמישי','שישי','שבת'];
 function fmt(iso){var p=iso.split('-');return p[2].replace(/^0/,'')+'.'+p[1].replace(/^0/,'');}
@@ -635,6 +611,7 @@ var TASKS=[
       tabs.forEach(function(o){o.setAttribute('aria-selected',o===t?'true':'false');});
       ['route','map','cars','todo','info'].forEach(function(k){document.getElementById('p-'+k).hidden=(k!==t.dataset.p);});
       try{localStorage.setItem('jp26tab',t.dataset.p);}catch(e){}
+      if(t.dataset.p==='map') setTimeout(initMap,0);
       window.scrollTo(0,0);
     });
   });
@@ -715,6 +692,142 @@ var TASKS=[
   document.getElementById('newTask').addEventListener('keydown',function(e){if(e.key==='Enter'){e.preventDefault();add();}});
   render();
 })();
+
+/* ---------- Kyushu map ---------- */
+var NODES={
+ fuk:{n:'שדה פוקואוקה',ll:[33.5859,130.4508],k:'air',d:'כאן נוחתים מאוסקה ב־3.11 בבוקר, וכאן אוספים את הרכב. ב־8.11 מחזירים אותו וטסים חזרה. מהשדה להאקטה חמש דקות ברכבת תחתית.'},
+ hakata:{n:'פוקואוקה, האקטה',ll:[33.5898,130.4207],k:'night',num:'4·5',d:'שני הלילות האחרונים בקיושו. דוכני יאטאי בנקאסו, ראמן טונקוצו, וקניות בטנג׳ין.'},
+ beppu:{n:'בפו',ll:[33.2793,131.5017],k:'night',num:'1',d:'אגני ה־jigoku הצבעוניים, אמבט חול על החוף, וריוקאן עם חצי פנסיון. עיר האונסן הגדולה ביפן.'},
+ yufuin:{n:'יופואין',ll:[33.2636,131.3656],k:'stop',d:'אגם קינרין ורחוב יונוצובו, 25 דקות מבפו. להגיע מוקדם, אחרי עשר זה מתמלא.'},
+ harajiri:{n:'מפל הארג׳ירי',ll:[32.9706,131.4300],k:'stop',d:'מפל רחב בצורת פרסה, עצירה טבעית באמצע הדרך דרומה. יש גשר תלוי מעליו.'},
+ takachiho:{n:'טקאצ׳יהו',ll:[32.7128,131.3010],k:'night',num:'2',d:'הערוץ נחצב בסלע לבה של אסו, סירות משוטים אל מפל מאנאי. בערב מופע יוקאגורה במקדש ב־20:00.'},
+ iwato:{n:'אמאנו איוואטו',ll:[32.7233,131.3603],k:'stop',d:'מקדש ומערת אמאנויאסוגאווארה, עשר דקות מהערוץ.'},
+ takamori:{n:'טקאמורי',ll:[32.8231,131.1258],k:'stop',d:'הכביש המטפס מטקאצ׳יהו אל רמת אסו, נוף קלדרה.'},
+ aso:{n:'לוע אסו',ll:[32.8847,131.0841],k:'stop',d:'הר געש פעיל בתוך קלדרה ענקית. לבדוק מפלס אזהרת גז בבוקר, לפעמים סוגרים את הכביש ללוע.'},
+ kurokawa:{n:'קורוקאווה אונסן',ll:[33.0833,131.1333],k:'night',num:'3',d:'כפר אונסן קטן בין יערות, כרטיס שלושה מרחצאות. אחד המקומות היפים בקיושו.'},
+ hita:{n:'היטה',ll:[33.3214,130.9414],k:'stop',d:'רובע מאמדה מאצ׳י מתקופת אדו, עצירה נעימה בדרך חזרה צפונה.'}
+};
+var ROUTE=[['fuk','beppu','2:00'],['beppu','yufuin','0:25'],['yufuin','harajiri','1:30'],['harajiri','takachiho','1:00'],['takachiho','takamori','0:40'],['takamori','aso','0:30'],['aso','kurokawa','0:45'],['kurokawa','hita','0:50'],['hita','hakata','1:10']];
+var DAYTRIPS=[
+ {n:'איטושימה',ll:[33.6260,130.1730],t:'1:00',d:'חוף מערבי, שער טורי בים בסאקוראי פוטאמיגאורה, בתי קפה מול המים.'},
+ {n:'דזאיפו',ll:[33.5215,130.5353],t:'0:35',d:'מקדש טנמנגו, מוזיאון קיושו, ורחוב מאצ׳י עם מוצ׳י אפוי. הכי קצר מהעיר.'},
+ {n:'מוג׳יקו ומיצרי קנמון',ll:[33.9469,130.9628],t:'1:10',d:'נמל מתקופת מייג׳י, אפשר לחצות ברגל במנהרה תת ימית אל האי הראשי.'},
+ {n:'יאנגאווה',ll:[33.1633,130.4064],t:'0:50',d:'שייט בסירות דוברה בתעלות העיר, ארוחת צלופח. משתלב עם דזאיפו.'}
+];
+var ALTS=[
+ {n:'טירת קוממוטו',ll:[32.8060,130.7058],from:'מאסו',t:'1:10',easy:1,d:'אחת משלוש הטירות הגדולות ביפן, בשיקום מרשים אחרי רעידת האדמה. יושבת כמעט על הדרך שלכם ב־6.11, אם מוותרים על בוקר נינוח בקורוקאווה.'},
+ {n:'אוסה ג׳ינגו',ll:[33.5253,131.3743],from:'מבפו',t:'1:00',easy:1,d:'מקדש השינטו הראשי של יפן לאל האצ׳ימן. אפשרי כעצירה בבוקר של 4.11 במקום יופואין, או בדרך מפוקואוקה לבפו.'},
+ {n:'קראצו ויובוקו',ll:[33.4503,129.9689],from:'מפוקואוקה',t:'1:15',easy:1,d:'טירה על הים, מערות נאנאצוגאמה, ודיונון חי בשוק הבוקר של יובוקו. חלופה לטיול היום של 7.11.'},
+ {n:'אונסן טקאו',ll:[33.1928,130.0206],from:'מפוקואוקה',t:'1:15',easy:1,d:'הספרייה המפורסמת, עץ קמפור בן אלפי שנים, ומים רכים. חלופה רגועה לטיול היום.'},
+ {n:'מערות אקיושידו',ll:[34.2306,131.3036],from:'מפוקואוקה',t:'1:40',easy:1,d:'מערת הגיר הגדולה ביפן, כבר מעבר למיצר ביאמגוצ׳י. משתלבת עם מוג׳יקו ליום ארוך אחד.'},
+ {n:'נגסאקי',ll:[32.7737,129.8637],from:'מפוקואוקה',t:'2:00',easy:0,d:'פארק השלום, שכונת גלובר, נוף הלילה מהר אינאסה, והפלגה לאי הרפאים גונקנג׳ימה. עיר שמצדיקה לילה, ועדיף שניים. כדי להכניס אותה צריך לוותר על טקאצ׳יהו או על לילה בפוקואוקה.'},
+ {n:'שימבארה ואונזן',ll:[32.7875,130.3625],from:'מקוממוטו',t:'1:20',easy:0,d:'טירה, מעיינות רותחים על הר אונזן, ומעבורת שחוצה את המפרץ. מוסיף יום שלם, והוא בצד המערבי שאתם לא נוגעים בו.'},
+ {n:'קגושימה וסאקוראג׳ימה',ll:[31.5966,130.5571],from:'מאסו',t:'3:00',easy:0,d:'הר געש פעיל שמעשן מול העיר, מעבורת כל 15 דקות, ואמבטיות חול חמות באיבוסוקי בהמשך. דורש שני לילות לפחות, וזה כבר טיול נפרד.'},
+ {n:'חוף ניצ׳ינן ואודו ג׳ינגו',ll:[31.6383,131.4619],from:'מטקאצ׳יהו',t:'2:15',easy:0,d:'מקדש אדום בתוך מערה מעל הים, וחוף דרומי עם דקלים. יפה מאוד, אבל דרומה מדי ביחס ללולאה.'},
+ {n:'האוס טן בוס',ll:[33.0870,129.7870],from:'מפוקואוקה',t:'2:00',easy:0,d:'פארק בסגנון הולנדי ליד סאסבו, ובנובמבר פסטיבל תאורה גדול. יום שלם, ורק אם אתם אוהבים פארקים.'},
+ {n:'יאקושימה',ll:[30.3600,130.5300],from:'מקגושימה',t:'טיסה או מעבורת',easy:0,d:'יער ארזים עתיק שהיה השראה לנסיכה מונונוקה. שלושה ימים לפחות ומזג אוויר גשום. לא ריאלי הפעם.'}
+];
+var MATRIX={
+ rows:['שדה פוקואוקה','בפו','יופואין','טקאצ׳יהו','אסו','קורוקאווה','קוממוטו','נגסאקי'],
+ v:[
+ [null,'2:00','1:45','3:30','2:20','2:00','1:30','2:00'],
+ ['2:00',null,'0:25','2:45','2:00','1:30','2:45','4:00'],
+ ['1:45','0:25',null,'2:30','1:30','1:00','2:20','3:45'],
+ ['3:30','2:45','2:30',null,'1:10','1:50','2:15','4:15'],
+ ['2:20','2:00','1:30','1:10',null,'0:45','1:10','3:00'],
+ ['2:00','1:30','1:00','1:50','0:45',null,'1:30','3:00'],
+ ['1:30','2:45','2:20','2:15','1:10','1:30',null,'1:45'],
+ ['2:00','4:00','3:45','4:15','3:00','3:00','1:45',null]]
+};
+
+(function(){
+  var h='<table><thead><tr><th></th>';
+  MATRIX.rows.forEach(function(r){h+='<th>'+r+'</th>';});
+  h+='</tr></thead><tbody>';
+  MATRIX.rows.forEach(function(r,i){
+    h+='<tr><td>'+r+'</td>';
+    MATRIX.v[i].forEach(function(c){h+='<td class="tnum">'+(c||'<span style="opacity:.3">·</span>')+'</td>';});
+    h+='</tr>';
+  });
+  document.getElementById('matrix').innerHTML=h+'</tbody></table>';
+
+  function card(a){
+    return '<div class="opt"><div class="oi"><div class="ot tnum">'+a.t+'</div><div class="ok">'+a.from+'</div></div>'
+      +'<div><h4>'+a.n+'</h4><p>'+a.d+'</p>'
+      +'<span class="verdict '+(a.easy?'yes':'maybe')+'">'+(a.easy?'נכנס כעצירה או כטיול יום':'דורש לילה או יותר')+'</span></div></div>';
+  }
+  document.getElementById('optEasy').innerHTML=ALTS.filter(function(a){return a.easy;}).map(card).join('');
+  document.getElementById('optHard').innerHTML=ALTS.filter(function(a){return !a.easy;}).map(card).join('');
+})();
+
+function initMap(){
+  if(initMap.done || typeof L==='undefined' || !document.getElementById('kmap')) return;
+  initMap.done=true;
+  var layers={};
+  var kmap=L.map('kmap',{scrollWheelZoom:false});
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:17,attribution:'&copy; OpenStreetMap'}).addTo(kmap);
+
+  function pin(cls,txt){return L.divIcon({className:'',html:'<div class="pin '+cls+'">'+(txt||'')+'</div>',iconSize:[28,28],iconAnchor:[14,14]});}
+  layers.loop=L.layerGroup().addTo(kmap);
+  layers.alt=L.layerGroup().addTo(kmap);
+  layers.day=L.layerGroup().addTo(kmap);
+
+  var pts=[];
+  ROUTE.forEach(function(seg){
+    var a=NODES[seg[0]].ll, b=NODES[seg[1]].ll;
+    L.polyline([a,b],{color:'#22466F',weight:5,opacity:.85}).addTo(layers.loop);
+    var mid=[(a[0]+b[0])/2,(a[1]+b[1])/2];
+    L.marker(mid,{icon:L.divIcon({className:'',html:'<div class="tlabel">'+seg[2]+'</div>',iconSize:[42,20],iconAnchor:[21,10]}),interactive:false}).addTo(layers.loop);
+  });
+
+  Object.keys(NODES).forEach(function(k){
+    var p=NODES[k]; pts.push(p.ll);
+    var ic = p.k==='air' ? pin('pin-air','✈') : p.k==='night' ? pin('pin-night',p.num) : pin('pin-stop');
+    L.marker(p.ll,{icon:ic,zIndexOffset:p.k==='stop'?0:400}).addTo(layers.loop).bindPopup('<b>'+p.n+'</b><br>'+p.d);
+  });
+
+  DAYTRIPS.forEach(function(t){
+    L.polyline([NODES.hakata.ll,t.ll],{color:'#6B7686',weight:3,dashArray:'6 7',opacity:.8}).addTo(layers.day);
+    L.marker(t.ll,{icon:L.divIcon({className:'',html:'<div class="pin pin-stop"></div>',iconSize:[14,14],iconAnchor:[7,7]})}).addTo(layers.day)
+      .bindPopup('<b>'+t.n+'</b><br><span class="dist">'+t.t+' מפוקואוקה</span><br>'+t.d);
+  });
+
+  ALTS.forEach(function(a){
+    L.marker(a.ll,{icon:L.divIcon({className:'',html:'<div class="pin pin-alt"></div>',iconSize:[16,16],iconAnchor:[8,8]})}).addTo(layers.alt)
+      .bindPopup('<b>'+a.n+'</b><br><span class="dist">'+a.t+' '+a.from+'</span><br>'+a.d);
+  });
+
+  var loopBounds=L.latLngBounds(pts).pad(.12);
+  kmap.fitBounds(loopBounds);
+  setTimeout(function(){kmap.invalidateSize(); kmap.fitBounds(loopBounds);},250);
+
+  function toggle(btn,key){
+    var b=document.getElementById(btn);
+    b.addEventListener('click',function(){
+      var on=b.getAttribute('aria-pressed')==='true';
+      b.setAttribute('aria-pressed',on?'false':'true');
+      if(on) kmap.removeLayer(layers[key]); else kmap.addLayer(layers[key]);
+    });
+  }
+  toggle('btnLoop','loop'); toggle('btnAlt','alt'); toggle('btnDay','day');
+  document.getElementById('btnFit').addEventListener('click',function(){kmap.fitBounds(loopBounds);});
+
+  var flightLine=null, osaka=[34.4320,135.2304];
+  document.getElementById('btnFlight').addEventListener('click',function(){
+    if(!flightLine){
+      flightLine=L.layerGroup([
+        L.polyline([NODES.fuk.ll,osaka],{color:'#AC4E2A',weight:3,dashArray:'10 8'}),
+        L.marker(osaka,{icon:L.divIcon({className:'',html:'<div class="pin pin-air" style="background:#AC4E2A">✈</div>',iconSize:[30,30],iconAnchor:[15,15]})})
+          .bindPopup('<b>שדה קנסאי, אוסקה</b><br>כאן נוחתים מישראל ב־30.10 בשעה 17:30, וכאן ממריאים לפוקואוקה ב־3.11 בבוקר. טיסה של כשעה ועשר דקות.')
+      ]).addTo(kmap);
+    }
+    kmap.fitBounds(L.latLngBounds([NODES.fuk.ll,osaka]).pad(.15));
+  });
+}
+window.addEventListener('load',function(){
+  var t=document.querySelector('.tab[data-p="map"]');
+  if(t && t.getAttribute('aria-selected')==='true') initMap();
+});
 </script>
 </body>
 </html>

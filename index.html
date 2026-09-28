@@ -106,6 +106,27 @@ section.panel{padding-top:22px}
 .day ul{font-size:13.5px; color:var(--muted)}
 .go{margin:7px 0 2px; font-size:12.5px; background:var(--accent-soft); border-inline-start:3px solid var(--accent); padding:6px 9px; border-radius:0 7px 7px 0; color:var(--ink)}
 .go b{font-weight:700}
+.bk{margin-top:8px; border:1px solid var(--good); background:var(--good-soft); border-radius:9px; padding:8px 11px; font-size:12.5px}
+.bk b{color:var(--good); font-weight:700}
+.bcard{background:var(--surface); border:1px solid var(--line); border-radius:var(--r); box-shadow:var(--shadow); overflow:hidden; margin-top:14px}
+.bhead{display:flex; gap:10px; align-items:flex-start; padding:15px 16px; border-bottom:1px solid var(--line); flex-wrap:wrap}
+.bhead h3{font-size:16.5px; flex:1; min-width:180px}
+.bhead .st{font-size:11.5px; font-weight:700; padding:3px 10px; border-radius:999px; background:var(--good-soft); color:var(--good); border:1px solid var(--good); white-space:nowrap}
+.bgrid{display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:1px; background:var(--line)}
+.bcell{background:var(--surface-2); padding:10px 13px}
+.bcell .k{font-size:11px; color:var(--muted); letter-spacing:.04em}
+.bcell .v{font-size:14px; font-weight:500; margin-top:1px}
+.bcell .v.mono{font-family:ui-monospace,SFMono-Regular,Menlo,monospace; letter-spacing:.06em}
+.bbody{padding:14px 16px}
+.bbody h4{margin:14px 0 5px; font-size:13.5px; font-weight:700}
+.bbody h4:first-child{margin-top:0}
+.bbody p, .bbody li{font-size:13.5px; color:var(--muted)}
+.bbody a{color:var(--accent); font-weight:500}
+.step{display:flex; gap:10px; padding:7px 0; font-size:13.5px; align-items:baseline}
+.step .sn{flex:none; width:22px; height:22px; border-radius:50%; background:var(--accent-soft); color:var(--accent-ink); font-size:11.5px; font-weight:700; display:flex; align-items:center; justify-content:center; font-family:"Heebo",sans-serif}
+.pending{display:grid; gap:8px; margin-top:12px}
+.pend{display:flex; gap:10px; align-items:center; background:var(--surface-2); border:1px solid var(--line); border-radius:9px; padding:9px 12px; font-size:13.5px}
+.pend .pd{color:var(--muted); font-size:12.5px; margin-inline-start:auto; white-space:nowrap}
 .ons{margin-top:6px; font-size:12px; color:var(--warm); background:var(--warm-soft); border-radius:7px; padding:5px 9px}
 
 .cards{display:grid; gap:14px; margin-top:16px}
@@ -138,6 +159,7 @@ section.panel{padding-top:22px}
 .item .why{display:block; font-size:12px; color:var(--muted); margin-top:1px}
 .item.done .t{color:var(--muted); text-decoration:line-through}
 .item .pri{font-size:10.5px; padding:1px 7px; border-radius:999px; flex:none; border:1px solid var(--line); color:var(--muted); background:var(--surface-2); align-self:center}
+.item .pri.ok{color:var(--good); border-color:var(--good); background:var(--good-soft); font-weight:500}
 .item .pri.now{color:var(--warm); border-color:var(--warm); background:var(--warm-soft); font-weight:500}
 .addrow{display:flex; gap:8px; margin-top:12px; flex-wrap:wrap}
 .addrow input[type="text"]{flex:1; min-width:180px; font:inherit; font-size:15px; padding:10px 12px; border:1px solid var(--line); border-radius:9px; background:var(--surface); color:var(--ink)}
@@ -201,6 +223,7 @@ footer{margin-top:32px; padding-top:16px; border-top:1px solid var(--line); font
     </div>
     <nav class="tabs" role="tablist">
       <button class="tab" role="tab" aria-selected="true" data-p="route">מסלול</button>
+      <button class="tab" role="tab" aria-selected="false" data-p="book">הזמנות</button>
       <button class="tab" role="tab" aria-selected="false" data-p="map">מפת קיושו</button>
       <button class="tab" role="tab" aria-selected="false" data-p="cars">רכב וטיסות פנים</button>
       <button class="tab" role="tab" aria-selected="false" data-p="todo">צ׳קליסט</button>
@@ -227,6 +250,73 @@ footer{margin-top:32px; padding-top:16px; border-top:1px solid var(--line); font
   <div class="days" id="days"></div>
 </section>
 
+
+
+<section class="panel" id="p-book" hidden>
+  <p class="eyebrow">מה כבר סגור</p>
+  <h2 style="font-size:20px">הזמנות</h2>
+  <p class="lede" style="margin-top:6px">כל מה שנסגר, עם הפרטים שצריך ביום עצמו. מה שעדיין פתוח מופיע למטה ובצ׳קליסט.</p>
+
+  <div class="bcard">
+    <div class="bhead">
+      <div style="flex:1; min-width:200px">
+        <p class="eyebrow">לינה 1 מתוך 8</p>
+        <h3>דירת איירבנב באוסקה, שימנוצ׳י</h3>
+      </div>
+      <span class="st">מאושר</span>
+    </div>
+    <div class="bgrid">
+      <div class="bcell"><div class="k">כניסה</div><div class="v tnum">שישי 30.10, 15:00</div></div>
+      <div class="bcell"><div class="k">יציאה</div><div class="v tnum">שלישי 3.11, 10:00</div></div>
+      <div class="bcell"><div class="k">לילות</div><div class="v tnum">4, שלושה אורחים</div></div>
+      <div class="bcell"><div class="k">דירה</div><div class="v tnum">604</div></div>
+      <div class="bcell"><div class="k">קוד אישור</div><div class="v mono">HMJN88RHE9</div></div>
+      <div class="bcell"><div class="k">עלות</div><div class="v tnum">381.10 דולר</div></div>
+    </div>
+    <div class="bbody">
+      <h4>כתובת</h4>
+      <p>2 Chome-15-2 Shimanouchi, Chuo Ward, Osaka 542-0082, בניין 福居公館<br>
+      <a href="https://www.google.com/maps/search/?api=1&amp;query=2+Chome-15-2+Shimanouchi+Chuo+Ward+Osaka+542-0082" target="_blank" rel="noopener">פתיחה ב־Google Maps</a></p>
+
+      <h4>איך מגיעים מהשדה, נחיתה 17:30</h4>
+      <div class="note"><b>שימו לב:</b> המארח ממליץ על אוטובוס שדה אל DOTON PLAZA. בדקתי בלוח הזמנים הרשמי, והאוטובוס האחרון מטרמינל 1 יוצא ב־17:20 ומגיע ב־18:14. אתם נוחתים ב־17:30, כלומר הקו הזה כבר לא קיים בשבילכם. הוא רלוונטי רק בכיוון ההפוך, ליציאה לשדה.</div>
+      <div class="step"><span class="sn">1</span><span>מהטרמינל לתחנת Nankai, שילוט ברור, חמש דקות הליכה.</span></div>
+      <div class="step"><span class="sn">2</span><span>רכבת Nankai אל תחנת נמבה. Rapi:t עם מקומות שמורים ומדף מזוודות, 38 דקות, 1,490 ין. או Airport Express רגיל, 45 דקות, 970 ין. יוצאות בערך כל חצי שעה עד מאוחר בלילה.</span></div>
+      <div class="step"><span class="sn">3</span><span>מנמבה מונית חמש דקות לכתובת, בערך 800 עד 1,000 ין לכל הרכב. לחלופין הליכה של 12 דקות, או תחנה אחת בקו סנניצ׳ימאה אל ניפומבאשי ואז 8 דקות הליכה.</span></div>
+      <p style="margin-top:8px">לוח זמנים ריאלי: נחיתה 17:30, מזוודות וביקורת גבולות עד בערך 18:30, רכבת 18:45, נמבה 19:25, בדירה סביב 19:40.</p>
+
+      <h4>כניסה לדירה</h4>
+      <p>צ׳ק אין עצמאי עם כספת קוד. הקוד לא מופיע בהזמנה, צריך לבקש אותו מהמארח מראש. בנוסף, לפי חוק המינפאקו היפני חובה לשלוח צילום דרכון וכתובת בישראל לפני ההגעה, אחרת לא מאפשרים כניסה. המארח עונה בין 10:00 ל־22:00 שעון יפן.</p>
+
+      <h4>ביטול</h4>
+      <p>ביטול מלא וללא עלות עד 29.10 בשעה 15:00. אחרי זה, וכל עוד לא נכנסתם, החזר חלקי עד שעת הכניסה ב־30.10. זה תנאי נוח יותר ממה שמופיע בדף המודעה.</p>
+
+      <h4>מה כדאי לדעת</h4>
+      <ul class="muted">
+        <li>דירה 604, כלומר קומה שישית. שימנוצ׳י הוא רובע חיי לילה, ובלילות שישי ושבת יש רעש ברחוב. אם המארח יציע חדר בקומה גבוהה יותר, שווה לקחת</li>
+        <li>שתי מיטות זוגיות ברוחב 1.40, מקסימום ארבעה אורחים. יש מעלית, מטבח ומכונת כביסה</li>
+        <li>מרחקי הליכה: נאגהוריבאשי 3 דקות, ניפומבאשי 8, שינסאיבאשי ודוטונבורי בערך 8 עד 10, שוק קורומון 10</li>
+        <li>ליציאה לשדה איטאמי ב־3.11, יש אוטובוס שדה מ־OCAT בנמבה, או מונית ישירה כ־35 דקות</li>
+      </ul>
+    </div>
+  </div>
+
+  <h3 style="font-size:16px; margin-top:26px">עוד לא סגור</h3>
+  <div class="pending">
+    <div class="pend">לינה בבפו<span class="pd tnum">3.11 עד 4.11</span></div>
+    <div class="pend">לינה בטקאצ׳יהו<span class="pd tnum">4.11 עד 5.11</span></div>
+    <div class="pend">לינה בקורוקאווה<span class="pd tnum">5.11 עד 6.11</span></div>
+    <div class="pend">מלון בפוקואוקה<span class="pd tnum">6.11 עד 8.11</span></div>
+    <div class="pend">מלון בקיוטו<span class="pd tnum">8.11 עד 10.11</span></div>
+    <div class="pend">לינה בטקאיאמה<span class="pd tnum">10.11 עד 12.11</span></div>
+    <div class="pend">מלון במאצומוטו<span class="pd tnum">12.11 עד 13.11</span></div>
+    <div class="pend">לינה בפוג׳יקאוואגוצ׳יקו<span class="pd tnum">13.11 עד 14.11</span></div>
+    <div class="pend">מלון בטוקיו<span class="pd tnum">14.11 עד 19.11</span></div>
+    <div class="pend">טיסות פנים אוסקה ופוקואוקה<span class="pd tnum">3.11 ו־8.11</span></div>
+    <div class="pend">רכב בקיושו<span class="pd tnum">3.11 עד 8.11</span></div>
+    <div class="pend">רכב טקאיאמה עד קוואגוצ׳יקו<span class="pd tnum">11.11 עד 14.11</span></div>
+  </div>
+</section>
 
 <section class="panel" id="p-map" hidden>
   <p class="eyebrow">מפה</p>
@@ -547,7 +637,7 @@ var ALLOC=[
 var LEGS=[
 {name:'אוסקה, הנחיתה', cnt:'4 לילות', days:[
  {d:'2026-10-29',t:'המראה מישראל',tags:[['fly','טיסה']],stay:'באוויר',li:['בתיק יד: תרופות, מטענים, מעיל קל, הרישיון הבינלאומי','לצלם את כל ההזמנות לתיקייה אחת בטלפון']},
- {d:'2026-10-30',t:'נחיתה באוסקה 17:30',go:'רכבת משדה קנסאי לעיר, כשעה. Nankai Rapi:t אל נמבה 38 דקות בערך 1,490 ין, או JR Haruka אל טנוג׳י ושין אוסקה, כ־50 דקות. כרטיס ICOCA או Suica בטלפון פותר הכול.',tags:[['fly','נחיתה 17:30'],['train','כשעה לעיר']],stay:'אוסקה',li:['רכבת משדה קנסאי לנמבה או לאומדה, תלוי איפה המלון','ערב קליל בדוטונבורי, בלי תכניות גדולות','לקנות Suica או להפעיל אותו בטלפון כבר בשדה']},
+ {d:'2026-10-30',t:'נחיתה באוסקה 17:30',go:'Nankai Rapi:t משדה קנסאי אל נמבה, 38 דקות, 1,490 ין, ומשם מונית חמש דקות לדירה. אוטובוס השדה אל DOTON PLAZA שהמארח ממליץ עליו כבר לא רלוונטי, האחרון יוצא ב־17:20.',tags:[['fly','נחיתה 17:30'],['train','כשעה לעיר']],stay:'אוסקה',li:['להפעיל Suica בטלפון כבר בשדה, זה פותר רכבות ומוניות','ערב קליל בדוטונבורי, שמונה דקות הליכה מהדירה','להגיע עם קוד הכספת בטלפון, הצ׳ק אין עצמאי'],bk:'<b>סגור:</b> דירת איירבנב בשימנוצ׳י, 2 Chome-15-2, דירה 604, קוד אישור HMJN88RHE9. כניסה מ־15:00, כספת קוד.'},
  {d:'2026-10-31',t:'אוסקה עצמה',go:'הכול ברכבת התחתית של אוסקה. קו מידוסוג׳י מחבר את נמבה, שינסאיבאשי ואומדה, נסיעה של 5 עד 10 דקות בין התחנות.',tags:[['b','יום עיר']],stay:'אוסקה',li:['טירת אוסקה והפארק סביבה','שוק קורומון לארוחת צהריים','תצפית Umeda Sky לשקיעה, יום נוח לרגליים אחרי הטיסה']},
  {d:'2026-11-01',t:'נארה',go:'קינטצו מתחנת אוסאקה נמבה אל קינטצו נארה, אקספרס מהיר כ־40 דקות, כ־680 ין. התחנה נמצאת במרחק הליכה מפארק האיילים.',tags:[['train','45 דקות']],stay:'אוסקה',li:['טודאיג׳י והבודהה הגדול, פארק האיילים','קסוגה טאישה ומסלול הפנסים','חזרה לאוסקה, אוקונומיאקי לארוחת ערב']},
  {d:'2026-11-02',t:'הימג׳י וקובה',go:'JR ספיישל ראפיד מתחנת אוסקה אל הימג׳י, כשעה, 1,520 ין. הטירה 15 דקות הליכה מהתחנה. בחזרה עוצרים בקובה, 25 דקות מהימג׳י.',tags:[['train','שעה לכל כיוון']],stay:'אוסקה',li:['טירת הימג׳י, השלמה ביפן, להגיע בפתיחה','עצירה בקובה, שכונת קיטאנו או ארוחת בקר','אופציה מקבילה: קויה סאן ליום שקט במקדשים','לארוז לקיושו, ואפשר להשאיר מזוודה גדולה במלון']}
@@ -597,7 +687,9 @@ var TASKS=[
   {id:'hours',t:'לאמת שעות פתיחה של סניפי האיסוף וההחזרה',w:'שדה פוקואוקה ב־3.11 וב־8.11, והסניף בקוואגוצ׳יקו בבוקר 14.11',p:''}
  ]},
  {g:'לינה, מה לסגור ומתי', items:[
-  {id:'h-osaka',t:'לסגור מלון באוסקה, 30.10 עד 3.11',w:'ארבעה לילות, כניסה 30.10 ויציאה בבוקר 3.11',p:'דחוף'},
+  {id:'h-osaka',t:'מלון באוסקה, 30.10 עד 3.11',w:'סגור. דירת איירבנב בשימנוצ׳י, דירה 604, קוד אישור HMJN88RHE9. כל הפרטים בטאב הזמנות',ok:1},
+  {id:'lockbox',t:'לקבל מהמארח באוסקה את קוד הכספת',w:'הצ׳ק אין עצמאי והקוד לא מופיע בהזמנה. לבקש בהודעה כמה ימים לפני',p:''},
+  {id:'minpaku',t:'לשלוח למארח צילומי דרכון וכתובת בישראל',w:'חובה לפי חוק המינפאקו, בלי הרישום הזה לא מאפשרים כניסה',p:''},
   {id:'h-beppu',t:'לסגור לינה בבפו, 3.11 עד 4.11',w:'לילה אחד. אזור אונסן: כאן שווה ריוקאן עם חצי פנסיון ומרחצאות פרטיים, בפו זולה יחסית לרמה',p:'דחוף'},
   {id:'h-takachiho',t:'לסגור לינה בטקאצ׳יהו, 4.11 עד 5.11',w:'לילה אחד. כפר קטן עם מעט מאוד חדרים, זה הלילה שייגמר ראשון',p:'דחוף'},
   {id:'h-kurokawa',t:'לסגור לינה בקורוקאווה, 5.11 עד 6.11',w:'לילה אחד. כפר אונסן: ריוקאן עם קאיסקי, ולשאול מראש על מדיניות קעקועים ואמבט פרטי',p:'דחוף'},
@@ -665,7 +757,7 @@ var TASKS=[
         +d.tags.map(function(t){return '<span class="b '+t[0]+'">'+t[1]+'</span>';}).join('')
         +'</div>'+(d.go?'<div class="go"><b>איך מגיעים:</b> '+d.go+'</div>':'')
         +'<ul>'+d.li.map(function(x){return '<li>'+x+'</li>';}).join('')+'</ul>'
-        +(d.ons?'<div class="ons">'+d.ons+'</div>':'')+'</div></article>';
+        +(d.bk?'<div class="bk">'+d.bk+'</div>':'')+(d.ons?'<div class="ons">'+d.ons+'</div>':'')+'</div></article>';
     });
   });
   document.getElementById('days').innerHTML=out;
@@ -676,7 +768,7 @@ var TASKS=[
   tabs.forEach(function(t){
     t.addEventListener('click',function(){
       tabs.forEach(function(o){o.setAttribute('aria-selected',o===t?'true':'false');});
-      ['route','map','cars','todo','info'].forEach(function(k){document.getElementById('p-'+k).hidden=(k!==t.dataset.p);});
+      ['route','book','map','cars','todo','info'].forEach(function(k){document.getElementById('p-'+k).hidden=(k!==t.dataset.p);});
       try{localStorage.setItem('jp26tab',t.dataset.p);}catch(e){}
       if(t.dataset.p==='map') setTimeout(initMap,0);
       window.scrollTo(0,0);
@@ -706,9 +798,10 @@ var TASKS=[
   function save(){try{localStorage.setItem(KEY,JSON.stringify(state));}catch(e){}}
   function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
   function all(){var a=[];TASKS.forEach(function(g){g.items.forEach(function(i){a.push(i);});});state.custom.forEach(function(c){a.push(c);});return a;}
+  function isDone(i){return !!(i.ok || state.done[i.id]);}
   function stats(){
     var items=all(), total=items.length;
-    var done=items.filter(function(i){return state.done[i.id];}).length;
+    var done=items.filter(isDone).length;
     var pct=total?Math.round(done/total*100):0;
     document.getElementById('pctTxt').textContent=pct+'%';
     document.getElementById('pctSub').textContent=done+' מתוך '+total+' משימות';
@@ -718,13 +811,14 @@ var TASKS=[
     var groups=TASKS.map(function(g){return {g:g.g,items:g.items.slice()};});
     if(state.custom.length) groups.push({g:'משימות שהוספתם',items:state.custom});
     document.getElementById('groups').innerHTML=groups.map(function(g){
-      var done=g.items.filter(function(i){return state.done[i.id];}).length;
+      var done=g.items.filter(isDone).length;
       return '<div class="group"><h3>'+g.g+' <span class="c tnum">'+done+' מתוך '+g.items.length+'</span></h3><div class="items">'
         +g.items.map(function(i){
-          var on=!!state.done[i.id];
+          var on=isDone(i);
           return '<label class="item'+(on?' done':'')+'" data-id="'+esc(i.id)+'">'
-            +'<input type="checkbox" id="chk-'+esc(i.id)+'"'+(on?' checked':'')+'>'
+            +'<input type="checkbox" id="chk-'+esc(i.id)+'"'+(on?' checked':'')+(i.ok?' disabled':'')+'>'
             +'<span class="t">'+esc(i.t)+(i.w?'<span class="why">'+esc(i.w)+'</span>':'')+'</span>'
+            +(i.ok?'<span class="pri ok">הוזמן</span>':'')
             +(i.p?'<span class="pri'+(i.p==='דחוף'||i.p==='עכשיו'?' now':'')+'">'+esc(i.p)+'</span>':'')
             +(i.own?'<button class="del" type="button" data-del="'+esc(i.id)+'" title="מחיקה">×</button>':'')
             +'</label>';
@@ -740,7 +834,7 @@ var TASKS=[
     lab.classList.toggle('done',e.target.checked);
     var c=lab.closest('.group').querySelector('h3 .c');
     if(c){var sib=[].slice.call(lab.closest('.items').querySelectorAll('.item'));
-      c.textContent=sib.filter(function(s){return s.classList.contains('done');}).length+' מתוך '+sib.length;}
+      c.textContent=sib.filter(function(x){return x.classList.contains('done');}).length+' מתוך '+sib.length;}
     stats(); save();
   });
   groupsEl.addEventListener('click',function(e){

@@ -127,6 +127,24 @@ section.panel{padding-top:22px}
 .pending{display:grid; gap:8px; margin-top:12px}
 .pend{display:flex; gap:10px; align-items:center; background:var(--surface-2); border:1px solid var(--line); border-radius:9px; padding:9px 12px; font-size:13.5px}
 .pend .pd{color:var(--muted); font-size:12.5px; margin-inline-start:auto; white-space:nowrap}
+#dmap{height:440px; background:#e8e6e1}
+@media(max-width:600px){#dmap{height:340px}}
+.tlwrap{overflow-x:auto; margin-top:10px}
+.tl{min-width:660px}
+.tlruler{display:flex; font-size:10.5px; color:var(--muted); border-bottom:1px solid var(--line); padding-bottom:3px; margin-bottom:7px}
+.tlruler span{flex:1; text-align:center}
+.tlrow{position:relative; height:40px; background:var(--surface-2); border:1px solid var(--line); border-radius:8px; overflow:hidden}
+.tlblk{position:absolute; top:0; bottom:0; display:flex; align-items:center; justify-content:center; font-size:11px; font-weight:500; color:#fff; white-space:nowrap; overflow:hidden; padding:0 3px; border-inline-end:1px solid rgba(255,255,255,.35)}
+.tlblk.drive{background:#AC4E2A}
+.tlblk.act{background:#22466F}
+.tlblk.eat{background:#37795C}
+.tlblk.night{background:#15181D}
+.tlblk.gap{background:transparent; border:none}
+.tlkey{display:flex; gap:12px; flex-wrap:wrap; font-size:12px; color:var(--muted); margin-top:8px}
+.tlkey i{display:inline-block; width:10px; height:10px; border-radius:2px; margin-inline-end:5px}
+.optbox{border:1px solid var(--line); border-radius:var(--r); background:var(--surface); box-shadow:var(--shadow); padding:15px 16px; margin-top:14px}
+.optbox h3{font-size:15.5px}
+.optbox .sub{font-size:13px; color:var(--muted); margin-top:2px}
 .plus{margin-top:9px; border:1px solid var(--line); border-radius:9px; background:var(--surface-2); padding:10px 12px}
 .plus > b{font-size:13px; display:block; margin-bottom:6px}
 .plus .ph{font-size:12px; font-weight:700; color:var(--accent-ink); margin:9px 0 3px; letter-spacing:.02em}
@@ -229,6 +247,7 @@ footer{margin-top:32px; padding-top:16px; border-top:1px solid var(--line); font
     </div>
     <nav class="tabs" role="tablist">
       <button class="tab" role="tab" aria-selected="true" data-p="route">מסלול</button>
+      <button class="tab" role="tab" aria-selected="false" data-p="dist">מרחקים</button>
       <button class="tab" role="tab" aria-selected="false" data-p="book">הזמנות</button>
       <button class="tab" role="tab" aria-selected="false" data-p="map">מפת קיושו</button>
       <button class="tab" role="tab" aria-selected="false" data-p="cars">רכב וטיסות פנים</button>
@@ -257,6 +276,65 @@ footer{margin-top:32px; padding-top:16px; border-top:1px solid var(--line); font
 </section>
 
 
+
+
+<section class="panel" id="p-dist" hidden>
+  <p class="eyebrow">השאלה</p>
+  <h2 style="font-size:20px">איך יופואין והשייט נכנסים לאותו יום</h2>
+  <p class="lede" style="margin-top:6px">התשובה הקצרה: כן, אבל רק אם יוצאים מבפו ב־08:00 ונותנים ליופואין שעתיים. סך הנהיגה ב־4.11 הוא שלוש שעות נטו, והערוץ סוגר את הסירות ב־17:00. להלן המפה, המרחקים, ושתי גרסאות ליום.</p>
+
+  <div class="mapwrap"><div id="dmap"></div></div>
+  <div class="legend">
+    <span><i style="background:#22466F"></i>המסלול של 4.11</span>
+    <span><i style="background:#AC4E2A"></i>ההמשך ב־5.11</span>
+    <span>לחיצה על סמן פותחת את הזמנים</span>
+  </div>
+
+  <div class="cards two">
+    <div class="card">
+      <h3>המרחקים בפועל</h3>
+      <div class="tablewrap">
+        <table>
+          <thead><tr><th>קטע</th><th>נהיגה</th><th>ק״מ</th></tr></thead>
+          <tbody>
+            <tr><td>בפו אל יופואין</td><td class="tnum">0:30</td><td class="tnum">25</td></tr>
+            <tr><td>יופואין אל מפל הארג׳ירי</td><td class="tnum">1:20</td><td class="tnum">80</td></tr>
+            <tr><td>הארג׳ירי אל טקאצ׳יהו</td><td class="tnum">1:10</td><td class="tnum">60</td></tr>
+            <tr><td><b>סך הכל עד הערוץ</b></td><td class="tnum"><b>3:00</b></td><td class="tnum"><b>165</b></td></tr>
+            <tr><td>טקאצ׳יהו אל טקאמורי, בערב</td><td class="tnum">0:40</td><td class="tnum">35</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="muted" style="font-size:12.5px; margin-top:8px">זמנים נטו בלי עצירות. הקטע מיופואין דרומה הוא כביש הררי, לא כביש מהיר, אז אין לקצץ בו.</p>
+    </div>
+    <div class="card">
+      <h3>שלוש נקודות שקובעות את היום</h3>
+      <ul class="muted" style="margin-top:8px">
+        <li><b>צ׳ק אאוט בבפו עד 10:00.</b> יציאה ב־08:00 היא מוקדמת אבל לא בעייתית, ויופואין בשעה 08:30 היא בדיוק לפני שהאוטובוסים מגיעים</li>
+        <li><b>הסירות בערוץ נסגרות ב־17:00</b>, כניסה אחרונה בערך 16:30, והן בהזמנה מקוונת לפי חלון שעה</li>
+        <li><b>היוקאגורה במקדש ב־20:00</b>, כשעה. אחריה נשארת נסיעה של 40 דקות לטקאמורי בחושך</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="optbox">
+    <h3>גרסה א: השייט ב־4.11 אחר הצהריים</h3>
+    <p class="sub">יוצאים מוקדם, יופואין שעתיים, ומגיעים לערוץ ב־13:45 עם שעתיים וחצי מרווח לפני הסגירה. זו הגרסה שאני ממליץ עליה.</p>
+    <div class="tlwrap"><div class="tl" id="tlA"></div></div>
+  </div>
+
+  <div class="optbox">
+    <h3>גרסה ב: יופואין ברוגע, השייט בבוקר של 5.11</h3>
+    <p class="sub">יוצאים ב־09:00, שלוש שעות ביופואין, ומגיעים לטקאצ׳יהו רק ב־15:45. הערוץ נדחה לבוקר המחרת, וזה עולה 40 דקות נסיעה חזרה מטקאמורי בשעה 07:45.</p>
+    <div class="tlwrap"><div class="tl" id="tlB"></div></div>
+  </div>
+
+  <div class="card" style="margin-top:14px">
+    <h3>ההבדל בשורה אחת</h3>
+    <p class="muted" style="margin-top:6px">גרסה א נותנת ליופואין שעתיים ומסיימת את טקאצ׳יהו באותו יום. גרסה ב נותנת ליופואין שלוש שעות, אבל מכניסה נהיגה כפולה של 80 דקות בבוקר של 5.11 ומקצרת את היום באסו ובקורוקאווה. אם יופואין היא רק אגם קינרין ורחוב יונוצובו, שעתיים מספיקות בהחלט.</p>
+    <div class="note">בשתי הגרסאות הלינה היא בטקאמורי, כי טקאצ׳יהו עצמה כמעט נגמרה לתאריך הזה. אם תתפסו לינה בטקאצ׳יהו, גרסה א מתקצרת ב־40 דקות נסיעה בלילה וגרסה ב מתייתרת.</div>
+  </div>
+</section>
 
 <section class="panel" id="p-book" hidden>
   <p class="eyebrow">מה כבר סגור</p>
@@ -812,9 +890,10 @@ var TASKS=[
   tabs.forEach(function(t){
     t.addEventListener('click',function(){
       tabs.forEach(function(o){o.setAttribute('aria-selected',o===t?'true':'false');});
-      ['route','book','map','cars','todo','info'].forEach(function(k){document.getElementById('p-'+k).hidden=(k!==t.dataset.p);});
+      ['route','dist','book','map','cars','todo','info'].forEach(function(k){document.getElementById('p-'+k).hidden=(k!==t.dataset.p);});
       try{localStorage.setItem('jp26tab',t.dataset.p);}catch(e){}
       if(t.dataset.p==='map') setTimeout(initMap,0);
+      if(t.dataset.p==='dist') setTimeout(initDayMap,0);
       window.scrollTo(0,0);
     });
   });
@@ -1034,6 +1113,87 @@ window.addEventListener('load',function(){
   var t=document.querySelector('.tab[data-p="map"]');
   if(t && t.getAttribute('aria-selected')==='true') initMap();
 });
+
+/* ---------- day 4.11: map + timelines ---------- */
+var DAYPTS={
+ beppu:{n:'בפו, המלון',ll:[33.2831,131.5044],d:'יציאה ב־08:00. צ׳ק אאוט עד 10:00, אז אפשר גם קצת מאוחר יותר.'},
+ yufuin:{n:'יופואין',ll:[33.2636,131.3656],d:'30 דקות מבפו. אגם קינרין ורחוב יונוצובו. בשעה 08:30 זה עדיין שקט, מ־10:00 מתמלא באוטובוסים.'},
+ harajiri:{n:'מפל הארג׳ירי',ll:[32.9706,131.4300],d:'שעה ועשרים מיופואין. עצירה של חצי שעה, יש גשר תלוי מעל המפל.'},
+ takachiho:{n:'ערוץ טקאצ׳יהו',ll:[32.7128,131.3010],d:'שעה ועשר מהארג׳ירי. הסירות עד 17:00, כניסה אחרונה בערך 16:30, בהזמנה מקוונת לפי חלון שעה.'},
+ iwato:{n:'אמאנו איוואטו',ll:[32.7233,131.3603],d:'עשר דקות מהערוץ. מקדש ומערה, טוב לשעה שלפני השקיעה.'},
+ shrine:{n:'מקדש טקאצ׳יהו, יוקאגורה',ll:[32.7157,131.3078],d:'מופע כל ערב ב־20:00, כשעה. במרכז הכפר.'},
+ takamori:{n:'טקאמורי, הלינה',ll:[32.8231,131.1258],d:'40 דקות מטקאצ׳יהו. כאן הלינה, וזו גם הדרך צפונה ב־5.11.'}
+};
+var DAYLEG=[['beppu','yufuin','0:30'],['yufuin','harajiri','1:20'],['harajiri','takachiho','1:10']];
+var DAYLEG2=[['takachiho','takamori','0:40']];
+
+function initDayMap(){
+  if(initDayMap.done || typeof L==='undefined' || !document.getElementById('dmap')) return;
+  initDayMap.done=true;
+  var m=L.map('dmap',{scrollWheelZoom:false});
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:17,attribution:'&copy; OpenStreetMap'}).addTo(m);
+  var pts=[];
+  function seg(list,color){
+    list.forEach(function(g){
+      var a=DAYPTS[g[0]].ll,b=DAYPTS[g[1]].ll;
+      L.polyline([a,b],{color:color,weight:5,opacity:.85}).addTo(m);
+      var mid=[(a[0]+b[0])/2,(a[1]+b[1])/2];
+      L.marker(mid,{icon:L.divIcon({className:'',html:'<div class="tlabel">'+g[2]+'</div>',iconSize:[42,20],iconAnchor:[21,10]}),interactive:false}).addTo(m);
+    });
+  }
+  seg(DAYLEG,'#22466F'); seg(DAYLEG2,'#AC4E2A');
+  var order=['beppu','yufuin','harajiri','takachiho','iwato','shrine','takamori'];
+  order.forEach(function(k,i){
+    var p=DAYPTS[k]; pts.push(p.ll);
+    var small=(k==='iwato'||k==='shrine');
+    var ic=small?L.divIcon({className:'',html:'<div class="pin pin-stop"></div>',iconSize:[14,14],iconAnchor:[7,7]})
+                :L.divIcon({className:'',html:'<div class="pin pin-night">'+(k==='beppu'?'צא':k==='takamori'?'לון':i)+'</div>',iconSize:[28,28],iconAnchor:[14,14]});
+    L.marker(p.ll,{icon:ic,zIndexOffset:small?0:400}).addTo(m).bindPopup('<b>'+p.n+'</b><br>'+p.d);
+  });
+  var b=L.latLngBounds(pts).pad(.15);
+  m.fitBounds(b);
+  setTimeout(function(){m.invalidateSize(); m.fitBounds(b);},250);
+}
+
+var TL_START=7*60, TL_END=22*60;
+function drawTL(id,blocks){
+  var el=document.getElementById(id); if(!el) return;
+  var span=TL_END-TL_START, ruler='';
+  for(var h=7;h<22;h++) ruler+='<span>'+h+':00</span>';
+  var t=TL_START, row='';
+  blocks.forEach(function(b){
+    var left=(t-TL_START)/span*100, w=b.m/span*100;
+    row+='<div class="tlblk '+b.k+'" style="right:'+left+'%; width:'+w+'%" title="'+b.l+'">'+(b.m>=45?b.l:'')+'</div>';
+    t+=b.m;
+  });
+  el.innerHTML='<div class="tlruler">'+ruler+'</div><div class="tlrow">'+row+'</div>'
+   +'<div class="tlkey"><span><i style="background:#AC4E2A"></i>נהיגה</span><span><i style="background:#22466F"></i>ביקור</span><span><i style="background:#37795C"></i>אוכל וזמן חופשי</span><span><i style="background:#15181D"></i>יוקאגורה</span></div>';
+}
+drawTL('tlA',[
+ {k:'gap',m:60,l:''},
+ {k:'drive',m:30,l:'08:00'},
+ {k:'act',m:120,l:'08:30 יופואין'},
+ {k:'drive',m:75,l:'נסיעה'},
+ {k:'act',m:30,l:'הארג׳ירי'},
+ {k:'drive',m:90,l:'נסיעה וארוחה'},
+ {k:'act',m:135,l:'13:45 ערוץ טקאצ׳יהו ושייט'},
+ {k:'act',m:60,l:'אמאנו איוואטו'},
+ {k:'eat',m:180,l:'17:00 ארוחת ערב וכפר'},
+ {k:'night',m:60,l:'20:00 יוקאגורה'},
+ {k:'drive',m:40,l:'לטקאמורי'}
+]);
+drawTL('tlB',[
+ {k:'gap',m:120,l:''},
+ {k:'drive',m:30,l:'09:00'},
+ {k:'act',m:180,l:'09:30 יופואין ברוגע'},
+ {k:'drive',m:75,l:'נסיעה'},
+ {k:'act',m:30,l:'הארג׳ירי'},
+ {k:'drive',m:90,l:'נסיעה וארוחה'},
+ {k:'act',m:105,l:'15:45 אמאנו איוואטו והכפר'},
+ {k:'eat',m:150,l:'ארוחת ערב'},
+ {k:'night',m:60,l:'20:00 יוקאגורה'},
+ {k:'drive',m:40,l:'לטקאמורי'}
+]);
 </script>
 </body>
 </html>

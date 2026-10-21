@@ -234,6 +234,17 @@ footer{margin-top:32px; padding-top:16px; border-top:1px solid var(--line); font
 .verdict.yes{color:var(--good); border-color:var(--good); background:var(--good-soft)}
 .verdict.maybe{color:var(--warm); border-color:var(--warm); background:var(--warm-soft)}
 @media print{header.top{position:static} .tab{display:none} section.panel{display:block!important}}
+.bhead .st.warn{background:var(--warm-soft); color:var(--warm); border-color:var(--warm)}
+.bhead .st.off{background:var(--surface-2); color:var(--muted); border-color:var(--line)}
+#tmap{height:560px; background:#e8e6e1}
+@media(max-width:600px){#tmap{height:430px}}
+.pin-via{width:12px; height:12px; background:#fff; border:3px solid #22466F}
+.urgent{margin-top:16px; border:1px solid var(--warm); background:var(--warm-soft); border-radius:var(--r); padding:14px 16px}
+.urgent h3{font-size:16px; color:var(--warm)}
+.urgent ol{margin:8px 0 0; padding-inline-start:20px; font-size:13.5px}
+.urgent li{margin-top:5px}
+.fl td:first-child{white-space:nowrap; font-weight:700}
+.cards > *{min-width:0}
 </style>
 </head>
 <body>
@@ -241,16 +252,16 @@ footer{margin-top:32px; padding-top:16px; border-top:1px solid var(--line); font
 <header class="top">
   <div class="top-in">
     <div class="brandrow">
-      <h1>יפן 2026</h1>
-      <span class="sub tnum">29.10 עד 19.11 · שלושה מטיילים</span>
+      <h1>סיאול ויפן 2026</h1>
+      <span class="sub tnum">3.11 עד 26.11 · שלושה מטיילים</span>
       <span class="count tnum" id="count">טוען...</span>
     </div>
     <nav class="tabs" role="tablist">
       <button class="tab" role="tab" aria-selected="true" data-p="route">מסלול</button>
-      <button class="tab" role="tab" aria-selected="false" data-p="dist">מרחקים</button>
+      <button class="tab" role="tab" aria-selected="false" data-p="seoul">סיאול</button>
       <button class="tab" role="tab" aria-selected="false" data-p="book">הזמנות</button>
-      <button class="tab" role="tab" aria-selected="false" data-p="map">מפת קיושו</button>
-      <button class="tab" role="tab" aria-selected="false" data-p="cars">רכב וטיסות פנים</button>
+      <button class="tab" role="tab" aria-selected="false" data-p="map">מפה</button>
+      <button class="tab" role="tab" aria-selected="false" data-p="cars">טיסות ורכב</button>
       <button class="tab" role="tab" aria-selected="false" data-p="todo">צ׳קליסט</button>
       <button class="tab" role="tab" aria-selected="false" data-p="info">מידע שימושי</button>
     </nav>
@@ -261,345 +272,340 @@ footer{margin-top:32px; padding-top:16px; border-top:1px solid var(--line); font
   <p class="eyebrow">התשובה הקצרה</p>
   <div class="answer">
     <div class="answer-top">
-      <div class="big tnum">5</div>
+      <div class="big tnum">18</div>
       <div class="txt">
-        <p><strong>נשארו 5 לילות בטוקיו</strong>, מ־14.11 עד 18.11, ועוד יום שלם ביום היציאה 19.11 עד היציאה לשדה.</p>
-        <p class="lede" style="margin-top:4px">סך הכל 20 לילות ביפן: נחיתה 30.10, טיסה חזרה 19.11 ב־21:30. 15 לילות מוקצים לשאר היעדים, והשארית היא טוקיו.</p>
+        <p><strong>18 לילות ביפן, אחרי 3 לילות בסיאול.</strong> נוחתים באינצ׳ון ב־4.11, טסים לאוסקה ב־7.11, ויוצאים מנריטה ב־25.11 בערב.</p>
+        <p class="lede" style="margin-top:4px">קיושו ירדה. הלילות שהתפנו הלכו לקיוטו, משניים לארבעה, ולפוג׳י, מאחד לשניים, כי שם הם שווים הכי הרבה בעונת השלכת. מסלול האלפים נשאר כמו שהיה, רק זז שבוע קדימה.</p>
       </div>
     </div>
     <div class="allocs" id="allocs"></div>
   </div>
 
-  <p class="lede" style="margin-top:18px">נוחתים באוסקה, עושים אותה ראשונה, טסים הלוך חזור לקיושו לחמישה לילות עם רכב, חוזרים לאוסקה וממשיכים ישר לקיוטו, משם האלפים ברכב שני, וסיום ארוך בטוקיו כדי להיות קרוב לשדה ביום הטיסה.</p>
+  <div class="urgent">
+    <h3>לטפל השבוע, יש מועדים</h3>
+    <ol>
+      <li><b>לבטל את המלון בבפו</b>, ביטול חינם עד 30.10 ב־23:59 שעון יפן, כלומר 16:59 בישראל</li>
+      <li><b>להעביר את האיירבנב באוסקה</b> מ־30.10 עד 3.11 אל 7.11 עד 11.11. אם המארח לא מאשר, ביטול חינם עד 29.10 ב־15:00</li>
+      <li><b>להעביר את המלון בקיוטו</b> מ־8.11 עד 10.11 אל 11.11 עד 15.11, ארבעה לילות</li>
+      <li><b>K-ETA לשלושתכם</b>, אישור כניסה לקוריאה, לפחות 72 שעות לפני הטיסה</li>
+      <li><b>לסגור טיסה מסיאול לאוסקה</b> ב־7.11 ומלון בסיאול ל־4.11 עד 7.11</li>
+    </ol>
+  </div>
 
   <div class="days" id="days"></div>
 </section>
 
+<section class="panel" id="p-seoul" hidden>
+  <p class="eyebrow">שלושה לילות</p>
+  <h2 style="font-size:20px">סיאול, 4.11 עד 7.11</h2>
+  <p class="lede" style="margin-top:6px">ערב הגעה, שני ימים מלאים ובוקר של טיסה. זה מספיק לארמונות, לשווקים ולתצפית אחת טובה, בקצב שמתאים להורים. השלכת בסיאול בשיא בדיוק בתחילת נובמבר, אז התזמון עובד לטובתכם.</p>
 
+  <div class="cards two">
+    <div class="card">
+      <h3>מהשדה לעיר, נחיתה 15:45</h3>
+      <div class="step"><span class="sn">1</span><span>נחיתה בטרמינל 1 של אינצ׳ון. ביקורת גבולות ומזוודות, בערך עד 17:00.</span></div>
+      <div class="step"><span class="sn">2</span><span><b>הכי נוח לשלושה עם מזוודות: מונית.</b> כשעה למרכז העיר, בעומס של שעת ערב יותר. אפשר להזמין דרך Kakao T, או מונית בינלאומית מהדוכן בשדה.</span></div>
+      <div class="step"><span class="sn">3</span><span>חלופה: רכבת AREX Express לתחנת סיאול, 43 דקות, מקומות שמורים ומדף מזוודות. משם מונית קצרה למלון.</span></div>
+      <p class="muted" style="margin-top:8px; font-size:13px">לוח זמנים ריאלי: במלון סביב 18:30, ערב קליל בסביבה.</p>
+    </div>
+    <div class="card">
+      <h3>איפה לישון</h3>
+      <p class="muted" style="margin-top:6px">מיונגדונג או ג׳ונג־גו: קרוב לתחנת סיאול, לרכבת לשדה, לארמונות ולנאמסאן, ומלא אוכל ברחוב בערב. חלופה שקטה יותר: ג׳ונגנו, ליד אינסאדונג והארמונות.</p>
+      <div class="note"><b>כלל המיטות חל גם כאן.</b> במלונות בקוריאה יש חדרי Ondol, שבהם ישנים על מזרן על רצפה מחוממת. זה בדיוק מה שאסור להורים. לחפש Triple או Family עם מיטות, ולוודא שהמילה Ondol לא מופיעה בשם החדר.</div>
+    </div>
+  </div>
 
-
-<section class="panel" id="p-dist" hidden>
-  <p class="eyebrow">השאלה</p>
-  <h2 style="font-size:20px">איך יופואין והשייט נכנסים לאותו יום</h2>
-  <p class="lede" style="margin-top:6px">זו התכנית שנבחרה: יציאה מבפו ב־08:00, שעתיים ביופואין, ואז נסיעה רצופה דרומה בלי עצירות. נוסעים רצוף ומגיעים לטקאצ׳יהו ב־13:00, אוכלים בכפר, והסירות בערוץ ב־14:00. הסגירה היא ב־17:00, כלומר שלוש שעות מרווח. מפל הארג׳ירי נשאר כאופציה על הדרך, לא כחובה.</p>
-
-  <div class="mapwrap"><div id="dmap"></div></div>
-  <div class="legend">
-    <span><i style="background:#22466F"></i>המסלול של 4.11</span>
-    <span><i style="background:#AC4E2A"></i>ההמשך ב־5.11</span>
-    <span>לחיצה על סמן פותחת את הזמנים</span>
+  <div class="card" style="margin-top:14px">
+    <h3>מה יש לעשות, לפי אזור</h3>
+    <div class="plus" style="margin-top:10px">
+      <div class="ph">הארמונות והעיר העתיקה</div>
+      <ul>
+        <li>גיונגבוקגונג, הארמון הגדול. החלפת משמר בשער בשעות 10:00 ו־14:00. סגור בימי שלישי</li>
+        <li>צ׳אנגדוקגונג והגן הסודי, סיור מודרך במכסה, להזמין מראש באתר. סגור בימי שני</li>
+        <li>מי שלובש הנבוק נכנס לארמונות בחינם. יש השכרות ליד כל ארמון, וזו גם התמונה של הטיול</li>
+        <li>כפר בוקצ׳ון, בתי הנוק בסמטאות. זה אזור מגורים, יש שעות ביקור מוגבלות בחלק מהרחובות</li>
+        <li>אינסאדונג לבתי תה, גלריות ומזכרות, ואיקסונדונג לבתי קפה בבתים ישנים</li>
+      </ul>
+      <div class="ph">שווקים ואוכל</div>
+      <ul>
+        <li>שוק גוואנגג׳אנג: בינדאטוק, לביבת שעועית מש מטוגנת, ומאיאק קימבאפ. הכי טוב בבוקר או בצהריים</li>
+        <li>דוכני הערב של מיונגדונג, מ־17:00 בערך</li>
+        <li>ארוחת ברביקיו קוריאנית, צולים על השולחן. ארוחה של ערב שלם</li>
+      </ul>
+      <div class="ph">נוף ושלכת</div>
+      <ul>
+        <li>מגדל N סיאול על הר נאמסאן, עולים ברכבל. הכי יפה בשקיעה ובלילה</li>
+        <li>דרך החומה של ארמון דוקסוגונג, שדרת גינקו שמצהיבה בתחילת נובמבר</li>
+        <li>הליכה לאורך נחל צ׳ונגגייצ׳ון במרכז העיר, שטוחה ונוחה</li>
+        <li>מגדל לוטה וורלד ותצפית Seoul Sky בגנגנאם, הבניין הגבוה בקוריאה</li>
+      </ul>
+      <div class="ph">חצי יום מחוץ לעיר</div>
+      <ul>
+        <li>סיור DMZ, הגבול עם צפון קוריאה: המנהרה השלישית ותצפית דורה, עם הסעה מהעיר. דורש דרכון והזמנה כמה ימים מראש</li>
+      </ul>
+      <div class="ptip"><b>קצב:</b> כל יום בנוי סביב אזור אחד, עם מונית בין האזורים. מוניות בסיאול זולות יחסית, ולשלושה זה לרוב יוצא כמו רכבת תחתית ובלי מדרגות.</div>
+    </div>
   </div>
 
   <div class="cards two">
     <div class="card">
-      <h3>המרחקים בפועל</h3>
-      <div class="tablewrap">
-        <table>
-          <thead><tr><th>קטע</th><th>נהיגה</th><th>ק״מ</th></tr></thead>
-          <tbody>
-            <tr><td>בפו אל יופואין</td><td class="tnum">0:30</td><td class="tnum">25</td></tr>
-            <tr><td>יופואין אל טקאצ׳יהו, רצוף</td><td class="tnum">2:30</td><td class="tnum">140</td></tr>
-            <tr><td><b>סך הכל עד הערוץ</b></td><td class="tnum"><b>3:00</b></td><td class="tnum"><b>165</b></td></tr>
-            <tr><td>מפל הארג׳ירי, אופציונלי</td><td class="tnum">+0:30</td><td class="tnum">על הדרך</td></tr>
-            <tr><td>טקאצ׳יהו אל טקאמורי, בערב</td><td class="tnum">0:40</td><td class="tnum">35</td></tr>
-          </tbody>
-        </table>
-      </div>
-      <p class="muted" style="font-size:12.5px; margin-top:8px">זמנים נטו בלי עצירות. הקטע מיופואין דרומה הוא כביש הררי, לא כביש מהיר, אז אין לקצץ בו.</p>
-    </div>
-    <div class="card">
-      <h3>שלוש נקודות שקובעות את היום</h3>
+      <h3>מה שונה מיפן</h3>
       <ul class="muted" style="margin-top:8px">
-        <li><b>צ׳ק אאוט בבפו עד 10:00.</b> יציאה ב־08:00 היא מוקדמת אבל לא בעייתית, ויופואין בשעה 08:30 היא בדיוק לפני שהאוטובוסים מגיעים</li>
-        <li><b>הסירות בערוץ נסגרות ב־17:00</b>, כניסה אחרונה בערך 16:30, והן בהזמנה מקוונת לפי חלון שעה</li>
-        <li><b>היוקאגורה במקדש ב־20:00</b>, כשעה. אחריה נשארת נסיעה של 40 דקות לטקאמורי בחושך</li>
+        <li><b>גוגל מפות לא עובד טוב בקוריאה.</b> להוריד Naver Map או KakaoMap, שתיהן באנגלית</li>
+        <li><b>מוניות דרך Kakao T</b>, אפשר לחבר כרטיס אשראי זר</li>
+        <li><b>T-money</b> לרכבת התחתית ולאוטובוסים, קונים ומטעינים בכל חנות נוחות</li>
+        <li><b>חשמל 220 וולט</b>, שקע Type C או F. תקע ישראלי עם שני פינים נכנס, תקע עם שלושה פינים צריך מתאם</li>
+        <li><b>אשראי מתקבל כמעט בכל מקום.</b> קצת מזומן בוון לשווקים ולדוכנים</li>
+        <li>אין טיפים. חירום: משטרה 112, אמבולנס 119</li>
       </ul>
     </div>
-  </div>
-
-  <div class="optbox">
-    <h3>התכנית שנבחרה</h3>
-    <p class="sub">יציאה ב־08:00, שעתיים ביופואין, נסיעה רצופה של שעתיים וחצי, הגעה לטקאצ׳יהו ב־13:00. ארוחה בכפר, סירות ב־14:00, ואמאנו איוואטו לפני השקיעה. אם בא לכם לעצור במפל הארג׳ירי בדרך, זה מזיז הכל בחצי שעה ועדיין עובד.</p>
-    <div class="tlwrap"><div class="tl" id="tlA"></div></div>
-  </div>
-
-  <div class="optbox">
-    <h3>גיבוי, אם הסירות נסגרות או שמתעכבים</h3>
-    <p class="sub">הסירות נסגרות במים גבוהים ואחרי גשם. במקרה כזה, הערוץ עובר לבוקר של 5.11 בסלוט הראשון של 08:30, במחיר של 40 דקות נסיעה חזרה מטקאמורי ועוד 40 בחזרה.</p>
-    <div class="tlwrap"><div class="tl" id="tlB"></div></div>
-  </div>
-
-  <div class="card" style="margin-top:14px">
-    <h3>ההבדל בשורה אחת</h3>
-    <p class="muted" style="margin-top:6px">נסיעה רצופה מיופואין, בלי עצירה לאכול בדרך, מביאה אתכם לטקאצ׳יהו ב־13:00 במקום 13:45. הסירות ב־14:00 עם שלוש שעות עד הסגירה. מפל הארג׳ירי נשאר אופציה פתוחה על הציר: עצירה של 30 דקות דוחה את הסירות ל־14:30, וזה עדיין רחוק מהסגירה. תחליטו בדרך.</p>
-    <div class="note">בשתי הגרסאות הלינה היא בטקאמורי, כי טקאצ׳יהו עצמה כמעט נגמרה לתאריך הזה. אם תתפסו לינה בטקאצ׳יהו, גרסה א מתקצרת ב־40 דקות נסיעה בלילה וגרסה ב מתייתרת.</div>
+    <div class="card">
+      <h3>הטיסה לאוסקה, 7.11</h3>
+      <p class="muted" style="margin-top:6px">עוד לא הוזמנה. כשעה וחמישים דקות לשדה קנסאי.</p>
+      <ul class="muted" style="margin-top:8px">
+        <li><b>מגימפו, אם יש שעה נוחה:</b> השדה הקרוב לעיר, כחצי שעה ממיונגדונג, טרמינל קטן ומהיר</li>
+        <li><b>מאינצ׳ון:</b> הרבה יותר טיסות, כולל לואו קוסט, אבל כשעה מהעיר ושדה גדול</li>
+        <li>טיסת בוקר עד צהריים, כדי להגיע לדירה באוסקה אחר הצהריים</li>
+        <li>בלואו קוסט לבדוק שהמחיר כולל מזוודה של 23 ק״ג לכל אחד</li>
+      </ul>
+    </div>
   </div>
 </section>
 
 <section class="panel" id="p-book" hidden>
-  <p class="eyebrow">מה כבר סגור</p>
+  <p class="eyebrow">מה כבר סגור, ומה צריך לתקן</p>
   <h2 style="font-size:20px">הזמנות</h2>
-  <p class="lede" style="margin-top:6px">כל מה שנסגר, עם הפרטים שצריך ביום עצמו. מה שעדיין פתוח מופיע למטה ובצ׳קליסט.</p>
+  <p class="lede" style="margin-top:6px">שלוש הזמנות נעשו לתאריכים הישנים. שתיים צריך להעביר ואחת לבטל, והמועדים קרובים.</p>
 
   <div class="bcard">
     <div class="bhead">
       <div style="flex:1; min-width:200px">
-        <p class="eyebrow">לינה 1 מתוך 10</p>
-        <h3>דירת איירבנב באוסקה, שימנוצ׳י</h3>
+        <p class="eyebrow">טיסות בינלאומיות</p>
+        <h3>Ethiopian Airlines, דרך אדיס אבבה</h3>
       </div>
       <span class="st">מאושר</span>
     </div>
+    <div class="tablewrap" style="margin:0; border:none; border-radius:0">
+      <table class="fl">
+        <thead><tr><th>טיסה</th><th>תאריך</th><th>מסלול</th><th>שעות</th><th>מושבים</th></tr></thead>
+        <tbody>
+          <tr><td>ET 449</td><td class="tnum">שלישי 3.11</td><td>תל אביב אל אדיס אבבה</td><td class="tnum">15:50 עד 21:05</td><td class="tnum">12B, 13B, שי בצ׳ק אין</td></tr>
+          <tr><td>ET 672</td><td class="tnum">3.11 עד 4.11</td><td>אדיס אבבה אל סיאול אינצ׳ון</td><td class="tnum">22:35 עד 15:45</td><td class="tnum">33C, 34B, 34C</td></tr>
+          <tr><td>ET 673</td><td class="tnum">רביעי 25.11</td><td>טוקיו נריטה אל סיאול אינצ׳ון</td><td class="tnum">20:30 עד 23:00</td><td class="tnum">31J, 31K, 32J</td></tr>
+          <tr><td>ET 673</td><td class="tnum">חמישי 26.11</td><td>סיאול אינצ׳ון אל אדיס אבבה</td><td class="tnum">00:05 עד 07:20</td><td class="tnum">31J, 31K, 32J</td></tr>
+          <tr><td>ET 448</td><td class="tnum">חמישי 26.11</td><td>אדיס אבבה אל תל אביב</td><td class="tnum">11:40 עד 14:45</td><td class="tnum">14C, 15B, יחזקאל בצ׳ק אין</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="bbody">
+      <h4>מה לשים לב</h4>
+      <ul>
+        <li><b>החיבור באדיס בדרך הלוך הוא שעה וחצי.</b> זה מספיק כשהכל באותה חברה, אבל לוודא בנתב״ג שהמזוודות רשומות ישירות עד אינצ׳ון</li>
+        <li><b>בטיסה הארוכה אתם לא יושבים יחד:</b> 33C, 34B ו־34C. אפשר לנסות לסדר בצ׳ק אין המקוון, 24 שעות לפני</li>
+        <li>בטיסה הראשונה לשי עוד אין מושב, ובטיסה האחרונה ליחזקאל. לבחור בצ׳ק אין</li>
+        <li>בדרך חזרה ET 673 עוצרת באינצ׳ון ב־23:00 וממשיכה ב־00:05 באותו מספר טיסה. ייתכן שתתבקשו לרדת ולעלות שוב, לא יוצאים מהשדה</li>
+        <li>בנריטה להיות בטרמינל 1 שלוש שעות לפני, כלומר ב־17:30</li>
+        <li>זמני הטיסה מקומיים בכל שדה. סיאול ויפן מקדימות את ישראל ב־7 שעות</li>
+      </ul>
+      <p class="muted" style="margin-top:10px; font-size:12.5px">קוד ההזמנה ומספרי הכרטיסים נמצאים ב־PDF של אתיופיאן ולא כאן, כי הדף הזה פתוח לכל מי שיש לו את הקישור.</p>
+    </div>
+  </div>
+
+  <div class="bcard">
+    <div class="bhead">
+      <div style="flex:1; min-width:200px">
+        <p class="eyebrow">לינה, אוסקה</p>
+        <h3>דירת איירבנב באוסקה, שימנוצ׳י</h3>
+      </div>
+      <span class="st warn">לשנות תאריכים</span>
+    </div>
     <div class="bgrid">
-      <div class="bcell"><div class="k">כניסה</div><div class="v tnum">שישי 30.10, 15:00</div></div>
-      <div class="bcell"><div class="k">יציאה</div><div class="v tnum">שלישי 3.11, 10:00</div></div>
+      <div class="bcell"><div class="k">הוזמן ל</div><div class="v tnum">30.10 עד 3.11</div></div>
+      <div class="bcell"><div class="k">צריך להיות</div><div class="v tnum">שבת 7.11 עד רביעי 11.11</div></div>
       <div class="bcell"><div class="k">לילות</div><div class="v tnum">4, שלושה אורחים</div></div>
       <div class="bcell"><div class="k">דירה</div><div class="v tnum">604</div></div>
       <div class="bcell"><div class="k">קוד אישור</div><div class="v mono">HMJN88RHE9</div></div>
-      <div class="bcell"><div class="k">עלות</div><div class="v tnum">381.10 דולר</div></div>
+      <div class="bcell"><div class="k">עלות מקורית</div><div class="v tnum">381.10 דולר</div></div>
     </div>
     <div class="bbody">
+      <div class="note"><b>מה עושים:</b> באפליקציה, בהזמנה עצמה, "שינוי הזמנה" ובקשה לתאריכים 7.11 עד 11.11. המחיר יכול להשתנות, והמארח צריך לאשר. אם הוא לא מאשר או שהמחיר קופץ, יש ביטול מלא וללא עלות עד <b>29.10 בשעה 15:00</b>, ואז מזמינים מחדש או מחפשים דירה אחרת.</div>
+
       <h4>כתובת</h4>
       <p>2 Chome-15-2 Shimanouchi, Chuo Ward, Osaka 542-0082, בניין 福居公館<br>
       <a href="https://www.google.com/maps/search/?api=1&amp;query=2+Chome-15-2+Shimanouchi+Chuo+Ward+Osaka+542-0082" target="_blank" rel="noopener">פתיחה ב־Google Maps</a></p>
 
-      <h4>איך מגיעים מהשדה, נחיתה 17:30</h4>
-      <div class="note"><b>שימו לב:</b> המארח ממליץ על אוטובוס שדה אל DOTON PLAZA. בדקתי בלוח הזמנים הרשמי, והאוטובוס האחרון מטרמינל 1 יוצא ב־17:20 ומגיע ב־18:14. אתם נוחתים ב־17:30, כלומר הקו הזה כבר לא קיים בשבילכם. הוא רלוונטי רק בכיוון ההפוך, ליציאה לשדה.</div>
-      <div class="step"><span class="sn">1</span><span>מהטרמינל לתחנת Nankai, שילוט ברור, חמש דקות הליכה.</span></div>
-      <div class="step"><span class="sn">2</span><span>רכבת Nankai אל תחנת נמבה. Rapi:t עם מקומות שמורים ומדף מזוודות, 38 דקות, 1,490 ין. או Airport Express רגיל, 45 דקות, 970 ין. יוצאות בערך כל חצי שעה עד מאוחר בלילה.</span></div>
-      <div class="step"><span class="sn">3</span><span>מנמבה מונית חמש דקות לכתובת, בערך 800 עד 1,000 ין לכל הרכב. לחלופין הליכה של 12 דקות, או תחנה אחת בקו סנניצ׳ימאה אל ניפומבאשי ואז 8 דקות הליכה.</span></div>
-      <p style="margin-top:8px">לוח זמנים ריאלי: נחיתה 17:30, מזוודות וביקורת גבולות עד בערך 18:30, רכבת 18:45, נמבה 19:25, בדירה סביב 19:40.</p>
+      <h4>איך מגיעים מהשדה, נחיתה מסיאול ב־7.11</h4>
+      <div class="step"><span class="sn">1</span><span>מהטרמינל בקנסאי לתחנת Nankai, שילוט ברור, חמש דקות הליכה.</span></div>
+      <div class="step"><span class="sn">2</span><span>רכבת Nankai אל תחנת נמבה. Rapi:t עם מקומות שמורים ומדף מזוודות, 38 דקות, 1,490 ין. או Airport Express רגיל, 45 דקות, 970 ין.</span></div>
+      <div class="step"><span class="sn">3</span><span>מנמבה מונית חמש דקות לכתובת, בערך 800 עד 1,000 ין לכל הרכב.</span></div>
+      <p class="muted" style="margin-top:8px">המארח ממליץ על אוטובוס שדה אל DOTON PLAZA. האחרון מטרמינל 1 יוצא ב־17:20, כך שהוא רלוונטי רק אם נוחתים מוקדם.</p>
 
       <h4>כניסה לדירה</h4>
-      <p>צ׳ק אין עצמאי עם כספת קוד. הקוד לא מופיע בהזמנה, צריך לבקש אותו מהמארח מראש. בנוסף, לפי חוק המינפאקו היפני חובה לשלוח צילום דרכון וכתובת בישראל לפני ההגעה, אחרת לא מאפשרים כניסה. המארח עונה בין 10:00 ל־22:00 שעון יפן.</p>
-
-      <h4>ביטול</h4>
-      <p>ביטול מלא וללא עלות עד 29.10 בשעה 15:00. אחרי זה, וכל עוד לא נכנסתם, החזר חלקי עד שעת הכניסה ב־30.10. זה תנאי נוח יותר ממה שמופיע בדף המודעה.</p>
+      <p>צ׳ק אין עצמאי עם כספת קוד. הקוד לא מופיע בהזמנה, צריך לבקש אותו מהמארח מראש. לפי חוק המינפאקו חובה לשלוח צילום דרכון וכתובת בישראל לפני ההגעה. המארח עונה בין 10:00 ל־22:00 שעון יפן.</p>
 
       <h4>מה כדאי לדעת</h4>
       <ul class="muted">
-        <li>דירה 604, כלומר קומה שישית. שימנוצ׳י הוא רובע חיי לילה, ובלילות שישי ושבת יש רעש ברחוב. אם המארח יציע חדר בקומה גבוהה יותר, שווה לקחת</li>
-        <li>שתי מיטות זוגיות ברוחב 1.40, מקסימום ארבעה אורחים. יש מעלית, מטבח ומכונת כביסה</li>
-        <li>מרחקי הליכה: נאגהוריבאשי 3 דקות, ניפומבאשי 8, שינסאיבאשי ודוטונבורי בערך 8 עד 10, שוק קורומון 10</li>
-        <li>ליציאה לשדה איטאמי ב־3.11, יש אוטובוס שדה מ־OCAT בנמבה, או מונית ישירה כ־35 דקות</li>
+        <li>קומה שישית, יש מעלית, מטבח ומכונת כביסה. שתי מיטות זוגיות ברוחב 1.40</li>
+        <li>שימנוצ׳י הוא רובע חיי לילה, ובליל שבת 7.11 יש רעש ברחוב</li>
+        <li>מרחקי הליכה: נאגהוריבאשי 3 דקות, ניפומבאשי 8, דוטונבורי 8 עד 10, שוק קורומון 10</li>
       </ul>
     </div>
   </div>
 
-
   <div class="bcard">
     <div class="bhead">
       <div style="flex:1; min-width:200px">
-        <p class="eyebrow">לינה 2 מתוך 10</p>
-        <h3>Apartment Hotel YAEZAKI, בפו</h3>
-      </div>
-      <span class="st">מאושר</span>
-    </div>
-    <div class="bgrid">
-      <div class="bcell"><div class="k">כניסה</div><div class="v tnum">שלישי 3.11, 15:00 עד 22:00</div></div>
-      <div class="bcell"><div class="k">יציאה</div><div class="v tnum">רביעי 4.11, 06:00 עד 10:00</div></div>
-      <div class="bcell"><div class="k">חדר</div><div class="v">טריפל, שלוש מיטות נפרדות</div></div>
-      <div class="bcell"><div class="k">קוד אישור</div><div class="v mono">6931.472.712</div></div>
-      <div class="bcell"><div class="k">קוד PIN</div><div class="v mono">5128</div></div>
-      <div class="bcell"><div class="k">עלות</div><div class="v tnum">כ־87 דולר, 13,745 ין</div></div>
-    </div>
-    <div class="bbody">
-      <h4>כתובת וטלפון</h4>
-      <p>大分県別府市南的ヶ浜町5番12号, בפו 874-0929<br>
-      טלפון: +81 80 7986 4573<br>
-      <a href="https://www.google.com/maps/search/?api=1&amp;query=33.28308,131.50442" target="_blank" rel="noopener">פתיחה ב־Google Maps</a></p>
-
-      <h4>חניה, לטפל בזה מראש</h4>
-      <div class="note"><b>החניה בתשלום ודורשת הזמנה מראש:</b> 500 ין ליום, במקום. בלי הודעה מראש למלון אין ודאות שיהיה מקום לרכב. שווה לשלוח הודעה בבוקר של 3.11 או קודם.</div>
-
-      <h4>מה יש בחדר</h4>
-      <p class="muted">שלוש מיטות יחיד ברוחב 90 עד 130 ס״מ, מטבחון עם כיריים ומיקרוגל, מכונת כביסה, חדר רחצה פרטי, מזגן, טלוויזיה עם סטרימינג, ומעלית לקומות. אין ארוחות, וזה בסדר: FamilyMart 122 מטר מהתחנה, 7־Eleven 185 מטר, ומאפיית טומונגה הוותיקה 695 מטר, נוחה לבוקר של 4.11.</p>
-
-      <h4>ביטול</h4>
-      <p>ביטול חינם עד <b>30.10 בשעה 23:59</b> שעון יפן. מ־31.10 בחצות החיוב הוא 12,600 ין. <b>שינוי תאריכים אינו אפשרי</b>, רק ביטול והזמנה מחדש.</p>
-
-      <h4>פרטים נוספים</h4>
-      <p class="muted">מספר רישיון: 第772号の56. אינטרנט אלחוטי חינם בכל המלון. הנכס אינו מקבל מסיבות רווקים. ארוחות לא כלולות בתעריף.</p>
-    </div>
-  </div>
-
-
-  <div class="bcard">
-    <div class="bhead">
-      <div style="flex:1; min-width:200px">
-        <p class="eyebrow">לינה 3 מתוך 10</p>
+        <p class="eyebrow">לינה, קיוטו</p>
         <h3>Karasuma Kyoto Hotel, קיוטו</h3>
       </div>
-      <span class="st">מאושר</span>
+      <span class="st warn">לשנות תאריכים</span>
     </div>
     <div class="bgrid">
-      <div class="bcell"><div class="k">כניסה</div><div class="v tnum">ראשון 8.11</div></div>
-      <div class="bcell"><div class="k">יציאה</div><div class="v tnum">שלישי 10.11</div></div>
-      <div class="bcell"><div class="k">לילות</div><div class="v tnum">2, שלושה אורחים</div></div>
-      <div class="bcell"><div class="k">חדר</div><div class="v">Twin Room, חדר אחד</div></div>
+      <div class="bcell"><div class="k">הוזמן ל</div><div class="v tnum">8.11 עד 10.11</div></div>
+      <div class="bcell"><div class="k">צריך להיות</div><div class="v tnum">רביעי 11.11 עד ראשון 15.11</div></div>
+      <div class="bcell"><div class="k">לילות</div><div class="v tnum">4 במקום 2</div></div>
+      <div class="bcell"><div class="k">חדר</div><div class="v">Twin Room לשלושה</div></div>
       <div class="bcell"><div class="k">מספר הזמנה</div><div class="v mono">6218025730</div></div>
       <div class="bcell"><div class="k">ארוחות</div><div class="v">ללא</div></div>
     </div>
     <div class="bbody">
+      <div class="note"><b>מה עושים:</b> לבדוק בהזמנה את מדיניות הביטול. הכי פשוט: לבקש מהמלון שינוי תאריכים לארבעה לילות, 11.11 עד 15.11. אם השינוי לא אפשרי, להזמין את ארבעת הלילות החדשים קודם, ורק אחר כך לבטל את הישנה. באמצע נובמבר קיוטו מתמלאת.</div>
+
       <h4>כתובת וטלפון</h4>
       <p>Karasuma-dori Shijo-sagaru, Shimogyo-ku, Kyoto<br>
       からすま京都ホテル, טלפון 075-371-0111<br>
       <a href="https://www.google.com/maps/search/?api=1&amp;query=Karasuma+Kyoto+Hotel+Shimogyo-ku+Kyoto" target="_blank" rel="noopener">פתיחה ב־Google Maps</a></p>
 
-      <h4>המיקום, וזה מיקום מצוין</h4>
-      <p class="muted">אתם בצומת שיג׳ו קאראסומה, הלב המסחרי של קיוטו. תחנת המטרו קאראסומה ותחנת האנקיו נמצאות מתחת לבניין, שוק נישיקי במרחק חמש דקות הליכה, וגיון בערך רבע שעה ברגל. לתחנת קיוטו זה שתי תחנות מטרו, כלומר חמש דקות, וזה בדיוק מה שצריך ב־10.11 כשאתם יוצאים לטקאיאמה עם מזוודות.</p>
+      <h4>המיקום</h4>
+      <p class="muted">צומת שיג׳ו קאראסומה, הלב המסחרי של קיוטו. תחנות המטרו וההאנקיו מתחת לבניין, שוק נישיקי חמש דקות הליכה, גיון רבע שעה ברגל, ותחנת קיוטו שתי תחנות מטרו. זה מה שצריך ב־15.11 כשיוצאים לטקאיאמה.</p>
 
-      <div class="note"><b>לאמת את המיטה השלישית:</b> ההזמנה היא Twin Room לשלושה אורחים, כלומר שתי מיטות ועוד מיטה נוספת. עם האילוץ שלכם, מיטות ולא פוטון, שווה לוודא מול המלון שהמיטה השלישית היא מיטה אמיתית ולא פוטון על הרצפה. הטלפון למעלה.</div>
+      <div class="note"><b>לאמת את המיטה השלישית:</b> Twin Room לשלושה אורחים הוא שתי מיטות ועוד תוספת. לוודא שהתוספת היא מיטה ולא פוטון על הרצפה. אפשר לשאול באותה שיחה של שינוי התאריכים.</div>
+    </div>
+  </div>
 
-      <h4>שעת הגעה</h4>
-      <p class="muted">באישור רשום זמן הגעה 24:00, כלומר הם מחזיקים את החדר עד חצות. אתם מגיעים מהשדה באוטובוס ישיר לתחנת קיוטו אחר הצהריים, אז אין שום לחץ.</p>
+  <div class="bcard">
+    <div class="bhead">
+      <div style="flex:1; min-width:200px">
+        <p class="eyebrow">לינה, בפו</p>
+        <h3>Apartment Hotel YAEZAKI, בפו</h3>
+      </div>
+      <span class="st warn">לבטל</span>
+    </div>
+    <div class="bgrid">
+      <div class="bcell"><div class="k">תאריך</div><div class="v tnum">3.11 עד 4.11</div></div>
+      <div class="bcell"><div class="k">קוד אישור</div><div class="v mono">6931.472.712</div></div>
+      <div class="bcell"><div class="k">ביטול חינם עד</div><div class="v tnum">30.10, 16:59 בישראל</div></div>
+    </div>
+    <div class="bbody">
+      <p class="muted">קיושו ירדה מהמסלול. ביטול חינם עד 30.10 ב־23:59 שעון יפן. מ־31.10 החיוב הוא 12,600 ין. שינוי תאריכים לא אפשרי, אז אין מה לנסות מלבד ביטול.</p>
     </div>
   </div>
 
   <h3 style="font-size:16px; margin-top:26px">עוד לא סגור</h3>
   <div class="pending">
-    <div class="pend">לינה בטקאמורי<span class="pd tnum">4.11 עד 5.11</span></div>
-    <div class="pend">לינה בקורוקאווה<span class="pd tnum">5.11 עד 6.11</span></div>
-    <div class="pend">מלון בפוקואוקה<span class="pd tnum">6.11 עד 8.11</span></div>
-    <div class="pend">לינה בטקאיאמה<span class="pd tnum">10.11 עד 12.11</span></div>
-    <div class="pend">מלון במאצומוטו<span class="pd tnum">12.11 עד 13.11</span></div>
-    <div class="pend">לינה בפוג׳יקאוואגוצ׳יקו<span class="pd tnum">13.11 עד 14.11</span></div>
-    <div class="pend">מלון בטוקיו<span class="pd tnum">14.11 עד 19.11</span></div>
-    <div class="pend">טיסות פנים אוסקה ופוקואוקה<span class="pd tnum">3.11 ו־8.11</span></div>
-    <div class="pend">רכב בקיושו<span class="pd tnum">3.11 עד 8.11</span></div>
-    <div class="pend">רכב טקאיאמה עד קוואגוצ׳יקו<span class="pd tnum">11.11 עד 14.11</span></div>
+    <div class="pend">מלון בסיאול, בלי Ondol<span class="pd tnum">4.11 עד 7.11</span></div>
+    <div class="pend">טיסה סיאול אל אוסקה קנסאי<span class="pd tnum">7.11</span></div>
+    <div class="pend">לינה בטקאיאמה<span class="pd tnum">15.11 עד 17.11</span></div>
+    <div class="pend">מלון במאצומוטו<span class="pd tnum">17.11 עד 18.11</span></div>
+    <div class="pend">לינה בפוג׳יקאוואגוצ׳יקו, שני לילות<span class="pd tnum">18.11 עד 20.11</span></div>
+    <div class="pend">מלון בטוקיו<span class="pd tnum">20.11 עד 25.11</span></div>
+    <div class="pend">רכב טקאיאמה עד קוואגוצ׳יקו<span class="pd tnum">16.11 עד 20.11</span></div>
   </div>
 </section>
 
 <section class="panel" id="p-map" hidden>
   <p class="eyebrow">מפה</p>
-  <h2 style="font-size:20px">הלולאה בקיושו, וגם מה שמסביב</h2>
-  <p class="lede" style="margin-top:6px">הכחול הוא המסלול בפועל, מעגל אחד שמתחיל ונגמר בשדה פוקואוקה בלי לנסוע אף קטע פעמיים. הכתום הוא אטרקציות שלא נכנסו, כדי שתראו מה יש מסביב ומה המחיר בזמן נסיעה.</p>
+  <h2 style="font-size:20px">כל המסלול, מסיאול ועד נריטה</h2>
+  <p class="lede" style="margin-top:6px">המספר בעיגול הוא כמה לילות ישנים שם. המספרים על הקווים הם זמן נסיעה נטו. לחיצה על נקודה פותחת פרטים.</p>
 
   <div class="mapwrap">
-    <div id="kmap"></div>
+    <div id="tmap"></div>
     <div class="maptools">
-      <button class="mbtn" type="button" id="btnLoop" aria-pressed="true">הלולאה</button>
-      <button class="mbtn" type="button" id="btnAlt" aria-pressed="true">אטרקציות נוספות</button>
-      <button class="mbtn" type="button" id="btnDay" aria-pressed="true">טיולי יום מפוקואוקה</button>
-      <button class="mbtn" type="button" id="btnFit">מרכוז הלולאה</button>
-      <button class="mbtn" type="button" id="btnFlight">איפה נוחתים, כולל אוסקה</button>
+      <button class="mbtn" type="button" data-fit="all">כל הטיול</button>
+      <button class="mbtn" type="button" data-fit="seoul">סיאול</button>
+      <button class="mbtn" type="button" data-fit="japan">יפן</button>
+      <button class="mbtn" type="button" data-fit="alps">האלפים ופוג׳י</button>
     </div>
   </div>
   <div class="legend">
-    <span><i style="background:#15181D"></i>שדה פוקואוקה, כאן נוחתים ואוספים רכב</span>
-    <span><i style="background:#22466F"></i>לינה, המספר הוא הלילה בקיושו</span>
-    <span><i style="background:#6B7686"></i>עצירה בדרך</span>
-    <span><i style="background:#AC4E2A"></i>אטרקציה מחוץ למסלול</span>
-    <span>המספרים על הקווים: זמן נהיגה נטו</span>
+    <span><i style="background:#15181D"></i>שדה תעופה</span>
+    <span><i style="background:#22466F"></i>לינה, המספר הוא מספר הלילות</span>
+    <span><i style="background:#6B7686"></i>עצירה או טיול יום</span>
+    <span><i style="background:#AC4E2A"></i>קטע ברכב</span>
+    <span>קו מקווקו: טיסה</span>
   </div>
 
-  <div class="cards two">
-    <div class="card">
-      <h3>למה דווקא בכיוון הזה</h3>
-      <ul class="muted" style="margin-top:8px">
-        <li>הצד המזרחי, מבפו ויופואין דרומה דרך בונגו אונו אל טקאצ׳יהו, הוא כביש אחד. הצד המערבי, מטקאצ׳יהו דרך טקאמורי ואסו אל קורוקאווה, הוא כביש אחר. ביחד הם מעגל סגור</li>
-        <li>בכיוון ההפוך הייתם מגיעים לערוץ טקאצ׳יהו בצהריים העמוסים. בכיוון הזה אתם ישנים שם ויורדים לסירות בבוקר</li>
-        <li>הלולאה נסגרת בפוקואוקה, ולכן הטיסה הלוך חזור לאותו שדה היא הנכונה</li>
-      </ul>
-      <div class="note">כ־600 ק״מ ובערך 8 שעות וחצי הגה, פרוסות על חמישה ימים. שום יום לא עובר שעתיים וחצי נהיגה.</div>
+  <div class="card" style="margin-top:14px">
+    <h3>הקטעים, אחד אחרי השני</h3>
+    <div class="tablewrap">
+      <table>
+        <thead><tr><th>תאריך</th><th>קטע</th><th>איך</th><th>זמן</th></tr></thead>
+        <tbody>
+          <tr><td class="tnum">4.11</td><td>אינצ׳ון אל מרכז סיאול</td><td>מונית או AREX</td><td class="tnum">1:00</td></tr>
+          <tr><td class="tnum">7.11</td><td>סיאול אל קנסאי</td><td>טיסה</td><td class="tnum">1:50</td></tr>
+          <tr><td class="tnum">7.11</td><td>קנסאי אל נמבה</td><td>Nankai Rapi:t</td><td class="tnum">0:40</td></tr>
+          <tr><td class="tnum">11.11</td><td>אוסקה אל קיוטו</td><td>JR Special Rapid</td><td class="tnum">0:30</td></tr>
+          <tr><td class="tnum">15.11</td><td>קיוטו אל טקאיאמה</td><td>שינקנסן לנגויה ואקספרס Hida</td><td class="tnum">4:00</td></tr>
+          <tr><td class="tnum">16.11</td><td>טקאיאמה אל שירקאווה גו וחזרה</td><td>רכב</td><td class="tnum">0:50 לכל כיוון</td></tr>
+          <tr><td class="tnum">17.11</td><td>טקאיאמה, היראיו, מאצומוטו</td><td>רכב</td><td class="tnum">2:05</td></tr>
+          <tr><td class="tnum">18.11</td><td>מאצומוטו אל קוואגוצ׳יקו</td><td>רכב</td><td class="tnum">2:30</td></tr>
+          <tr><td class="tnum">20.11</td><td>קוואגוצ׳יקו אל שינג׳וקו</td><td>אוטובוס או Fuji Excursion</td><td class="tnum">1:50</td></tr>
+          <tr><td class="tnum">25.11</td><td>טוקיו אל נריטה</td><td>Skyliner או N'EX</td><td class="tnum">0:45 עד 1:30</td></tr>
+        </tbody>
+      </table>
     </div>
-    <div class="card">
-      <h3>זמני נהיגה, מכל מקום לכל מקום</h3>
-      <div class="tablewrap matrix" id="matrix"></div>
-      <p class="muted" style="font-size:12.5px; margin-top:8px">שעות נטו ברכב, בכבישים המהירים היכן שיש, בלי עצירות. בהרים סביב אסו וטקאצ׳יהו הכבישים מפותלים והזמן בפועל ארוך יותר בעשרה עד עשרים אחוז.</p>
-    </div>
-  </div>
-
-  <p class="eyebrow" style="margin-top:26px">מה לא נכנס</p>
-  <h2 style="font-size:20px">אטרקציות שאתם מפספסים, ומה המחיר שלהן</h2>
-  <p class="lede" style="margin-top:6px">קיושו גדולה מחמישה לילות. אלה הדברים הגדולים שנשארו בחוץ, לפי כמה רחוק הם מהמסלול הנוכחי.</p>
-  <div class="cards two">
-    <div class="card">
-      <h3>אפשר להכניס בלי לשבור את המסלול</h3>
-      <div id="optEasy"></div>
-    </div>
-    <div class="card">
-      <h3>דורש לילה או יותר</h3>
-      <div id="optHard"></div>
-    </div>
+    <p class="muted" style="font-size:12.5px; margin-top:8px">זמנים נטו בלי עצירות. בהרים באמצע נובמבר כדאי להוסיף עשרה עד עשרים אחוז.</p>
   </div>
 </section>
 
 <section class="panel" id="p-cars" hidden>
-  <p class="eyebrow">השאלה ששאלת</p>
-  <h2 style="font-size:20px">האם הלוך חזור מאוסקה הוא הנכון</h2>
-  <div class="card" style="margin-top:12px">
-    <p>כן, עבור היעדים שביקשתם. בפו, יופואין, טקאצ׳יהו ופוקואוקה מסתדרים כלולאה שמתחילה ומסתיימת בפוקואוקה, ולולאה סגורה שווה טיסה הלוך חזור לאותו שדה. אין כאן נקודת סיום רחוקה שמצדיקה כרטיס בשתי רגליים.</p>
-    <h4>מתי כן הייתי משנה</h4>
-    <ul class="muted">
-      <li>אם הייתם מוותרים על פוקואוקה בסוף ומסיימים בטקאצ׳יהו או במיאזקי, אז נכנסים לפוקואוקה ויוצאים ממיאזקי או מקוממוטו. זה חוסך בערך 4 שעות נהיגה, אבל מייקר את הכרטיס ומצמצם את מבחר הטיסות</li>
-      <li>אם קיושו הייתה הופכת לשבוע ומעלה, הייתה הצדקה לרדת דרומה לקגושימה ולצאת משם</li>
-    </ul>
-    <h4>הדבר היחיד ששווה לדעת מראש</h4>
-    <p class="muted">טקאצ׳יהו היא הנקודה הרחוקה דרומה. פתרתי את זה בלולאה: יורדים אליה בצד המזרחי דרך יופואין ובונגו אונו, ועולים ממנה בצד המערבי דרך אסו וקורוקאווה. אף קטע לא נוסע פעמיים, ואף יום לא עובר שעתיים וחצי בהגה. יש שרטוט של הלולאה בטאב מפת קיושו.</p>
-  </div>
-
-  <p class="eyebrow">טיסות פנים</p>
-  <h2 style="font-size:20px">אוסקה אל פוקואוקה, הלוך חזור</h2>
+  <p class="eyebrow">מה כבר בידיים</p>
+  <h2 style="font-size:20px">הטיסות הגדולות</h2>
   <div class="card" style="margin-top:12px">
     <dl class="kv">
-      <dt>הלוך</dt><dd class="tnum">3.11 בבוקר, אוסקה אל פוקואוקה</dd>
-      <dt>חזור</dt><dd class="tnum">8.11 בבוקר, פוקואוקה אל אוסקה</dd>
-      <dt>משך טיסה</dt><dd class="tnum">כשעה ועשר דקות</dd>
-      <dt>חברות</dt><dd>JAL ו־ANA משדה איטאמי, Peach ו־Jetstar משדה קנסאי</dd>
+      <dt>הלוך</dt><dd class="tnum">3.11 ב־15:50 מנתב״ג, דרך אדיס אבבה, נחיתה באינצ׳ון 4.11 ב־15:45</dd>
+      <dt>חזור</dt><dd class="tnum">25.11 ב־20:30 מנריטה, עצירה באינצ׳ון, אדיס אבבה, נחיתה בנתב״ג 26.11 ב־14:45</dd>
+      <dt>חברה</dt><dd>Ethiopian Airlines, אקונומי</dd>
+    </dl>
+    <p class="muted" style="margin-top:10px; font-size:13px">כל הפרטים, כולל מושבים, בטאב הזמנות.</p>
+  </div>
+
+  <p class="eyebrow" style="margin-top:26px">עוד לא הוזמן</p>
+  <h2 style="font-size:20px">סיאול אל אוסקה, 7.11</h2>
+  <div class="card" style="margin-top:12px">
+    <dl class="kv">
+      <dt>יעד</dt><dd>שדה קנסאי, KIX</dd>
+      <dt>משך טיסה</dt><dd class="tnum">כשעה וחמישים דקות</dd>
+      <dt>יום</dt><dd class="tnum">שבת 7.11, עדיף בוקר עד צהריים</dd>
     </dl>
     <ul class="muted" style="margin-top:10px">
-      <li>איטאמי (ITM) נוח יותר: 30 דקות ממרכז אוסקה, ובפוקואוקה הרכבת התחתית מהשדה להאקטה היא חמש דקות</li>
-      <li>בחברות הלואו קוסט לבדוק שהמחיר כולל מזוודה, אחרת ההפרש נבלע</li>
-      <li>3.11 הוא יום התרבות, חג לאומי. טיסות הבוקר מתמלאות, כדאי להזמין מוקדם</li>
-      <li>לקחת טיסת בוקר בשני הכיוונים, כך נשאר יום מלא בקיושו וגם יום מלא בקיוטו</li>
-      <li>חלופה ליבשה: שינקנסן שין אוסקה אל האקטה, שעתיים וחצי, כ־15,400 ין לאדם. יקר יותר מטיסה זולה, אבל בלי שדות תעופה</li>
+      <li><b>גימפו (GMP)</b> קרוב לעיר, כחצי שעה ממיונגדונג, ושדה קטן ונוח. פחות טיסות לקנסאי</li>
+      <li><b>אינצ׳ון (ICN)</b> עם הרבה יותר אפשרויות, כולל לואו קוסט, אבל כשעה מהעיר</li>
+      <li>בלואו קוסט לבדוק שמזוודה רשומה כלולה, אחרת ההפרש נבלע</li>
+      <li>אפשר להשוות בגוגל טיסות עם שני השדות יחד, חיפוש מ־SEL</li>
     </ul>
   </div>
 
-  <p class="eyebrow" style="margin-top:26px">שתי השכרות</p>
-  <h2 style="font-size:20px">רכב בקיושו, ורכב באלפים</h2>
-  <p class="lede" style="margin-top:6px">בין 8.11 ל־11.11 אתם בלי רכב ונעים ברכבת בין אוסקה, קיוטו וטקאיאמה.</p>
-
-  <div class="cards two">
-    <div class="card">
-      <p class="eyebrow">השכרה 1</p>
-      <h3>קיושו, כל הימים</h3>
-      <dl class="kv">
-        <dt>איסוף</dt><dd class="tnum">3.11 בנחיתה, שדה פוקואוקה</dd>
-        <dt>החזרה</dt><dd class="tnum">8.11 בבוקר, סניף בשדה פוקואוקה</dd>
-        <dt>משך</dt><dd class="tnum">5 ימים</dd>
-        <dt>מסלול</dt><dd>לולאה: בפו, יופואין, טקאצ׳יהו, אסו, קורוקאווה</dd>
-        <dt>ק״מ משוער</dt><dd class="tnum">600 עד 700</dd>
-      </dl>
-      <h4>מה להזמין</h4>
-      <ul class="muted">
-        <li>אוטומט בקטגוריית ואגון או מיניוואן, שלוש מזוודות גדולות לא נכנסות לרכב קומפקטי</li>
-        <li>כרטיס ETC, חוסך עצירה בכל תחנת אגרה</li>
-        <li>ביטוח מקיף עם ויתור השתתפות עצמית ותוספת NOC</li>
-        <li>מחזיק לטלפון, Google Maps עובד טוב יותר מהנווט המקורי</li>
-      </ul>
-      <div class="note blue">היתרון של הסדר החדש: אתם אוספים את הרכב בבוקר אחרי טיסת פנים קצרה, לא בערב אחרי טיסה ארוכה מישראל. יום הנהיגה הראשון שלם ונוח.</div>
-    </div>
-
-    <div class="card">
-      <p class="eyebrow">השכרה 2</p>
-      <h3>טקאיאמה עד קוואגוצ׳יקו, כיוון אחד</h3>
-      <dl class="kv">
-        <dt>איסוף</dt><dd class="tnum">11.11 בבוקר, טקאיאמה, סניף ליד התחנה</dd>
-        <dt>החזרה</dt><dd class="tnum">14.11 בבוקר, פוג׳יקאוואגוצ׳יקו</dd>
-        <dt>משך</dt><dd class="tnum">3 ימים מלאים</dd>
-        <dt>מסלול</dt><dd>שירקאווה גו, היראיו, מאצומוטו, אגם קוואגוצ׳יקו</dd>
-        <dt>ק״מ משוער</dt><dd class="tnum">420 עד 470</dd>
-      </dl>
-      <h4>מה לבדוק לפני שמזמינים</h4>
-      <ul class="muted">
-        <li>דמי כיוון אחד בין מחוזות, Gifu אל Yamanashi. זה הסעיף היקר, לפעמים 10,000 עד 25,000 ין. Toyota Rent a Car ו־Times מחזיקות סניפים בשני הקצוות</li>
-        <li>צמיגי חורף או הנעה כפולה, באמצע נובמבר יש שלג אפשרי במעברי ההרים</li>
-        <li>שעת הפתיחה של סניף קוואגוצ׳יקו ב־14.11, כדי לתכנן את הרכבת לטוקיו</li>
-      </ul>
-      <div class="note"><b>סגירות עונתיות:</b> כביש Norikura Skyline נסגר ב־31.10. קמיקוצ׳י פתוח עד 15.11 ואסור להיכנס אליו ברכב פרטי, חונים בהיראיו ועולים באוטובוס. מעבר Abo עובר במנהרה בתשלום, פתוח כל השנה.</div>
-    </div>
+  <p class="eyebrow" style="margin-top:26px">השכרה אחת</p>
+  <h2 style="font-size:20px">רכב באלפים, טקאיאמה עד קוואגוצ׳יקו</h2>
+  <p class="lede" style="margin-top:6px">בסיאול, באוסקה ובקיוטו אין צורך ברכב. הרכב היחיד בטיול הוא בקטע ההרים.</p>
+  <div class="card" style="margin-top:12px">
+    <dl class="kv">
+      <dt>איסוף</dt><dd class="tnum">שני 16.11 בבוקר, טקאיאמה, סניף ליד התחנה</dd>
+      <dt>החזרה</dt><dd class="tnum">שישי 20.11 בבוקר, פוג׳יקאוואגוצ׳יקו</dd>
+      <dt>משך</dt><dd class="tnum">4 ימים</dd>
+      <dt>מסלול</dt><dd>שירקאווה גו, היראיו, מאצומוטו, אגם קוואגוצ׳יקו וסביבתו</dd>
+      <dt>ק״מ משוער</dt><dd class="tnum">450 עד 520</dd>
+    </dl>
+    <h4>מה לבדוק לפני שמזמינים</h4>
+    <ul class="muted">
+      <li>דמי כיוון אחד בין מחוזות, Gifu אל Yamanashi. זה הסעיף היקר, לפעמים 10,000 עד 25,000 ין. Toyota Rent a Car ו־Times מחזיקות סניפים בשני הקצוות</li>
+      <li><b>צמיגי חורף.</b> בשבוע השלישי של נובמבר שלג במעבר Abo ובהיראיו הוא תרחיש סביר, לא רק אפשרי</li>
+      <li>רכב שמכיל שלושה אנשים ותיקים קטנים, המזוודות הגדולות נשלחות מקיוטו לטוקיו</li>
+      <li>כרטיס ETC וביטוח מקיף עם ויתור השתתפות עצמית ותוספת NOC</li>
+      <li>שעת הפתיחה של סניף קוואגוצ׳יקו ב־20.11, כדי לתכנן את האוטובוס לטוקיו</li>
+    </ul>
+    <div class="note"><b>סגירות עונתיות:</b> כביש Norikura Skyline נסגר ב־31.10, וקמיקוצ׳י נסגר ב־15.11, יומיים לפני שתגיעו. רכבל שין הוטאקה פועל כל השנה, תלוי מזג אוויר. מנהרת Abo בתשלום, פתוחה כל השנה.</div>
   </div>
 
   <div class="card" style="margin-top:14px">
@@ -607,8 +613,8 @@ footer{margin-top:32px; padding-top:16px; border-top:1px solid var(--line); font
     <ul class="muted" style="margin-top:8px">
       <li>נוסעים בצד שמאל, ההגה מימין. השעה הראשונה מרגישה מוזרה, במיוחד בפניות ימינה</li>
       <li>רישיון נהיגה בינלאומי לפי אמנת ז׳נבה 1949 הוא חובה, ומוצג יחד עם הרישיון הישראלי. בלי זה לא ימסרו רכב</li>
-      <li>כבישי אגרה יקרים, פוקואוקה אל נגסאקי בערך 2,000 ין לכיוון</li>
-      <li>חניה בערים בתשלום, לאמת מראש שיש חניה במלון ובכמה</li>
+      <li>כבישי אגרה יקרים, ה־ETC חוסך עצירה בכל תחנה</li>
+      <li>חניה במלונות בדרך כלל בתשלום ולפעמים בהזמנה, לאמת מראש בכל לינה</li>
       <li>תדלוק: בכפרים כדאי מזומן. מחזירים את הרכב עם מאגר מלא</li>
       <li>מגבלות מהירות נמוכות, 50 עד 60 בכביש רגיל ו־80 עד 100 בכביש מהיר, יש מצלמות</li>
     </ul>
@@ -636,57 +642,47 @@ footer{margin-top:32px; padding-top:16px; border-top:1px solid var(--line); font
 <section class="panel" id="p-info" hidden>
   <p class="eyebrow">אירועים בתאריכים שלכם</p>
   <h2 style="font-size:20px">פסטיבלים, תערוכות ועונת השלכת</h2>
-  <p class="lede" style="margin-top:6px">מה שנופל בדיוק על התאריכים שלכם, ומה שצריך לסגור מראש בגלל זה.</p>
+  <p class="lede" style="margin-top:6px">מה שנופל על התאריכים החדשים, ומה שצריך לסגור מראש בגלל זה.</p>
   <div class="card" style="margin-top:14px">
-    <div class="opt"><div class="oi"><div class="ot tnum">24.10<br>9.11</div><div class="ok">נארה</div></div>
-      <div><h4>תערוכת שוסואין, המוזיאון הלאומי בנארה</h4>
-      <p>אוצרות מהמאה השמינית שיוצאים ממחסן הקיסר פעם בשנה בלבד, 67 פריטים השנה. אתם בנארה ב־1.11, באמצע התקופה.</p>
-      <span class="verdict maybe">כרטיס לשעה מסוימת, לקנות מראש</span></div></div>
-
-    <div class="opt"><div class="oi"><div class="ot tnum">2.11<br>4.11</div><div class="ok">קראצו</div></div>
-      <div><h4>קראצו קונצ׳י, פסטיבל המצופים</h4>
-      <p>14 מצופי ענק מגולפים שנגררים בעיר, מורשת עולמית של אונסק״ו. יום השיא הוא 3.11 בין 9:30 ל־16:30, בדיוק יום הנחיתה שלכם בקיושו. קראצו נמצאת שעה ורבע ממערב לשדה, והלולאה שלכם הולכת מזרחה.</p>
-      <span class="verdict maybe">אפשרי רק עם טיסה מוקדמת, ואז נהיגה של 2:45 לבפו</span></div></div>
-
-    <div class="opt"><div class="oi"><div class="ot tnum">3.11</div><div class="ok">ארצי</div></div>
-      <div><h4>יום התרבות, חג לאומי</h4>
-      <p>טיסות פנים ומוזיאונים עמוסים, וכבישים עמוסים בבוקר. במייג׳י ג׳ינגו בטוקיו יש יאבוסאמה, ירי בקשת מסוס דוהר, אבל אתם כבר בקיושו.</p>
-      <span class="verdict">להזמין את טיסת הבוקר מוקדם</span></div></div>
-
-    <div class="opt"><div class="oi"><div class="ot tnum">5.11<br>6.11</div><div class="ok">אסו</div></div>
-      <div><h4>שיא השלכת ברמת אסו ובקורוקאווה</h4>
-      <p>ההרים של מרכז קיושו מאדימים בדיוק בשבוע הראשון של נובמבר. אתם שם בתזמון הנכון, וזה גם אומר שהריוקאנים מלאים.</p>
+    <div class="opt"><div class="oi"><div class="ot tnum">4.11<br>7.11</div><div class="ok">סיאול</div></div>
+      <div><h4>שיא השלכת בסיאול</h4>
+      <p>הארמונות, נאמסאן ודרך החומה של דוקסוגונג בצבעים מלאים בתחילת נובמבר, והגינקו מצהיב לאורך הרחובות. אתם שם בדיוק בזמן.</p>
       <span class="verdict yes">התזמון עובד לטובתכם</span></div></div>
 
-    <div class="opt"><div class="oi"><div class="ot tnum">7.11<br>29.11</div><div class="ok">פוג׳י</div></div>
-      <div><h4>פסטיבל השלכת של פוג׳יקאוואגוצ׳יקו</h4>
-      <p>מסדרון המייפל בגדה הצפונית של האגם, פתוח 9:00 עד 19:00 ומואר עד 21:30. אתם שם ב־13.11, באמצע הפסטיבל ובליל שישי.</p>
-      <span class="verdict yes">ללכת בערב אחרי הצ׳ק אין, המלון להזמין מוקדם</span></div></div>
+    <div class="opt"><div class="oi"><div class="ot tnum">תחילת<br>נובמבר</div><div class="ok">סיאול</div></div>
+      <div><h4>פסטיבל הפנסים בנחל צ׳ונגגייצ׳ון</h4>
+      <p>פסלי אור על המים במרכז העיר, נערך בדרך כלל בתחילת נובמבר ובחלק מהשנים נפתח מאוחר יותר. אם הוא פתוח, זה ערב טוב וקל בהליכה.</p>
+      <span class="verdict maybe">לבדוק תאריכים לקראת הנסיעה</span></div></div>
 
-    <div class="opt"><div class="oi"><div class="ot tnum">8.11<br>9.11</div><div class="ok">קיוטו</div></div>
-      <div><h4>קיוטו עוד מוקדמת לשלכת</h4>
-      <p>השיא בעיר עצמה הוא בערך מה־20.11 ואילך. בתאריכים שלכם הצבע נמצא בגבהים: טאקאו, אוהרה וקוראמה, כשלושים עד ארבעים דקות מהמרכז. בתוך העיר תראו התחלה של צבע ולא שטיח אדום.</p>
-      <span class="verdict maybe">אם רוצים אדום, לכוון לטאקאו או אוהרה</span></div></div>
+    <div class="opt"><div class="oi"><div class="ot tnum">24.10<br>9.11</div><div class="ok">נארה</div></div>
+      <div><h4>תערוכת שוסואין, המוזיאון הלאומי בנארה</h4>
+      <p>אוצרות מהמאה השמינית שיוצאים ממחסן הקיסר פעם בשנה. אתם בנארה ב־8.11, היום לפני האחרון. סוף שבוע וסוף תערוכה, אז יהיה עמוס.</p>
+      <span class="verdict maybe">כרטיס לשעה מסוימת, לקנות מראש</span></div></div>
 
-    <div class="opt"><div class="oi"><div class="ot tnum">15.11</div><div class="ok">טוקיו</div></div>
+    <div class="opt"><div class="oi"><div class="ot tnum">11.11<br>14.11</div><div class="ok">קיוטו</div></div>
+      <div><h4>קיוטו בתחילת עונת השלכת</h4>
+      <p>השיא בעיר עצמה הוא בערך מה־20.11, אבל באמצע החודש כבר יש צבע טוב בגבהים: אוהרה, קוראמה וטאקאו. התאריכים החדשים טובים יותר מהקודמים, 8 ו־9.11.</p>
+      <span class="verdict yes">יום אחד בגבהים, ב־14.11</span></div></div>
+
+    <div class="opt"><div class="oi"><div class="ot tnum">15.11</div><div class="ok">קיוטו</div></div>
       <div><h4>שיצ׳י גו סאן</h4>
-      <p>חגיגת הגיל לילדים בני שלוש, חמש ושבע. משפחות שלמות בקימונו במקדשים, והשנה זה נופל ביום ראשון, כלומר השיא. מייג׳י ג׳ינגו הוא המקום לראות את זה, ואתם שם באותו יום.</p>
-      <span class="verdict yes">לשריין את הבוקר במייג׳י ג׳ינגו</span></div></div>
+      <p>חגיגת הגיל לילדים בני שלוש, חמש ושבע, משפחות בקימונו במקדשים. השנה זה יום ראשון, כלומר השיא. אתם בקיוטו בבוקר לפני הרכבת לטקאיאמה, ומקדש יאסאקה או הייאן מתאימים לשעה של זה.</p>
+      <span class="verdict maybe">אם יוצאים לרכבת אחרי 11:00</span></div></div>
 
-    <div class="opt"><div class="oi"><div class="ot tnum">19.11</div><div class="ok">אסאקוסה</div></div>
-      <div><h4>טורי נו איצ׳י, יריד המזל</h4>
-      <p>היריד השנתי במקדש אוטורי שבאסאקוסה, שבו קונים קומאדה, מגרפות במבוק מקושטות למזל בעסקים. נערך רק בימי התרנגול של נובמבר, השנה ב־7 וב־19. ה־19.11 הוא יום היציאה שלכם, והיריד פועל מחצות ולאורך כל היום.</p>
-      <span class="verdict yes">מושלם לבוקר האחרון לפני השדה</span></div></div>
+    <div class="opt"><div class="oi"><div class="ot tnum">עד סוף<br>נובמבר</div><div class="ok">פוג׳י</div></div>
+      <div><h4>פסטיבל השלכת של פוג׳יקאוואגוצ׳יקו</h4>
+      <p>מסדרון המייפל בגדה הצפונית של האגם, מואר בערב. אתם שם 18 ו־19.11, קרוב לשיא הצבע.</p>
+      <span class="verdict yes">ערב 18.11 אחרי הצ׳ק אין</span></div></div>
 
-    <div class="opt"><div class="oi"><div class="ot tnum">אמצע<br>נובמבר</div><div class="ok">טוקיו</div></div>
-      <div><h4>שדרת הגינקו בג׳ינגו גאיאן</h4>
-      <p>מנהרת עצים צהובה, אחד המראות המזוהים עם סתיו בטוקיו. הפסטיבל נפתח בדרך כלל באמצע נובמבר ונמשך לתחילת דצמבר, כך שיש סיכוי טוב שתתפסו אותו בימים האחרונים.</p>
-      <span class="verdict">לבדוק תאריך פתיחה שבועיים לפני</span></div></div>
+    <div class="opt"><div class="oi"><div class="ot tnum">23.11</div><div class="ok">ארצי</div></div>
+      <div><h4>יום ההודיה לעבודה, חג לאומי</h4>
+      <p>יום שני שהופך לסוף שבוע ארוך. רכבות לטיולי יום ואתרים פופולריים עמוסים. להתחיל מוקדם, או לבחור את היום הזה ליום שכונתי בטוקיו.</p>
+      <span class="verdict">לתכנן סביבו</span></div></div>
 
-    <div class="opt"><div class="oi"><div class="ot tnum">כל ערב</div><div class="ok">טקאצ׳יהו</div></div>
-      <div><h4>יוקאגורה במקדש טקאצ׳יהו</h4>
-      <p>ארבע מערכות מתוך מחזור ריקודי האלים, כל ערב ב־20:00, כשעה. הגרסה הכפרית המלאה, שנמשכת לילה שלם, מתחילה רק בסוף נובמבר, אחרי שתעזבו.</p>
-      <span class="verdict yes">מגיעים בערב, משלמים בכניסה</span></div></div>
+    <div class="opt"><div class="oi"><div class="ot tnum">סוף<br>נובמבר</div><div class="ok">טוקיו</div></div>
+      <div><h4>שדרת הגינקו בג׳ינגו גאיאן וגינות השלכת</h4>
+      <p>מנהרת עצים צהובה, ולצידה ריקוגיאן וקויישיקאווה קוראקואן עם מייפל אדום. השיא בטוקיו הוא בדיוק בשבוע שלכם, 20 עד 25.11.</p>
+      <span class="verdict yes">אחד הדברים הכי יפים בטיול</span></div></div>
   </div>
 
   <p class="eyebrow">מידע שימושי</p>
@@ -699,13 +695,13 @@ footer{margin-top:32px; padding-top:16px; border-top:1px solid var(--line); font
         <table>
           <thead><tr><th>אזור</th><th>מקס׳</th><th>מינ׳</th><th>מה לוקחים</th></tr></thead>
           <tbody>
-            <tr><td>אוסקה, סוף אוקטובר</td><td class="tnum">20 עד 22</td><td class="tnum">12</td><td>שכבות קלות</td></tr>
-            <tr><td>קיושו, תחילת נובמבר</td><td class="tnum">19 עד 21</td><td class="tnum">11</td><td>מעיל דק</td></tr>
+            <tr><td>סיאול, תחילת נובמבר</td><td class="tnum">16</td><td class="tnum">6</td><td>מעיל בינוני</td></tr>
+            <tr><td>אוסקה, שבוע ראשון</td><td class="tnum">19</td><td class="tnum">11</td><td>שכבות קלות</td></tr>
             <tr><td>קיוטו, אמצע נובמבר</td><td class="tnum">17</td><td class="tnum">8</td><td>מעיל, צעיף</td></tr>
-            <tr><td>טקאיאמה</td><td class="tnum">12</td><td class="tnum">2</td><td>מעיל חם, כפפות</td></tr>
-            <tr><td>היראיו והאלפים, יום מעבר</td><td class="tnum">7</td><td class="tnum">מתחת ל־0</td><td>שכבה תרמית, נעליים אטומות</td></tr>
-            <tr><td>אזור פוג׳י</td><td class="tnum">14</td><td class="tnum">3</td><td>מעיל רוח</td></tr>
-            <tr><td>טוקיו</td><td class="tnum">17</td><td class="tnum">9</td><td>מעיל בינוני</td></tr>
+            <tr><td>טקאיאמה</td><td class="tnum">11</td><td class="tnum">1</td><td>מעיל חם, כפפות</td></tr>
+            <tr><td>היראיו והאלפים</td><td class="tnum">6</td><td class="tnum">מתחת ל־0</td><td>שכבה תרמית, נעליים אטומות</td></tr>
+            <tr><td>אזור פוג׳י</td><td class="tnum">13</td><td class="tnum">2</td><td>מעיל רוח</td></tr>
+            <tr><td>טוקיו, סוף נובמבר</td><td class="tnum">16</td><td class="tnum">8</td><td>מעיל בינוני</td></tr>
           </tbody>
         </table>
       </div>
@@ -718,55 +714,60 @@ footer{margin-top:32px; padding-top:16px; border-top:1px solid var(--line); font
         <table>
           <thead><tr><th>קטע</th><th>אופן</th><th>לאדם</th></tr></thead>
           <tbody>
-            <tr><td>שדה קנסאי אל אוסקה</td><td>רכבת</td><td class="tnum">1,000 עד 1,500 ין</td></tr>
-            <tr><td>אוסקה אל פוקואוקה, הלוך חזור</td><td>טיסת פנים</td><td class="tnum">16,000 עד 40,000 ין</td></tr>
-            <tr><td>אוסקה אל קיוטו</td><td>רכבת מהירה</td><td class="tnum">כ־600 ין</td></tr>
-            <tr><td>קיוטו אל טקאיאמה</td><td>דרך נגויה, אקספרס Hida</td><td class="tnum">כ־11,000 ין</td></tr>
-            <tr><td>קוואגוצ׳יקו אל טוקיו</td><td>רכבת או אוטובוס</td><td class="tnum">4,000 או 2,200 ין</td></tr>
-            <tr><td>טוקיו אל השדה</td><td>נריטה או האנדה</td><td class="tnum">1,200 עד 3,300 ין</td></tr>
+            <tr><td>אינצ׳ון אל סיאול</td><td>AREX Express</td><td class="tnum">כ־11,000 וון</td></tr>
+            <tr><td>סיאול אל אוסקה</td><td>טיסה</td><td class="tnum">משתנה, להשוות</td></tr>
+            <tr><td>קנסאי אל נמבה</td><td>רכבת Nankai</td><td class="tnum">970 עד 1,490 ין</td></tr>
+            <tr><td>אוסקה אל קיוטו</td><td>רכבת</td><td class="tnum">כ־600 ין</td></tr>
+            <tr><td>קיוטו אל טקאיאמה</td><td>דרך נגויה, אקספרס Hida</td><td class="tnum">כ־11,000 עד 13,000 ין</td></tr>
+            <tr><td>קוואגוצ׳יקו אל טוקיו</td><td>אוטובוס או רכבת</td><td class="tnum">2,200 או 4,000 ין</td></tr>
+            <tr><td>טוקיו אל נריטה</td><td>Skyliner או N'EX</td><td class="tnum">2,600 עד 3,300 ין</td></tr>
           </tbody>
         </table>
       </div>
-      <div class="note blue">JR Pass ארצי לא משתלם כאן: קיושו נעשית בטיסה וברכב, והאלפים ברכב. נשארו שני קטעי רכבת משמעותיים בלבד, אז קונים כרטיסים בודדים, ועדיף מראש.</div>
+      <div class="note blue">JR Pass לא משתלם: יש שלושה קטעי רכבת משמעותיים בלבד, והאלפים ברכב. קונים כרטיסים בודדים, ועדיף מראש.</div>
     </div>
   </div>
 
   <div class="cards two">
     <div class="card">
       <h3>לוגיסטיקה שמצילה את הטיול</h3>
-      <h4>מזוודות בקטע קיושו</h4>
-      <p class="muted">אפשרות נוחה: להשאיר מזוודה אחת גדולה במלון באוסקה או בלוקר בתחנה, ולטוס לקיושו קל יותר. רוב המלונות שומרים מזוודות לאורחים חוזרים, שווה לשאול בצ׳ק אין.</p>
+      <h4>מזוודות בטיסה לאוסקה</h4>
+      <p class="muted">באתיופיאן המזוודות עוברות עד סיאול. בטיסה לאוסקה זו הזמנה נפרדת עם מדיניות משלה, אז לבדוק משקל ומספר מזוודות לפני שקונים.</p>
       <h4>שליחת מזוודות, takkyubin</h4>
-      <p class="muted">לפני קטע ההרים שלחו את המזוודות הגדולות מקיוטו ישירות למלון בטוקיו, בערך 2,000 עד 2,500 ין למזוודה, מגיע ביום עד יומיים. נוסעים לטקאיאמה ולמאצומוטו עם תיק קטן. זה פותר גם את תא המטען ברכב השני וגם את המדרגות בתחנות.</p>
+      <p class="muted">ב־14.11 שולחים את המזוודות הגדולות מהמלון בקיוטו ישירות למלון בטוקיו, בערך 2,000 עד 2,500 ין למזוודה. נוסעים לאלפים עם תיק קטן. לוודא מול המלון בטוקיו שהוא מחזיק מזוודות של אורחים עד ההגעה ב־20.11.</p>
       <h4>חשמל ותקשורת</h4>
-      <p class="muted">יפן 100 וולט, שקע שני פינים שטוחים, Type A. מתאם לכל אחד. eSIM זול ופשוט, או מכשיר Wi Fi נייד אחד לשלושתכם.</p>
+      <p class="muted">קוריאה 220 וולט, שקע C או F. יפן 100 וולט, שקע Type A עם שני פינים שטוחים, צריך מתאם. eSIM אחד שמכסה קוריאה ויפן, או אחד לכל מדינה.</p>
       <h4>תשלומים</h4>
-      <p class="muted">כרטיסים עובדים בערים, אבל ריוקאן קטן, אוטובוס כפרי ומקדשים דורשים מזומן. החזיקו 30,000 עד 50,000 ין ומשיכות בכספומטים של 7 Eleven. Suica או Pasmo בארנק של הטלפון לכל הרכבות.</p>
+      <p class="muted">בקוריאה אשראי עובד כמעט בכל מקום. ביפן כרטיסים עובדים בערים, אבל מקדשים, אוטובוסים כפריים ומסעדות קטנות דורשים מזומן. החזיקו 30,000 עד 50,000 ין, ומשכו בכספומטים של 7 Eleven. Suica בארנק של הטלפון לכל הרכבות.</p>
     </div>
 
     <div class="card">
       <h3>נהלים ומספרים</h3>
       <div class="kv">
-        <dt>משטרה</dt><dd class="tnum">110</dd>
-        <dt>אמבולנס ומכבי אש</dt><dd class="tnum">119</dd>
-        <dt>מתח</dt><dd class="tnum">100V, Type A</dd>
-        <dt>שעון</dt><dd>יפן מקדימה את ישראל ב־7 שעות בתקופה זו</dd>
+        <dt>קוריאה, משטרה</dt><dd class="tnum">112</dd>
+        <dt>קוריאה, אמבולנס</dt><dd class="tnum">119</dd>
+        <dt>יפן, משטרה</dt><dd class="tnum">110</dd>
+        <dt>יפן, אמבולנס</dt><dd class="tnum">119</dd>
+        <dt>שעון</dt><dd>סיאול ויפן מקדימות את ישראל ב־7 שעות</dd>
       </div>
-      <h4>אונסן, כלל אצבע</h4>
-      <p class="muted">נכנסים ערומים, מתקלחים בישיבה לפני הכניסה לבריכה, המגבת הקטנה לא נכנסת למים. קעקועים עדיין בעייתיים בחלק מהמקומות, בריוקאן כדאי לשאול מראש או לבקש אמבט פרטי.</p>
+      <h4>כניסה לקוריאה, K-ETA</h4>
+      <p class="muted">אישור כניסה אלקטרוני לכל אחד בנפרד, באתר הרשמי k-eta.go.kr בלבד. להגיש לפחות 72 שעות לפני הטיסה, ובפועל כמה שיותר מוקדם. יש אתרים מתווכים שגובים יותר, להיזהר.</p>
+      <h4>כניסה ליפן</h4>
+      <p class="muted">אין צורך בויזה. Visit Japan Web עם קודי QR לביקורת ולמכס, לכל אחד בנפרד, אפשר למלא כבר בסיאול.</p>
       <h4>תרופות</h4>
-      <p class="muted">להביא באריזה מקורית עם מרשם באנגלית. תרופות מסוימות המותרות בישראל אסורות ביפן, ולכמות גדולה נדרש אישור Yakkan Shoumei מראש. שווה בדיקה מול הרשימה הרשמית לפני הטיסה.</p>
-      <div class="note">בטיסות פנים יש בידוק נפרד, ובחברות הזולות מדיניות מזוודות נוקשה. להגיע לשדה שעה וחצי לפני, ולשקול לצלם את משקל המזוודות לפני היציאה.</div>
+      <p class="muted">באריזה מקורית עם מרשם באנגלית. גם קוריאה וגם יפן מגבילות תרופות מסוימות המותרות בישראל, ולכמות גדולה ביפן נדרש אישור Yakkan Shoumei. שווה בדיקה לפני הטיסה.</p>
+      <h4>אונסן</h4>
+      <p class="muted">נכנסים ערומים, מתקלחים בישיבה לפני הכניסה, המגבת הקטנה לא נכנסת למים. לכם רלוונטי בעיקר אמבט פרטי, בהיראיו ובקוואגוצ׳יקו.</p>
     </div>
   </div>
 
   <div class="card" style="margin-top:14px">
     <h3>הנחת התכנון</h3>
-    <p class="muted" style="margin-top:6px">הנחיתה ב־30.10 ב־17:30 היא בשדה קנסאי, כשעה מאוסקה ברכבת. אם אתם נוחתים דווקא בטוקיו ומשם טסים לאוסקה, הלילה הראשון עובר לטוקיו ונשארים 4 לילות בטוקיו בסוף במקום 5. יום היציאה, 19.11, הוא מטוקיו בשעה 21:30, לכן טיסת הפנים האחרונה כבר לא נדרשת.</p>
+    <p class="muted" style="margin-top:6px">"סיאול שלושה ימים" תורגם לשלושה לילות: נחיתה 4.11 אחר הצהריים, שני ימים מלאים, וטיסה לאוסקה ב־7.11. אם התכוונתם לשלושה ימים מלאים, הטיסה זזה ל־8.11 ולוקחים לילה מקיוטו, שיורדת לשלושה. כל השאר נשאר במקום.</p>
   </div>
 </section>
 
-<footer>עודכן ב־27.9.2026. שעות פתיחה, מעברי הרים, טיסות פנים ותעריפי השכרה משתנים, שווה אימות מול האתר הרשמי בשבוע שלפני היציאה.</footer>
+<footer>עודכן ב־21.10.2026, אחרי המעבר לטיסות אתיופיאן דרך סיאול. שעות פתיחה, מעברי הרים, טיסות ותעריפי השכרה משתנים, שווה אימות מול האתר הרשמי בשבוע שלפני היציאה.</footer>
 </div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
@@ -776,123 +777,127 @@ function fmt(iso){var p=iso.split('-');return p[2].replace(/^0/,'')+'.'+p[1].rep
 function wdName(iso){return WD[new Date(iso+'T12:00:00').getDay()];}
 
 var ALLOC=[
- {n:4,l:'אוסקה',d:'30.10 עד 2.11'},
- {n:5,l:'קיושו',d:'3.11 עד 7.11'},
- {n:2,l:'קיוטו',d:'8.11 עד 9.11'},
- {n:2,l:'טקאיאמה',d:'10.11 עד 11.11'},
- {n:1,l:'מאצומוטו',d:'12.11'},
- {n:1,l:'פוג׳י',d:'13.11'},
- {n:5,l:'טוקיו',d:'14.11 עד 18.11',hi:true},
- {n:20,l:'סך הכל ביפן',d:'30.10 עד 19.11',tot:true}
+ {n:3,l:'סיאול',d:'4.11 עד 6.11'},
+ {n:4,l:'אוסקה',d:'7.11 עד 10.11'},
+ {n:4,l:'קיוטו',d:'11.11 עד 14.11',hi:true},
+ {n:2,l:'טקאיאמה',d:'15.11 עד 16.11'},
+ {n:1,l:'מאצומוטו',d:'17.11'},
+ {n:2,l:'פוג׳י',d:'18.11 עד 19.11',hi:true},
+ {n:5,l:'טוקיו',d:'20.11 עד 24.11'},
+ {n:21,l:'לילות על הקרקע',d:'ועוד 2 בטיסות',tot:true}
 ];
 
 var LEGS=[
-{name:'אוסקה, הנחיתה', cnt:'4 לילות', days:[
- {d:'2026-10-29',t:'המראה מישראל',tags:[['fly','טיסה']],stay:'באוויר',li:['בתיק יד: תרופות, מטענים, מעיל קל, הרישיון הבינלאומי','לצלם את כל ההזמנות לתיקייה אחת בטלפון']},
- {d:'2026-10-30',t:'נחיתה באוסקה 17:30',go:'Nankai Rapi:t משדה קנסאי אל נמבה, 38 דקות, 1,490 ין, ומשם מונית חמש דקות לדירה. אוטובוס השדה אל DOTON PLAZA שהמארח ממליץ עליו כבר לא רלוונטי, האחרון יוצא ב־17:20.',tags:[['fly','נחיתה 17:30'],['train','כשעה לעיר']],stay:'אוסקה',li:['להפעיל Suica בטלפון כבר בשדה, זה פותר רכבות ומוניות','ערב קליל בדוטונבורי, שמונה דקות הליכה מהדירה','להגיע עם קוד הכספת בטלפון, הצ׳ק אין עצמאי'],bk:'<b>סגור:</b> דירת איירבנב בשימנוצ׳י, 2 Chome-15-2, דירה 604, קוד אישור HMJN88RHE9. כניסה מ־15:00, כספת קוד.'},
- {d:'2026-10-31',t:'אוסקה עצמה',go:'הכול ברכבת התחתית של אוסקה. קו מידוסוג׳י מחבר את נמבה, שינסאיבאשי ואומדה, נסיעה של 5 עד 10 דקות בין התחנות.',tags:[['b','יום עיר']],stay:'אוסקה',li:['טירת אוסקה והפארק סביבה','שוק קורומון לארוחת צהריים','תצפית Umeda Sky לשקיעה, יום נוח לרגליים אחרי הטיסה']},
- {d:'2026-11-01',t:'נארה',go:'קינטצו מתחנת אוסאקה נמבה אל קינטצו נארה, אקספרס מהיר כ־40 דקות, כ־680 ין. התחנה נמצאת במרחק הליכה מפארק האיילים.',tags:[['train','45 דקות']],stay:'אוסקה',li:['טודאיג׳י והבודהה הגדול, פארק האיילים','קסוגה טאישה ומסלול הפנסים','חזרה לאוסקה, אוקונומיאקי לארוחת ערב']},
- {d:'2026-11-02',t:'הימג׳י וקובה',go:'JR ספיישל ראפיד מתחנת אוסקה אל הימג׳י, כשעה, 1,520 ין. הטירה 15 דקות הליכה מהתחנה. בחזרה עוצרים בקובה, 25 דקות מהימג׳י.',tags:[['train','שעה לכל כיוון']],stay:'אוסקה',li:['טירת הימג׳י, השלמה ביפן, להגיע בפתיחה','עצירה בקובה, שכונת קיטאנו או ארוחת בקר','אופציה מקבילה: קויה סאן ליום שקט במקדשים','לארוז לקיושו, ואפשר להשאיר מזוודה גדולה במלון']}
+{name:'הדרך לסיאול', cnt:'לילה בטיסה', days:[
+ {d:'2026-11-03',t:'המראה לסיאול דרך אדיס אבבה',go:'להיות בנתב״ג שלוש שעות לפני, כלומר 12:50. ET 449 ב־15:50, נחיתה באדיס 21:05, וחיבור של שעה וחצי ל־ET 672 ב־22:35 מטרמינל 2.',tags:[['fly','ET 449 · 15:50'],['fly','ET 672 · 22:35']],stay:'באוויר',li:['בתיק יד: תרופות לכל הטיול, מטענים, מעיל קל, רישיון נהיגה בינלאומי','לוודא בדלפק שהמזוודות רשומות ישירות עד אינצ׳ון','בטיסה הארוכה אתם ב־33C, 34B ו־34C. אפשר לנסות לסדר שלושה יחד בצ׳ק אין המקוון']}
 ]},
-{name:'קיושו ברכב, טיסה הלוך חזור מאוסקה', cnt:'5 לילות', days:[
- {d:'2026-11-03',t:'טיסה לפוקואוקה, איסוף רכב, בפו',go:'מהמלון בשימנוצ׳י לשדה איטאמי: אוטובוס שדה מנמבה כ־35 דקות או מאומדה כ־30 דקות, בערך 650 ין. מונית ישירה כ־35 דקות. בפוקואוקה אוספים את הרכב בטרמינל ההשכרות, שאטל קצר מהיציאה.',tags:[['fly','טיסת בוקר'],['car','כ־2 שעות'],['hol','יום התרבות']],stay:'בפו',li:['<b>בוקר</b> טיסה מאיטאמי לפוקואוקה, כשעה ועשר דקות, ואיסוף הרכב בשדה','<b>כ־13:30</b> מגיעים לבפו אחרי כשעתיים נהיגה. ישר לאגני ה־jigoku בקאנאווה, הם נסגרים ב־17:00','<b>כ־17:20</b> תצפית יוקמורי לשקיעה, חמש דקות מקאנאווה','<b>כ־18:00</b> יורדים למלון, 15 דקות נסיעה מקאנאווה. הקבלה פתוחה עד 22:00, אז אין לחץ להגיע קודם','<b>ערב</b> ארוחה בקיטהמה במרחק הליכה, ואמבט החול בטקגוואראה פתוח עד 21:00, כ־400 מטר מהמלון','<b>מחר</b> צ׳ק אאוט עד 10:00, ומשם 25 דקות ליופואין'],bk:'<b>סגור:</b> Apartment Hotel YAEZAKI, חדר טריפל עם שלוש מיטות נפרדות. אישור 6931.472.712, PIN 5128. כניסה 15:00 עד 22:00, חניה 500 ין ליום בהזמנה מראש.',plus:{t:'מה יש לעשות בבפו, לפי אזור',g:[{h:'קאנאווה, במעלה ההר',i:['אגני ה־jigoku: אומי ג׳יגוקו הכחול ואוניאישיבוזו עם בועות הבוץ, צמודים זה לזה. 8:00 עד 17:00, כ־500 ין לאגן או 2,200 לכרטיס משולב לשבעה','קאמאדו, אוניאיאמה ושיראיקה באותו מקבץ, הכול במרחק הליכה','אגן הדם צ׳ינואיקה והגייזר טאצומאקי נמצאים שלושה ק״מ צפונה, צריך לנסוע','ג׳יגוקו מושי קובו: קונים ירקות ופירות ים ומבשלים בעצמכם בקיטור הגיאותרמי. הזמנה אחרונה בסביבות 18:00','היוטן אונסן: 14 אמבטיות פרטיות ואמבט חול, פתוח עד אחת בלילה, כ־2,000 ין לאמבט משפחתי','תצפית יוקמורי: הקיטור שעולה מכל העיר, הכי יפה בשקיעה סביב 17:20']},{h:'מיובאן, עשר דקות מעל קאנאווה',i:['צריפי היונוהאנה: גגות קש שמתחתיהם מגדלים גבישי מינרלים בשיטה מהמאה ה־18','פודינג האונסן של אוקמוטויה, מבושל בקיטור','מים חלביים כחלחלים ותצפית יפה על המפרץ']},{h:'החוף ואזור התחנה',i:['אמבט חול על שפת הים בשונינגהמה: קוברים אתכם בחול חם מול הים. כניסה אחרונה בערך 17:00, כ־1,500 ין','טקגוואראה אונסן: מבנה מ־1879 עם אמבט חול בפנים, פתוח עד 21:00. זה מה שמתאים אחרי האגנים','קיטהמה: רובע המסעדות של העיר, ומגדל בפו הרטרו מ־1957']},{h:'מעל העיר',i:['רכבל בפו אל הר צורומי, 1,375 מטר, נוף למפרץ ולהרי קיושו. השלכת בפסגה בשיאה בתחילת נובמבר, סוגר בערך 17:00']}],tip:'<b>איך זה קובע איפה לישון:</b> אם הערב שלכם הוא מסעדות ואמבט חול בטקגוואראה, לישון באזור קיטהמה והתחנה, שם גם הדירוגים והמחירים הטובים ביותר. אם הערב הוא ג׳יגוקו מושי, אמבט פרטי בהיוטן וסמטאות קיטור, לישון בקאנאווה. עם רכב ההפרש הוא עשר דקות נסיעה. שעות הפתיחה משתנות לפי עונה, שווה אימות בשבוע שלפני.'}},
- {d:'2026-11-04',t:'יופואין ודרומה לטקאצ׳יהו',tags:[['car','3 שעות נהיגה']],stay:'טקאמורי',li:['<b>08:00</b> יציאה מבפו, צ׳ק אאוט עד 10:00','<b>08:30 עד 10:30</b> יופואין: אגם קינרין ורחוב יונוצובו, מוקדם זה עוד שקט','<b>10:30</b> נסיעה רצופה דרומה, שעתיים וחצי, בלי עצירות','<b>13:00</b> מגיעים לטקאצ׳יהו ואוכלים בכפר','<b>14:00</b> ערוץ טקאצ׳יהו: סירות משוטים אל מפל מאנאי, בסלוט מוזמן מראש','<b>16:15</b> מקדש אמאנו איוואטו ומערת אמאנויאסוגאווארה','<b>20:00</b> מופע יוקאגורה במקדש טקאצ׳יהו, כשעה','<b>21:00</b> נסיעה של 40 דקות ללינה בטקאמורי'],ons:'<b>לינה:</b> בטקאמורי, ורק במקום עם מיטות אמיתיות ולא פוטון. <b>אופציונלי בדרך:</b> מפל הארג׳ירי, מפל רחב בצורת פרסה עם גשר תלוי מעליו, נמצא בדיוק על הציר בין יופואין לטקאצ׳יהו. עצירה של 30 דקות. אם עוצרים, מגיעים לטקאצ׳יהו ב־13:30 והסירות ב־14:30, עדיין בנוח. ההחלטה יכולה להתקבל בדרך לפי השעה.'},
- {d:'2026-11-05',t:'טקאמורי, לוע אסו וקורוקאווה',tags:[['car','כ־1.5 שעות']],stay:'קורוקאווה אונסן',li:['בוקר נינוח, הערוץ כבר מאחוריכם','מקדש קאמישיקימי קומאנו אימאסו בטקאמורי: מדרגות אבן מכוסות טחב ביער, עשר דקות מהלינה','לוע אסו, לבדוק מפלס אזהרת גז לפני העלייה, ורמת קוסאסנרי בדרך','לינת אונסן בקורוקאווה, או חלופה עירונית בקוממוטו אם מעדיפים טירה ולא כפר'],ons:'<b>שימו לב לבעיית המיטות:</b> קורוקאווה היא כפר ריוקאנים, ורובם מציעים פוטון על טטאמי בלבד. צריך לחפש ריוקאן עם 洋室, חדר מערבי עם מיטות, או לוותר על קורוקאווה ולישון במלון באסו או בקוממוטו. האונסן עצמו נשאר זמין בכרטיס שלושת המרחצאות גם למי שלא לן בכפר.'},
- {d:'2026-11-06',t:'קורוקאווה אל פוקואוקה',tags:[['car','כ־2 שעות']],stay:'פוקואוקה',li:['בוקר נינוח בקורוקאווה, כרטיס שלושה מרחצאות בכפר','עצירה בהיטה, רובע מאמדה מאצ׳י מתקופת אדו, בדרך צפונה','ערב בהאקטה: ראמן טונקוצו או דוכני yatai בנקאסו']},
- {d:'2026-11-07',t:'טיול יום מפוקואוקה',tags:[['car','שעה עד שעה וחצי לכל כיוון']],stay:'פוקואוקה',li:['אופציה: חצי האי איטושימה, שער טורי על החוף ובתי קפה מול הים','אופציה: מוג׳יקו רטרו ומיצרי קנמון, בניינים מתקופת מייג׳י','אופציה קצרה: דזאיפו טנמנגו, 30 דקות מהעיר, ואז קניות בטנג׳ין','לתדלק ולארוז, מחר טסים בבוקר']}
+{name:'סיאול', cnt:'3 לילות', days:[
+ {d:'2026-11-04',t:'נחיתה בסיאול 15:45',go:'טרמינל 1 באינצ׳ון. לשלושה עם מזוודות הכי נוח מונית, כשעה למרכז העיר. חלופה: AREX Express לתחנת סיאול, 43 דקות, ומשם מונית קצרה.',tags:[['fly','נחיתה 15:45'],['train','כשעה לעיר']],stay:'סיאול',li:['ביקורת ומזוודות עד בערך 17:00, במלון סביב 18:30','ערב קליל: דוכני האוכל של מיונגדונג, או ברביקיו קוריאני','להתקין Naver Map ו־Kakao T, גוגל מפות לא מנווט כמו שצריך בקוריאה']},
+ {d:'2026-11-05',t:'ארמונות ובוקצ׳ון',go:'רכבת תחתית קו 3 לתחנת Gyeongbokgung, או מונית. בתוך האזור הכל ברגל.',tags:[['b','יום עיר']],stay:'סיאול',li:['<b>בוקר</b> ארמון גיונגבוקגונג, החלפת משמר בשער ב־10:00. בהנבוק הכניסה חינם','<b>צהריים</b> כפר בוקצ׳ון, ואינסאדונג לבית תה ולארוחה','<b>אחר הצהריים</b> צ׳אנגדוקגונג והגן הסודי, סיור מודרך במכסה, להזמין מראש','<b>ערב</b> מגדל N סיאול בנאמסאן, עולים ברכבל, נוף לילה על העיר']},
+ {d:'2026-11-06',t:'שווקים, שלכת ועיר חדשה',go:'מונית בין האזורים, זה חוסך מדרגות ולשלושה עולה בערך כמו רכבת.',tags:[['b','יום עיר']],stay:'סיאול',li:['<b>בוקר</b> שוק גוואנגג׳אנג, בינדאטוק ומאיאק קימבאפ בדוכנים','<b>צהריים</b> דרך החומה של דוקסוגונג, שדרת גינקו צהובה, והליכה לאורך נחל צ׳ונגגייצ׳ון','<b>אחר הצהריים</b> גנגנאם: מגדל לוטה וורלד ותצפית Seoul Sky, או ספריית סטארפילד ב־COEX','<b>ערב</b> ארוחה אחרונה בקוריאה ואריזה, מחר טסים'],ons:'<b>אופציה במקום אחד הימים:</b> סיור DMZ של חצי יום, המנהרה השלישית ותצפית דורה, עם הסעה מהעיר. דורש דרכון והזמנה כמה ימים מראש. מתאים אם יש סקרנות היסטורית, פחות אם ההורים מעדיפים יום רגוע.'}
 ]},
-{name:'חזרה לאוסקה ולקיוטו', cnt:'2 לילות', days:[
- {d:'2026-11-08',t:'החזרת רכב, טיסה לאוסקה, קיוטו',go:'מחזירים רכב בשדה פוקואוקה, טסים לאיטאמי, ומשם אוטובוס ישיר לתחנת קיוטו, כ־55 דקות, 1,340 ין. זו הדרך הפשוטה ביותר עם מזוודות.',tags:[['car','החזרה בבוקר'],['fly','טיסת בוקר'],['train','אל קיוטו']],stay:'קיוטו',bk:'<b>סגור:</b> Karasuma Kyoto Hotel בשיג׳ו קאראסומה, חדר טווין לשלושה. מספר הזמנה 6218025730, טלפון 075-371-0111. שמירת חדר עד חצות.',li:['החזרת הרכב בשדה פוקואוקה, לצלם את הרכב ואת המאגר','טיסה לאוסקה וממשיכים ישר לקיוטו, בלי לינה נוספת באוסקה','אחר הצהריים: קיומיזודרה והסמטאות של גיון']},
- {d:'2026-11-09',t:'קיוטו, יום שלכת',go:'פושימי אינארי: JR קו נארה מתחנת קיוטו, 5 דקות. ארשיאמה: JR קו סאגאנו, 15 דקות. לשאר העיר אוטובוסים עירוניים או מונית קצרה, קיוטו עמוסה בשעות היום.',tags:[['b','יום מלא']],stay:'קיוטו',li:['פושימי אינארי או ארשיאמה מוקדם בבוקר, לפני הקהל','קינקאקוג׳י או ריואנג׳י אחר כך','שוק נישיקי, ושליחת המזוודות הגדולות לטוקיו מהמלון']}
+{name:'אוסקה', cnt:'4 לילות', days:[
+ {d:'2026-11-07',t:'טיסה לאוסקה',go:'טיסה מסיאול לשדה קנסאי, כשעה וחמישים, עוד לא הוזמנה. מקנסאי Nankai Rapi:t לנמבה, 38 דקות, 1,490 ין, ומשם מונית חמש דקות לדירה.',tags:[['fly','סיאול אל קנסאי'],['train','כשעה לעיר']],stay:'אוסקה',li:['טיסת בוקר עד צהריים, כדי להגיע לדירה אחר הצהריים','להפעיל Suica בטלפון כבר בשדה, זה פותר רכבות וחנויות','ערב בדוטונבורי, שמונה דקות הליכה מהדירה'],ons:'<b>לינה:</b> דירת האיירבנב בשימנוצ׳י הוזמנה ל־30.10 עד 3.11. צריך להעביר ל־7.11 עד 11.11, או לבטל בחינם עד 29.10 ולהזמין מחדש. פרטים בטאב הזמנות.'},
+ {d:'2026-11-08',t:'נארה ותערוכת שוסואין',go:'קינטצו מתחנת אוסאקה נמבה אל קינטצו נארה, אקספרס מהיר כ־40 דקות, כ־680 ין. התחנה במרחק הליכה מפארק האיילים.',tags:[['train','45 דקות']],stay:'אוסקה',li:['טודאיג׳י והבודהה הגדול, פארק האיילים','תערוכת שוסואין במוזיאון הלאומי, היום לפני האחרון שלה. כרטיס לשעה מסוימת, לקנות מראש','קסוגה טאישה ומסלול הפנסים','יום ראשון, להגיע מוקדם לפני הקהל']},
+ {d:'2026-11-09',t:'אוסקה עצמה',go:'הכל ברכבת התחתית. קו מידוסוג׳י מחבר את נמבה, שינסאיבאשי ואומדה, 5 עד 10 דקות בין התחנות.',tags:[['b','יום עיר']],stay:'אוסקה',li:['טירת אוסקה והפארק סביבה','שוק קורומון לארוחת צהריים','שינסקאי ומגדל צוטנקאקו, או תצפית Umeda Sky בשקיעה']},
+ {d:'2026-11-10',t:'הימג׳י וקובה',go:'JR ספיישל ראפיד מתחנת אוסקה אל הימג׳י, כשעה, 1,520 ין. הטירה 15 דקות הליכה מהתחנה. בחזרה עוצרים בקובה, 25 דקות מהימג׳י.',tags:[['train','שעה לכל כיוון']],stay:'אוסקה',li:['טירת הימג׳י, השלמה ביפן, להגיע בפתיחה','עצירה בקובה, שכונת קיטאנו או ארוחת בקר','אופציה מקבילה: קויה סאן ליום שקט במקדשים','לארוז הערב, מחר עוברים לקיוטו']}
 ]},
-{name:'האלפים ברכב', cnt:'4 לילות', days:[
- {d:'2026-11-10',t:'קיוטו אל טקאיאמה',go:'שינקנסן היקארי מקיוטו לנגויה, 35 דקות, ואז אקספרס Hida לטקאיאמה, שעתיים וחצי. סך הכל כ־4 שעות עם החלפה. להזמין מקומות שמורים, ובקטע מנגויה צפונה הנוף אל הנהר יפה יותר מצד אחד, כדאי לבקש בדלפק.',tags:[['train','כ־4.5 שעות']],stay:'טקאיאמה',li:['דרך נגויה, אקספרס Hida עם נוף הנהר, מקומות שמורים','סאנמאצ׳י סוג׳י, העיר העתיקה ומבשלות הסאקה','ארוחה: בקר הידה על האבן']},
- {d:'2026-11-11',t:'איסוף רכב ושירקאווה גו',tags:[['car','איסוף רכב'],['car','שעה לכל כיוון']],stay:'טקאיאמה',li:['איסוף הרכב בבוקר בסניף שליד התחנה','שירקאווה גו, כפר בתי הקש, תצפית שירויאמה','בדרך חזרה כפר המוזיאון הידה נו סאטו']},
- {d:'2026-11-12',t:'היראיו והמעבר למאצומוטו',tags:[['car','כ־2.5 שעות בסך הכל']],stay:'מאצומוטו',li:['עוצרים בהיראיו: אונסן יומי, ורכבל שין הוטאקה לנוף פסגות מושלג','מי שרוצה קמיקוצ׳י, אוטובוס מהיראיו, פתוח עד 15.11, אסור ברכב פרטי','ממשיכים במנהרת Abo בתשלום, ובערב טירת מאצומוטו השחורה מוארת']},
- {d:'2026-11-13',t:'מאצומוטו אל אגם קוואגוצ׳יקו',ons:'אזור אונסן: לאורך אגם קוואגוצ׳יקו יש מרחצאות פתוחים שמשקיפים על ההר. בבוקר בהיר זו התמונה של הטיול.',tags:[['car','כ־3 שעות']],stay:'פוג׳יקאוואגוצ׳יקו',li:['בוקר: רחוב נאקמאצ׳י, או חוות הוואסאבי באזומינו','כביש צ׳ואו דרך סווה וקופו','פגודת צ׳ורייטו ומסדרון המייפל שליד האגם, מלון עם נוף פוג׳י ואונסן']}
+{name:'קיוטו', cnt:'4 לילות', days:[
+ {d:'2026-11-11',t:'אוסקה אל קיוטו, ופושימי אינארי',go:'מונית מהדירה לתחנת אוסקה, ומשם JR Special Rapid לקיוטו, 30 דקות, כ־580 ין. מתחנת קיוטו שתי תחנות מטרו למלון.',tags:[['train','כ־45 דקות']],stay:'קיוטו',li:['מזוודות במלון, הצ׳ק אין מאוחר יותר','פושימי אינארי אחר הצהריים, JR קו נארה מתחנת קיוטו, 5 דקות. אחרי 16:00 פחות קהל בשערים','ערב בפונטוצ׳ו, סמטת המסעדות לאורך הנהר'],ons:'<b>לינה:</b> Karasuma Kyoto Hotel הוזמן ל־8.11 עד 10.11. צריך להעביר ל־11.11 עד 15.11, ארבעה לילות.'},
+ {d:'2026-11-12',t:'ארשיאמה וביתן הזהב',go:'JR קו סאגאנו מתחנת קיוטו לסאגה ארשיאמה, 15 דקות. משם מונית לקינקאקוג׳י, כ־20 דקות.',tags:[['b','יום מלא']],stay:'קיוטו',li:['חורשת הבמבוק מוקדם, לפני 8:30','מקדש טנריו־ג׳י והגן שלו','קינקאקוג׳י, ביתן הזהב, ואחריו ריואנג׳י וגן האבנים']},
+ {d:'2026-11-13',t:'היגאשיאמה וגיון',go:'אוטובוס עירוני או מונית לקיומיזודרה, ומשם הכל ברגל, בירידה.',tags:[['b','יום מלא']],stay:'קיוטו',li:['קיומיזודרה בבוקר, וירידה ברגל בסמטאות סאננזאקה וניננזאקה','גינקאקוג׳י ושביל הפילוסופים, השלכת מתחילה לאורך התעלה','ערב בגיון, רחוב האנאמיקוג׳י']},
+ {d:'2026-11-14',t:'שלכת בגבהים, ושליחת מזוודות',go:'אוהרה: אוטובוס קיוטו 17 משיג׳ו קאראסומה, כשעה. קוראמה: רכבת אייזן מדמאצ׳יאנאגי, 30 דקות.',tags:[['b','חצי יום בחוץ']],stay:'קיוטו',li:['אוהרה: מקדש סנזן־אין והגנים שלו, כאן הצבע מגיע לפני העיר','או קוראמה וקיבונה, הליכה ביער בין שני מקדשים','שוק נישיקי אחר הצהריים','לשלוח את המזוודות הגדולות מהמלון למלון בטוקיו, הן יחכו שם עד 20.11']}
+]},
+{name:'האלפים ופוג׳י, עם רכב', cnt:'5 לילות', days:[
+ {d:'2026-11-15',t:'קיוטו אל טקאיאמה',go:'שינקנסן היקארי מקיוטו לנגויה, 35 דקות, ואז אקספרס Hida לטקאיאמה, שעתיים וחצי. להזמין מקומות שמורים, ומצד הנהר הנוף יפה יותר.',tags:[['train','כ־4 שעות']],stay:'טקאיאמה',li:['אופציה בבוקר: שיצ׳י גו סאן, משפחות בקימונו במקדש יאסאקה או הייאן, לפני רכבת מאוחרת','סאנמאצ׳י סוג׳י, העיר העתיקה ומבשלות הסאקה','ארוחה: בקר הידה על האבן']},
+ {d:'2026-11-16',t:'איסוף רכב ושירקאווה גו',tags:[['car','איסוף רכב'],['car','שעה לכל כיוון']],stay:'טקאיאמה',li:['איסוף הרכב בבוקר בסניף שליד התחנה','שירקאווה גו, כפר בתי הקש, ותצפית שירויאמה','בדרך חזרה כפר המוזיאון הידה נו סאטו']},
+ {d:'2026-11-17',t:'היראיו והמעבר למאצומוטו',tags:[['car','כ־2 שעות בסך הכל']],stay:'מאצומוטו',li:['היראיו: אונסן יומי, ורכבל שין הוטאקה לנוף פסגות מושלג, תלוי מזג אוויר','קמיקוצ׳י כבר סגור לעונה מ־15.11','מנהרת Abo בתשלום, ובערב טירת מאצומוטו השחורה מוארת'],ons:'<b>שלג:</b> בשבוע השלישי של נובמבר זה היום עם הסיכון הכי גבוה. צמיגי חורף בהשכרה, ולבדוק תחזית ומצב המנהרה בבוקר.'},
+ {d:'2026-11-18',t:'מאצומוטו אל אגם קוואגוצ׳יקו',tags:[['car','כ־2.5 שעות']],stay:'פוג׳יקאוואגוצ׳יקו',li:['בוקר: רחוב נאקמאצ׳י, או חוות הוואסאבי דאיאו באזומינו','כביש צ׳ואו דרך סווה וקופו','ערב: מסדרון המייפל המואר בגדה הצפונית של האגם']},
+ {d:'2026-11-19',t:'יום שלם סביב פוג׳י',tags:[['car','נסיעות קצרות']],stay:'פוג׳יקאוואגוצ׳יקו',li:['<b>בוקר מוקדם</b> פגודת צ׳ורייטו, כ־400 מדרגות, הנוף הקלאסי של ההר. הוא נראה הכי טוב לפני 10:00','אושינו האקאי, בריכות מים צלולים ממי השלגים של ההר, 20 דקות נסיעה','רכבל קאצ׳י קאצ׳י לתצפית מעל האגם, או שייט קצר','אמבט פרטי עם נוף להר, אם יש במלון וזה לא יקר'],ons:'<b>למה שני לילות כאן:</b> ההר מתחבא בעננים הרבה פעמים. עם שני בקרים, הסיכוי לראות אותו בבירור עולה מאוד.'}
 ]},
 {name:'טוקיו', cnt:'5 לילות', days:[
- {d:'2026-11-14',t:'החזרת רכב ומעבר לטוקיו',go:'מחזירים רכב בקוואגוצ׳יקו. רכבת Fuji Excursion ישירות לשינג׳וקו, כשעה וחמישים, כ־4,130 ין, אבל יש לה שלוש יציאות ביום בלבד. האוטובוס הישיר לשינג׳וקו יוצא בערך כל שעה, באותו זמן נסיעה ובכחצי מחיר, כ־2,200 ין. בעונת השלכת כדאי להזמין מראש בשני המקרים.',tags:[['car','החזרה'],['train','כ־2 שעות']],stay:'טוקיו',li:['בוקר מול ההר, הוא נראה בבירור בבקרים בהירים','החזרת הרכב בפוג׳יקאוואגוצ׳יקו, לאשר שעת פתיחה','רכבת Fuji Excursion לשינג׳וקו או אוטובוס ישיר, המזוודות כבר במלון']},
- {d:'2026-11-15',t:'טוקיו העתיקה',go:'רכבת: קו גינזה אל אסאקוסה, וקו יאמנוטה למרכז. Suica בטלפון, בלי כרטיסים.',tags:[['b','יום עיר']],stay:'טוקיו',li:['אסאקוסה וסנסוג׳י בבוקר, סקייטרי אחר כך','שוק צוקיג׳י החיצוני לאוכל רחוב','גינת המייג׳י או פארק אואנו לשלכת']},
- {d:'2026-11-16',t:'טוקיו המודרנית',go:'קו יאמנוטה מחבר את שיבויה, הרג׳וקו ושינג׳וקו, שלוש עד שש דקות בין התחנות.',tags:[['b','יום עיר']],stay:'טוקיו',li:['שיבויה, הרג׳וקו ושינג׳וקו','teamLab או מוזיאון, כרטיסים מראש','ערב בגינזה או באומוטסנדו']},
- {d:'2026-11-17',t:'טיול יום מטוקיו',go:'ניקו: אקספרס Spacia מאסאקוסה, שעה וחמישים, להזמין מקום. קמאקורה: JR קו יוקוסוקה מתחנת טוקיו, כ־55 דקות בלי הזמנה.',tags:[['train','אופציונלי']],stay:'טוקיו',li:['אופציה: ניקו למקדשים ולשלכת, שעתיים לכל כיוון','אופציה: קמאקורה, רגועה וקרובה יותר','או יום מוזיאונים וגינות בקצב נוח']},
- {d:'2026-11-18',t:'יום גמיש, קניות ואריזה',tags:[['b','יום חופשי']],stay:'טוקיו',li:['מה שלא הספקתם, שכונה אחת לעומק','קניות מרוכזות, יש מקום במזוודות אחרי החזרת הרכב','לארוז הערב, לא בבוקר הטיסה']},
- {d:'2026-11-19',t:'יום היציאה, טיסה 21:30',go:'לנריטה: Narita Express משינג׳וקו כ־80 דקות, או Skyliner מאואנו 45 דקות. להאנדה: קייקיו משינגאווה 15 דקות, או מונורייל מהמאמאצוצ׳ו 20 דקות. לצאת מהמלון ב־17:00.',tags:[['fly','טיסה 21:30']],stay:'טיסה הביתה',li:['מזוודות בלובי המלון, בוקר חופשי בשכונה','יציאה מטוקיו בסביבות 17:00 לנריטה, או 17:45 להאנדה','להיות בשדה שלוש שעות לפני, כלומר 18:30']}
+ {d:'2026-11-20',t:'החזרת רכב ומעבר לטוקיו',go:'מחזירים רכב בקוואגוצ׳יקו. האוטובוס הישיר לשינג׳וקו יוצא בערך כל שעה, כשעה וחמישים, כ־2,200 ין. רכבת Fuji Excursion באותו זמן ובכפול מחיר, עם שלוש יציאות ביום. להזמין מראש.',tags:[['car','החזרה'],['train','כ־2 שעות']],stay:'טוקיו',li:['עוד בוקר מול ההר','החזרת הרכב, לאשר שעת פתיחה של הסניף','המזוודות כבר מחכות במלון']},
+ {d:'2026-11-21',t:'טוקיו העתיקה',go:'קו גינזה אל אסאקוסה, וקו יאמנוטה למרכז. Suica בטלפון.',tags:[['b','יום עיר']],stay:'טוקיו',li:['אסאקוסה וסנסוג׳י בבוקר, סקייטרי אחר כך','שוק צוקיג׳י החיצוני לאוכל רחוב','פארק אואנו, השלכת שם בשיא']},
+ {d:'2026-11-22',t:'טוקיו המודרנית והגינקו',go:'קו גינזה לגאיאן מאה, ומשם קו יאמנוטה בין הרג׳וקו, שיבויה ושינג׳וקו.',tags:[['b','יום עיר']],stay:'טוקיו',li:['שדרת הגינקו בג׳ינגו גאיאן בבוקר, אמורה להיות בשיא','מייג׳י ג׳ינגו והרג׳וקו, ואחר כך שיבויה','teamLab, כרטיסים מראש','ערב בשינג׳וקו']},
+ {d:'2026-11-23',t:'טיול יום, חג לאומי',go:'קמאקורה: JR קו יוקוסוקה מתחנת טוקיו, כ־55 דקות בלי הזמנה.',tags:[['hol','יום ההודיה לעבודה'],['train','אופציונלי']],stay:'טוקיו',li:['קמאקורה: הבודהה הגדול ומקדש האסה־דרה, השלכת שם בסוף נובמבר','בחג הכל עמוס, להתחיל מוקדם','או יום רגוע בשכונה אחת בטוקיו, יאנקה או קגורזקה']},
+ {d:'2026-11-24',t:'יום גמיש, גינות וקניות',tags:[['b','יום חופשי']],stay:'טוקיו',li:['ריקוגיאן או קויישיקאווה קוראקואן, מייפל אדום בשיא','קניות מרוכזות בגינזה','לארוז הערב, לא בבוקר הטיסה']},
+ {d:'2026-11-25',t:'יום היציאה, טיסה 20:30 מנריטה',go:'Skyliner מאואנו, 41 דקות, או Narita Express משינג׳וקו או מתחנת טוקיו, 80 עד 90 דקות. להיות בטרמינל 1 ב־17:30, כלומר לצאת מהמלון בסביבות 16:00.',tags:[['fly','ET 673 · 20:30']],stay:'באוויר',li:['מזוודות בלובי, בוקר חופשי בשכונה','עצירה באינצ׳ון ב־23:00, ואותה טיסה ממשיכה ב־00:05 לאדיס אבבה','לא יוצאים מהשדה בסיאול']}
+]},
+{name:'הביתה', cnt:'', days:[
+ {d:'2026-11-26',t:'נחיתה בתל אביב 14:45',go:'נחיתה באדיס 07:20, ארבע שעות המתנה, ואז ET 448 ב־11:40.',tags:[['fly','ET 448 · 11:40']],stay:'בבית',li:['בטיסה הזו ליחזקאל עוד אין מושב, לבחור בצ׳ק אין','נחיתה בנתב״ג 14:45']}
 ]}];
 
 var TASKS=[
+ {g:'דחוף, בגלל שינוי המסלול', items:[
+  {id:'x-beppu',t:'לבטל את YAEZAKI בבפו',w:'ביטול חינם עד 30.10 ב־23:59 שעון יפן, 16:59 בישראל. אישור 6931.472.712',p:'דחוף'},
+  {id:'x-osaka',t:'להעביר את האיירבנב באוסקה ל־7.11 עד 11.11',w:'בקשת שינוי באפליקציה. אם לא מאושר, ביטול חינם עד 29.10 ב־15:00 והזמנה מחדש',p:'דחוף'},
+  {id:'x-kyoto',t:'להעביר את המלון בקיוטו ל־11.11 עד 15.11',w:'ארבעה לילות במקום שניים. מספר הזמנה 6218025730, טלפון 075-371-0111',p:'דחוף'},
+  {id:'keta',t:'K-ETA לשלושתכם',w:'רק באתר הרשמי k-eta.go.kr, לפחות 72 שעות לפני הטיסה',p:'דחוף'},
+  {id:'fl-kix',t:'להזמין טיסה מסיאול לאוסקה קנסאי ב־7.11',w:'בוקר עד צהריים, מגימפו אם יש, לבדוק שמזוודה כלולה',p:'עכשיו'},
+  {id:'h-seoul',t:'להזמין מלון בסיאול, 4.11 עד 7.11',w:'מיונגדונג או ג׳ונג־גו. חדר עם מיטות, לא Ondol',p:'עכשיו'}
+ ]},
  {g:'מסמכים ואישורים', items:[
   {id:'pass',t:'לבדוק תוקף דרכון לשלושתכם',w:'לפחות שישה חודשים מיום היציאה',p:'עכשיו'},
   {id:'idp',t:'רישיון נהיגה בינלאומי לכל נהג',w:'אמנת ז׳נבה 1949, מוציאים בארץ, תוקף שנה. בלי זה לא מקבלים רכב',p:'עכשיו'},
-  {id:'vjw',t:'הרשמה ל־Visit Japan Web',w:'קודי QR לביקורת גבולות ולמכס, לכל אחד בנפרד, אפשר כשבועיים לפני',p:''},
-  {id:'ins',t:'ביטוח נסיעות כולל גיל ההורים',w:'לוודא כיסוי למחלות רקע, לאשפוז ולנהיגה ברכב שכור',p:'עכשיו'},
-  {id:'meds',t:'תרופות: מרשם באנגלית ואריזה מקורית',w:'לבדוק אם נדרש אישור Yakkan Shoumei לכמות שאתם לוקחים',p:''},
-  {id:'copies',t:'עותקים דיגיטליים של כל המסמכים',w:'דרכונים, רישיונות, ביטוח והזמנות, בתיקייה אחת זמינה גם בלי אינטרנט',p:''}
+  {id:'vjw',t:'הרשמה ל־Visit Japan Web',w:'קודי QR לביקורת גבולות ולמכס, לכל אחד בנפרד, אפשר גם מסיאול',p:''},
+  {id:'ins2',t:'ביטוח נסיעות שמכסה קוריאה ויפן, כולל גיל ההורים',w:'3.11 עד 26.11, מחלות רקע, אשפוז, ונהיגה ברכב שכור',p:'עכשיו'},
+  {id:'meds',t:'תרופות: מרשם באנגלית ואריזה מקורית',w:'לבדוק מגבלות בקוריאה וביפן, ואם נדרש Yakkan Shoumei',p:''},
+  {id:'copies',t:'עותקים דיגיטליים של כל המסמכים',w:'דרכונים, רישיונות, ביטוח, K-ETA והזמנות, בתיקייה אחת זמינה גם בלי אינטרנט',p:''}
  ]},
- {g:'טיסות פנים ורכב', items:[
-  {id:'dom',t:'להזמין טיסות אוסקה אל פוקואוקה, הלוך 3.11 וחזור 8.11',w:'טיסות בוקר בשני הכיוונים, לבדוק שמזוודה כלולה',p:'עכשיו'},
-  {id:'car1',t:'להזמין רכב בקיושו, 3.11 עד 8.11',w:'איסוף בשדה פוקואוקה, אוטומט, ואגון או מיניוואן, ETC וביטוח מקיף',p:'עכשיו'},
-  {id:'car2',t:'להזמין רכב טקאיאמה עד קוואגוצ׳יקו, 11.11 עד 14.11',w:'להשוות דמי כיוון אחד בין החברות, זה הסעיף היקר',p:'עכשיו'},
-  {id:'tires',t:'לאשר צמיגי חורף בהשכרה השנייה',w:'אמצע נובמבר, שלג אפשרי במעבר Abo ובסביבת היראיו',p:''},
-  {id:'size',t:'לבדוק נפח תא מטען מול שלוש מזוודות',w:'רכב קומפקטי לא יכיל אותן',p:''},
-  {id:'park',t:'לבדוק חניה בכל מלון בקטעי הרכב',w:'בפו, טקאצ׳יהו, קורוקאווה, פוקואוקה, טקאיאמה, מאצומוטו, קוואגוצ׳יקו',p:''},
-  {id:'hours',t:'לאמת שעות פתיחה של סניפי האיסוף וההחזרה',w:'שדה פוקואוקה ב־3.11 וב־8.11, והסניף בקוואגוצ׳יקו בבוקר 14.11',p:''}
+ {g:'טיסות', items:[
+  {id:'et-seat1',t:'לבחור מושב לשי ב־ET 449, וליחזקאל ב־ET 448',w:'בשתי הטיסות האלה רשום Check-In Required',p:''},
+  {id:'et-seat2',t:'לנסות לשבת יחד ב־ET 672',w:'כרגע 33C, 34B ו־34C. בצ׳ק אין המקוון, 24 שעות לפני',p:''},
+  {id:'et-bags',t:'לבדוק כבודה באתיופיאן ובטיסה לאוסקה',w:'כמה מזוודות ומה המשקל בכל אחת מהן, הטיסה לאוסקה היא הזמנה נפרדת',p:''},
+  {id:'et-thru',t:'לוודא בנתב״ג שהמזוודות רשומות עד אינצ׳ון',w:'החיבור באדיס שעה וחצי בלבד',p:''}
  ]},
- {g:'לינה, מה לסגור ומתי', items:[
-  {id:'beds',t:'כלל מחייב: מיטות אמיתיות בכל לילה, לא פוטון על הרצפה',w:'ההורים לא ישנים על הרצפה. זה פוסל ריוקאן מסורתי, מינשוקו וחלק מהבתים היפניים המושכרים. בבוקינג הפילטר הוא Twin beds',p:'עכשיו'},
-  {id:'h-osaka',t:'מלון באוסקה, 30.10 עד 3.11',w:'סגור. דירת איירבנב בשימנוצ׳י, דירה 604, קוד אישור HMJN88RHE9. כל הפרטים בטאב הזמנות',ok:1},
-  {id:'lockbox',t:'לקבל מהמארח באוסקה את קוד הכספת',w:'הצ׳ק אין עצמאי והקוד לא מופיע בהזמנה. לבקש בהודעה כמה ימים לפני',p:''},
-  {id:'minpaku',t:'לשלוח למארח צילומי דרכון וכתובת בישראל',w:'חובה לפי חוק המינפאקו, בלי הרישום הזה לא מאפשרים כניסה',p:''},
-  {id:'h-beppu',t:'לינה בבפו, 3.11 עד 4.11',w:'סגור. Apartment Hotel YAEZAKI ליד התחנה, חדר טריפל, אישור 6931.472.712. כל הפרטים בטאב הזמנות',ok:1},
-  {id:'park-beppu',t:'להזמין מקום חניה במלון בבפו',w:'500 ין ליום, חובה לתאם מראש מול המלון בטלפון או בהודעה',p:'עכשיו'},
-  {id:'h-takachiho',t:'לסגור לינה בטקאמורי, 4.11 עד 5.11',w:'טקאצ׳יהו עצמה נגמרה בבוקינג לתאריך הזה, אז הבסיס הוא טקאמורי, 40 דקות משם. חייב מיטות ולא פוטון, ולאשר צ׳ק אין מאוחר כי מגיעים ב־21:40',p:'דחוף'},
-  {id:'h-kurokawa',t:'לסגור לינה בקורוקאווה, 5.11 עד 6.11',w:'לילה אחד. כפר אונסן: ריוקאן עם קאיסקי, ולשאול מראש על מדיניות קעקועים ואמבט פרטי',p:'דחוף'},
-  {id:'h-fukuoka',t:'לסגור מלון בפוקואוקה, 6.11 עד 8.11',w:'שני לילות. עדיף באזור האקטה או טנג׳ין, ולוודא חניה לרכב',p:''},
-  {id:'h-kyoto',t:'מלון בקיוטו, 8.11 עד 10.11',w:'סגור. Karasuma Kyoto Hotel בשיג׳ו קאראסומה, חדר טווין לשלושה, מספר הזמנה 6218025730. כל הפרטים בטאב הזמנות',ok:1},
-  {id:'kyoto-bed',t:'לאמת מול מלון קיוטו שהמיטה השלישית היא מיטה',w:'החדר הוא Twin לשלושה אורחים. לוודא שהתוספת אינה פוטון על הרצפה. טלפון 075-371-0111',p:'עכשיו'},
-  {id:'h-takayama',t:'לסגור לינה בטקאיאמה, 10.11 עד 12.11',w:'שני לילות, עם חניה מ־11.11 כשיש רכב',p:''},
-  {id:'h-matsumoto',t:'לסגור מלון במאצומוטו, 12.11 עד 13.11',w:'לילה אחד עם חניה',p:''},
-  {id:'h-fuji',t:'לסגור לינה בפוג׳יקאוואגוצ׳יקו, 13.11 עד 14.11',w:'לילה אחד. אזור אונסן עם נוף להר, מרחצאות פתוחים מול פוג׳י. ליל שישי בעונת השלכת, להזמין מוקדם',p:'דחוף'},
-  {id:'h-tokyo',t:'לסגור מלון בטוקיו, 14.11 עד 19.11',w:'חמישה לילות, יציאה ביום הטיסה. עדיף שינג׳וקו או אואנו, קרוב לרכבת לשדה',p:''},
-  {id:'access',t:'לוודא מעלית או קומה נמוכה בכל לינה',w:'שלוש מזוודות והורים, בריוקאן מסורתי זה לא מובן מאליו',p:''},
-  {id:'meal',t:'לאשר שעות ארוחת ערב בריוקאנים',w:'בקורוקאווה ובטקאצ׳יהו מגישים בשעה קבועה, בדרך כלל 18:00 או 18:30. בבפו אתם אוכלים בחוץ',p:''}
+ {g:'רכב', items:[
+  {id:'car2b',t:'להזמין רכב טקאיאמה עד קוואגוצ׳יקו, 16.11 עד 20.11',w:'להשוות דמי כיוון אחד בין החברות, זה הסעיף היקר',p:'עכשיו'},
+  {id:'tires',t:'לאשר צמיגי חורף בהשכרה',w:'שבוע שלישי של נובמבר, שלג סביר במעבר Abo ובהיראיו',p:''},
+  {id:'park',t:'לבדוק חניה בכל מלון בקטע הרכב',w:'טקאיאמה מ־16.11, מאצומוטו, קוואגוצ׳יקו',p:''},
+  {id:'hours2',t:'לאמת שעות פתיחה של סניפי האיסוף וההחזרה',w:'טקאיאמה בבוקר 16.11, קוואגוצ׳יקו בבוקר 20.11',p:''}
+ ]},
+ {g:'לינה, מה לסגור', items:[
+  {id:'beds',t:'כלל מחייב: מיטות אמיתיות בכל לילה, לא פוטון ולא Ondol',w:'ההורים לא ישנים על הרצפה. ביפן זה פוסל ריוקאן מסורתי ומינשוקו, בקוריאה חדרי Ondol. בבוקינג הפילטר הוא Twin beds',p:'עכשיו'},
+  {id:'lockbox',t:'לקבל מהמארח באוסקה את קוד הכספת',w:'אחרי שהתאריכים החדשים מאושרים. הצ׳ק אין עצמאי',p:''},
+  {id:'minpaku',t:'לשלוח למארח באוסקה צילומי דרכון וכתובת בישראל',w:'חובה לפי חוק המינפאקו, בלי זה אין כניסה',p:''},
+  {id:'kyoto-bed',t:'לאמת מול מלון קיוטו שהמיטה השלישית היא מיטה',w:'אפשר באותה שיחה של שינוי התאריכים',p:''},
+  {id:'h-takayama2',t:'לסגור לינה בטקאיאמה, 15.11 עד 17.11',w:'שני לילות, עם חניה מ־16.11',p:''},
+  {id:'h-matsumoto2',t:'לסגור מלון במאצומוטו, 17.11 עד 18.11',w:'לילה אחד עם חניה',p:''},
+  {id:'h-fuji2',t:'לסגור לינה בפוג׳יקאוואגוצ׳יקו, 18.11 עד 20.11',w:'שני לילות. נוף להר, ואם יש אמבט פרטי זול, בונוס. עונת שלכת, להזמין מוקדם',p:'עכשיו'},
+  {id:'h-tokyo2',t:'לסגור מלון בטוקיו, 20.11 עד 25.11',w:'חמישה לילות. אואנו נוח במיוחד בגלל ה־Skyliner לנריטה. לוודא שמחזיקים מזוודות לפני ההגעה',p:''},
+  {id:'access',t:'לוודא מעלית או קומה נמוכה בכל לינה',w:'מזוודות והורים',p:''}
  ]},
  {g:'תחבורה וכרטיסים', items:[
-  {id:'kix',t:'לתכנן הגעה משדה קנסאי למלון ב־30.10',w:'נחיתה 17:30, רכבת Haruka או Nankai, כשעה',p:''},
-  {id:'hida',t:'מקומות באקספרס Hida אל טקאיאמה',w:'10.11 דרך נגויה, נגמרים מהר בעונת השלכת',p:''},
-  {id:'fujiex',t:'כרטיס קוואגוצ׳יקו אל טוקיו ל־14.11',w:'רכבת Fuji Excursion או אוטובוס ישיר לשינג׳וקו',p:''},
-  {id:'airport',t:'להסדיר הגעה לשדה ב־19.11',w:'לאמת אם נריטה או האנדה, ולתכנן יציאה מהמלון ב־17:00',p:''},
-  {id:'ic',t:'להתקין Suica או Pasmo בטלפון',w:'לכל אחד, פותר רכבות, אוטובוסים וחנויות נוחות',p:''},
-  {id:'takkyu',t:'לתכנן שליחת מזוודות מקיוטו לטוקיו',w:'ב־9.11, כדי לעשות את קטע ההרים עם תיק קטן',p:''},
-  {id:'store',t:'להחליט מה נשאר באוסקה בזמן קיושו',w:'מלון ששומר מזוודה, או לוקר בתחנה, חוסך משקל בטיסות הפנים',p:''}
+  {id:'hida2',t:'מקומות באקספרס Hida אל טקאיאמה',w:'15.11 דרך נגויה, נגמרים מהר בעונת השלכת',p:''},
+  {id:'fujiex2',t:'כרטיס קוואגוצ׳יקו אל טוקיו ל־20.11',w:'אוטובוס ישיר לשינג׳וקו או רכבת Fuji Excursion',p:''},
+  {id:'nrt',t:'לתכנן הגעה לנריטה ב־25.11',w:'Skyliner מאואנו או Narita Express, להיות בטרמינל 1 ב־17:30',p:''},
+  {id:'ic',t:'להתקין Suica בטלפון',w:'לכל אחד, פותר רכבות ואוטובוסים ביפן',p:''},
+  {id:'kr-apps',t:'להתקין Naver Map ו־Kakao T',w:'גוגל מפות לא מנווט כמו שצריך בקוריאה, ו־Kakao T למוניות',p:''},
+  {id:'takkyu2',t:'לתכנן שליחת מזוודות מקיוטו לטוקיו',w:'ב־14.11 מהמלון בקיוטו, נוסעים לאלפים עם תיק קטן',p:''}
  ]},
  {g:'אטרקציות והחלטות פתוחות', items:[
-  {id:'shosoin',t:'כרטיסים לתערוכת שוסואין בנארה',w:'1.11, כרטיס לשעה מסוימת שנמכר מראש. התערוכה רצה 24.10 עד 9.11 בלבד',p:'דחוף'},
-  {id:'karatsu',t:'להחליט על פסטיבל קראצו קונצ׳י ב־3.11',w:'יום השיא 9:30 עד 16:30. אפשרי רק בטיסה מוקדמת ובנהיגה ארוכה אחר כך לבפו',p:'עכשיו'},
-  {id:'torinoichi',t:'לשקול טורי נו איצ׳י באסאקוסה ב־19.11',w:'יריד הקומאדה במקדש אוטורי, פתוח כל היום, בדיוק בבוקר היציאה',p:''},
-  {id:'boat',t:'להזמין סירת משוטים בערוץ טקאצ׳יהו',w:'4.11 בסביבות 14:00, הזמנה מקוונת עם חלון שעה. נסגר במים גבוהים, ואז הגיבוי הוא 5.11 בבוקר',p:'דחוף'},
-  {id:'kagura',t:'לאמת מופע יוקאגורה במקדש טקאצ׳יהו',w:'4.11 בערב, כל ערב ב־20:00, כניסה במקום',p:''},
-  {id:'fukuday',t:'להחליט על טיול היום מפוקואוקה',w:'7.11: איטושימה, מוג׳יקו או דזאיפו',p:''},
-  {id:'kamik',t:'לאמת שרכבל שין הוטאקה וקמיקוצ׳י פתוחים',w:'12.11, הרכבל תלוי מזג אוויר וקמיקוצ׳י נסגר ב־15.11',p:''},
-  {id:'himeji',t:'להחליט בין הימג׳י, קויה סאן או יום נוח',w:'2.11, שלוש אנרגיות שונות לגמרי',p:''},
-  {id:'kuro',t:'להחליט: קורוקאווה או קוממוטו ללילה של 5.11',w:'כפר אונסן מול עיר עם טירה, שניהם על אותו ציר חזרה צפונה',p:''},
-  {id:'nikko',t:'להחליט מה עושים ב־17.11',w:'ניקו, קמאקורה או יום מוזיאונים בטוקיו',p:''},
-  {id:'teamlab',t:'כרטיסים ל־teamLab או מוזיאון בטוקיו',w:'נגמרים מראש, בחירת שעת כניסה',p:''},
-  {id:'rest2',t:'הזמנת שתיים או שלוש מסעדות טובות',w:'אוסקה וטוקיו, מקומות קטנים נסגרים שבועות מראש',p:''}
+  {id:'shosoin',t:'כרטיסים לתערוכת שוסואין בנארה',w:'8.11, כרטיס לשעה מסוימת. התערוכה נגמרת ב־9.11',p:'עכשיו'},
+  {id:'secret',t:'להזמין סיור בגן הסודי של צ׳אנגדוקגונג',w:'5.11, מכסה יומית, נפתח להזמנה מראש באתר',p:''},
+  {id:'dmz',t:'להחליט על סיור DMZ',w:'חצי יום, דרכון, להזמין כמה ימים לפני',p:''},
+  {id:'kyoto-hi',t:'להחליט: אוהרה או קוראמה ב־14.11',w:'שתיהן שלכת מוקדמת בגבהים',p:''},
+  {id:'kamik2',t:'לאמת שרכבל שין הוטאקה פועל ב־17.11',w:'תלוי מזג אוויר. קמיקוצ׳י כבר סגור',p:''},
+  {id:'himeji',t:'להחליט בין הימג׳י, קויה סאן או יום נוח',w:'10.11, שלוש אנרגיות שונות לגמרי',p:''},
+  {id:'day23',t:'להחליט מה עושים ב־23.11, החג',w:'קמאקורה מוקדם, או יום שכונתי בטוקיו',p:''},
+  {id:'teamlab',t:'כרטיסים ל־teamLab בטוקיו',w:'נגמרים מראש, בחירת שעת כניסה',p:''},
+  {id:'rest2',t:'הזמנת שתיים או שלוש מסעדות טובות',w:'סיאול, אוסקה וטוקיו, מקומות קטנים נסגרים שבועות מראש',p:''}
  ]},
  {g:'כספים וטכנולוגיה', items:[
-  {id:'esim',t:'eSIM לכל אחד או מכשיר Wi Fi נייד',w:'להזמין מראש, מפעילים בנחיתה',p:''},
-  {id:'cards',t:'לעדכן את חברות הכרטיסים על נסיעה',w:'ולוודא כרטיס שעומד בפיקדון להשכרת רכב',p:''},
-  {id:'cash',t:'מזומן בין 30,000 ל־50,000 ין להתחלה',w:'ריוקאן קטן, אוטובוסים ומקדשים לא תמיד מקבלים כרטיס',p:''},
-  {id:'adapt',t:'מתאמי שקע Type A ומטען נייד',w:'יפן 100 וולט, שני פינים שטוחים',p:''},
-  {id:'maps',t:'להוריד מפות Google לא מקוונות',w:'קיושו, האלפים ואזור פוג׳י, יש אזורים בלי קליטה',p:''},
-  {id:'pins',t:'לשמור את כל הכתובות במפה אחת משותפת',w:'מלונות, סניפי השכרה ואטרקציות',p:''}
+  {id:'esim2',t:'eSIM לקוריאה וליפן',w:'אחד שמכסה את שתיהן, או אחד לכל מדינה. מפעילים בנחיתה',p:''},
+  {id:'cards',t:'לעדכן את חברות הכרטיסים על נסיעה',w:'קוריאה ויפן, ולוודא כרטיס שעומד בפיקדון להשכרת רכב',p:''},
+  {id:'cash2',t:'מזומן: מעט וון, ו־30,000 עד 50,000 ין',w:'בקוריאה אשראי כמעט בכל מקום, ביפן מקדשים וכפרים דורשים מזומן',p:''},
+  {id:'adapt2',t:'מתאמים לשני סוגי שקעים',w:'קוריאה C או F, 220 וולט. יפן Type A, 100 וולט. ומטען נייד',p:''},
+  {id:'maps',t:'להוריד מפות Google לא מקוונות ליפן',w:'האלפים ואזור פוג׳י, יש אזורים בלי קליטה',p:''}
  ]},
  {g:'ציוד ואריזה', items:[
-  {id:'layers',t:'שכבות חמות ליום ההרים',w:'12.11 יכול לירד מתחת לאפס, כפפות וכובע',p:''},
-  {id:'shoes',t:'נעליים אטומות ונוחות להליכה',w:'יום הליכה אופייני כאן הוא 8 עד 12 ק״מ',p:''},
-  {id:'small',t:'תיק קטן לשלושת ימי ההרים',w:'משלים את שליחת המזוודות',p:''},
-  {id:'meds2',t:'תיק תרופות יומי בתיק יד',w:'לא במזוודה שנשלחת ולא במזוודה שנבדקת בטיסת פנים',p:''},
+  {id:'layers',t:'שכבות חמות לימי ההרים',w:'17.11 יכול לירד מתחת לאפס, כפפות וכובע',p:''},
+  {id:'shoes',t:'נעליים אטומות ונוחות להליכה',w:'יום הליכה אופייני הוא 8 עד 12 ק״מ',p:''},
+  {id:'small',t:'תיק קטן לחמשת ימי ההרים',w:'משלים את שליחת המזוודות',p:''},
+  {id:'meds2',t:'תיק תרופות יומי בתיק יד',w:'לא במזוודה שנשלחת ולא במזוודה שנבדקת',p:''},
   {id:'gifts',t:'מקום במזוודה לקניות',w:'או מזוודה מתקפלת נוספת',p:''}
  ]}
 ];
@@ -912,7 +917,6 @@ var TASKS=[
         +d.tags.map(function(t){return '<span class="b '+t[0]+'">'+t[1]+'</span>';}).join('')
         +'</div>'+(d.go?'<div class="go"><b>איך מגיעים:</b> '+d.go+'</div>':'')
         +'<ul>'+d.li.map(function(x){return '<li>'+x+'</li>';}).join('')+'</ul>'
-        +(d.plus?'<div class="plus"><b>'+d.plus.t+'</b>'+d.plus.g.map(function(g){return '<div class="ph">'+g.h+'</div><ul>'+g.i.map(function(x){return '<li>'+x+'</li>';}).join('')+'</ul>';}).join('')+'<div class="ptip">'+d.plus.tip+'</div></div>':'')
         +(d.bk?'<div class="bk">'+d.bk+'</div>':'')+(d.ons?'<div class="ons">'+d.ons+'</div>':'')+'</div></article>';
     });
   });
@@ -924,10 +928,9 @@ var TASKS=[
   tabs.forEach(function(t){
     t.addEventListener('click',function(){
       tabs.forEach(function(o){o.setAttribute('aria-selected',o===t?'true':'false');});
-      ['route','dist','book','map','cars','todo','info'].forEach(function(k){document.getElementById('p-'+k).hidden=(k!==t.dataset.p);});
+      ['route','seoul','book','map','cars','todo','info'].forEach(function(k){document.getElementById('p-'+k).hidden=(k!==t.dataset.p);});
       try{localStorage.setItem('jp26tab',t.dataset.p);}catch(e){}
       if(t.dataset.p==='map') setTimeout(initMap,0);
-      if(t.dataset.p==='dist') setTimeout(initDayMap,0);
       window.scrollTo(0,0);
     });
   });
@@ -938,10 +941,10 @@ var TASKS=[
   var el=document.getElementById('count'), dl=document.getElementById('daysLeft');
   function upd(){
     var now=new Date(), day=864e5;
-    var dep=new Date('2026-10-29T12:00:00'), ret=new Date('2026-11-19T21:30:00');
+    var dep=new Date('2026-11-03T15:50:00'), ret=new Date('2026-11-26T14:45:00');
     var n=Math.ceil((dep-now)/day), txt;
     if(n>0) txt=n+' ימים להמראה';
-    else if(now<ret) txt='בטיול, יום '+(Math.floor((now-dep)/day)+1)+' מתוך 22';
+    else if(now<ret) txt='בטיול, יום '+(Math.floor((now-new Date('2026-11-03T00:00:00'))/day)+1)+' מתוך 24';
     else txt='הטיול מאחוריכם';
     el.textContent=txt;
     dl.textContent = n>0 ? n+' ימים נשארו להתארגן' : '';
@@ -1011,222 +1014,94 @@ var TASKS=[
   render();
 })();
 
-/* ---------- Kyushu map ---------- */
-var NODES={
- fuk:{n:'שדה פוקואוקה',ll:[33.5859,130.4508],k:'air',d:'כאן נוחתים מאוסקה ב־3.11 בבוקר, וכאן אוספים את הרכב. ב־8.11 מחזירים אותו וטסים חזרה. מהשדה להאקטה חמש דקות ברכבת תחתית.'},
- hakata:{n:'פוקואוקה, האקטה',ll:[33.5898,130.4207],k:'night',num:'4·5',d:'שני הלילות האחרונים בקיושו. דוכני יאטאי בנקאסו, ראמן טונקוצו, וקניות בטנג׳ין.'},
- beppu:{n:'בפו',ll:[33.2793,131.5017],k:'night',num:'1',d:'עיר האונסן הגדולה ביפן, שמונה אזורי רחצה. אגני ה־jigoku בקאנאווה נסגרים ב־17:00, אמבט חול בטקגוואראה פתוח עד 21:00, ואמבט משפחתי פרטי בהיוטן עד אחת בלילה.'},
- yufuin:{n:'יופואין',ll:[33.2636,131.3656],k:'stop',d:'אגם קינרין ורחוב יונוצובו, 25 דקות מבפו. להגיע מוקדם, אחרי עשר זה מתמלא.'},
- harajiri:{n:'מפל הארג׳ירי',ll:[32.9706,131.4300],k:'stop',d:'מפל רחב בצורת פרסה, עצירה טבעית באמצע הדרך דרומה. יש גשר תלוי מעליו.'},
- takachiho:{n:'טקאצ׳יהו',ll:[32.7128,131.3010],k:'night',num:'2',d:'הערוץ נחצב בסלע לבה של אסו, סירות משוטים אל מפל מאנאי. בערב מופע יוקאגורה במקדש ב־20:00.'},
- iwato:{n:'אמאנו איוואטו',ll:[32.7233,131.3603],k:'stop',d:'מקדש ומערת אמאנויאסוגאווארה, עשר דקות מהערוץ.'},
- takamori:{n:'טקאמורי',ll:[32.8231,131.1258],k:'stop',d:'הכביש המטפס מטקאצ׳יהו אל רמת אסו, נוף קלדרה.'},
- aso:{n:'לוע אסו',ll:[32.8847,131.0841],k:'stop',d:'הר געש פעיל בתוך קלדרה ענקית. לבדוק מפלס אזהרת גז בבוקר, לפעמים סוגרים את הכביש ללוע.'},
- kurokawa:{n:'קורוקאווה אונסן',ll:[33.0833,131.1333],k:'night',num:'3',d:'כפר אונסן קטן בין יערות, כרטיס שלושה מרחצאות. אחד המקומות היפים בקיושו.'},
- hita:{n:'היטה',ll:[33.3214,130.9414],k:'stop',d:'רובע מאמדה מאצ׳י מתקופת אדו, עצירה נעימה בדרך חזרה צפונה.'}
+/* ---------- trip map ---------- */
+var TP={
+ icn:{n:'שדה אינצ׳ון',ll:[37.4602,126.4407],k:'air',d:'נחיתה מאדיס אבבה ב־4.11 ב־15:45, טרמינל 1. וגם עצירת הביניים בדרך הביתה, 25.11 בלילה.'},
+ gmp:{n:'שדה גימפו',ll:[37.5583,126.7906],k:'air',d:'השדה הקרוב לעיר, כחצי שעה ממיונגדונג. אם יש טיסה נוחה לקנסאי ב־7.11, עדיף מאינצ׳ון.'},
+ seoul:{n:'סיאול, מיונגדונג',ll:[37.5636,126.9850],k:'night',num:'3',d:'שלושה לילות, 4.11 עד 7.11.'},
+ kix:{n:'שדה קנסאי',ll:[34.4320,135.2304],k:'air',d:'נוחתים מסיאול ב־7.11. רכבת Nankai לנמבה, 38 דקות.'},
+ osaka:{n:'אוסקה, שימנוצ׳י',ll:[34.6720,135.5080],k:'night',num:'4',d:'ארבעה לילות, 7.11 עד 11.11. נארה, אוסקה, הימג׳י וקובה.'},
+ kyoto:{n:'קיוטו, שיג׳ו קאראסומה',ll:[35.0036,135.7595],k:'night',num:'4',d:'ארבעה לילות, 11.11 עד 15.11.'},
+ nagoya:{n:'נגויה',ll:[35.1709,136.8815],k:'via',d:'החלפה משינקנסן לאקספרס Hida בדרך לטקאיאמה.'},
+ takayama:{n:'טקאיאמה',ll:[36.1408,137.2522],k:'night',num:'2',d:'שני לילות, 15.11 עד 17.11. איסוף הרכב בבוקר 16.11.'},
+ matsumoto:{n:'מאצומוטו',ll:[36.2381,137.9720],k:'night',num:'1',d:'לילה אחד, 17.11. הטירה השחורה מוארת בערב.'},
+ fuji:{n:'פוג׳יקאוואגוצ׳יקו',ll:[35.4983,138.7686],k:'night',num:'2',d:'שני לילות, 18.11 עד 20.11. צ׳ורייטו, אושינו האקאי ומסדרון המייפל.'},
+ tokyo:{n:'טוקיו',ll:[35.6896,139.7006],k:'night',num:'5',d:'חמישה לילות, 20.11 עד 25.11.'},
+ nrt:{n:'שדה נריטה',ll:[35.7720,140.3929],k:'air',d:'ET 673 ב־25.11 ב־20:30, טרמינל 1. להיות שם ב־17:30.'}
 };
-var ROUTE=[['fuk','beppu','2:00'],['beppu','yufuin','0:25'],['yufuin','harajiri','1:30'],['harajiri','takachiho','1:00'],['takachiho','takamori','0:40'],['takamori','aso','0:30'],['aso','kurokawa','0:45'],['kurokawa','hita','0:50'],['hita','hakata','1:10']];
-var DAYTRIPS=[
- {n:'איטושימה',ll:[33.6260,130.1730],t:'1:00',d:'חוף מערבי, שער טורי בים בסאקוראי פוטאמיגאורה, בתי קפה מול המים.'},
- {n:'דזאיפו',ll:[33.5215,130.5353],t:'0:35',d:'מקדש טנמנגו, מוזיאון קיושו, ורחוב מאצ׳י עם מוצ׳י אפוי. הכי קצר מהעיר.'},
- {n:'מוג׳יקו ומיצרי קנמון',ll:[33.9469,130.9628],t:'1:10',d:'נמל מתקופת מייג׳י, אפשר לחצות ברגל במנהרה תת ימית אל האי הראשי.'},
- {n:'יאנגאווה',ll:[33.1633,130.4064],t:'0:50',d:'שייט בסירות דוברה בתעלות העיר, ארוחת צלופח. משתלב עם דזאיפו.'}
+var STOPS=[
+ {n:'ארמון גיונגבוקגונג',ll:[37.5796,126.9770],g:'seoul',d:'5.11 בבוקר. סגור בימי שלישי.'},
+ {n:'כפר בוקצ׳ון',ll:[37.5826,126.9830],g:'seoul',d:'בתי הנוק בסמטאות, 5.11 בצהריים.'},
+ {n:'צ׳אנגדוקגונג והגן הסודי',ll:[37.5794,126.9910],g:'seoul',d:'5.11 אחר הצהריים, סיור במכסה. סגור בימי שני.'},
+ {n:'שוק גוואנגג׳אנג',ll:[37.5701,126.9996],g:'seoul',d:'6.11 בבוקר.'},
+ {n:'מגדל N סיאול',ll:[37.5512,126.9882],g:'seoul',d:'ערב 5.11, ברכבל.'},
+ {n:'דוקסוגונג, דרך החומה',ll:[37.5658,126.9752],g:'seoul',d:'שדרת גינקו, 6.11.'},
+ {n:'מגדל לוטה וורלד',ll:[37.5126,127.1025],g:'seoul',d:'תצפית Seoul Sky, 6.11 אחר הצהריים.'},
+ {n:'נארה',ll:[34.6851,135.8430],g:'day',from:'osaka',d:'8.11, טיול יום. טודאיג׳י ותערוכת שוסואין.'},
+ {n:'הימג׳י',ll:[34.8394,134.6939],g:'day',from:'osaka',d:'10.11, הטירה הלבנה. וקובה בדרך חזרה.'},
+ {n:'אוהרה',ll:[35.1190,135.8340],g:'day',from:'kyoto',d:'14.11, שלכת מוקדמת וסנזן־אין.'},
+ {n:'שירקאווה גו',ll:[36.2578,136.9061],g:'day',from:'takayama',d:'16.11 ברכב, כפר בתי הקש.'},
+ {n:'היראיו ושין הוטאקה',ll:[36.2400,137.5700],g:'stop',d:'17.11, אונסן יומי ורכבל. בדרך למאצומוטו.'},
+ {n:'קמאקורה',ll:[35.3192,139.5467],g:'day',from:'tokyo',d:'23.11, אופציונלי.'}
 ];
-var ALTS=[
- {n:'טירת קוממוטו',ll:[32.8060,130.7058],from:'מאסו',t:'1:10',easy:1,d:'אחת משלוש הטירות הגדולות ביפן, בשיקום מרשים אחרי רעידת האדמה. יושבת כמעט על הדרך שלכם ב־6.11, אם מוותרים על בוקר נינוח בקורוקאווה.'},
- {n:'אוסה ג׳ינגו',ll:[33.5253,131.3743],from:'מבפו',t:'1:00',easy:1,d:'מקדש השינטו הראשי של יפן לאל האצ׳ימן. אפשרי כעצירה בבוקר של 4.11 במקום יופואין, או בדרך מפוקואוקה לבפו.'},
- {n:'קראצו ויובוקו',ll:[33.4503,129.9689],from:'מפוקואוקה',t:'1:15',easy:1,d:'טירה על הים, מערות נאנאצוגאמה, ודיונון חי בשוק הבוקר של יובוקו. חלופה לטיול היום של 7.11.'},
- {n:'אונסן טקאו',ll:[33.1928,130.0206],from:'מפוקואוקה',t:'1:15',easy:1,d:'הספרייה המפורסמת, עץ קמפור בן אלפי שנים, ומים רכים. חלופה רגועה לטיול היום.'},
- {n:'מערות אקיושידו',ll:[34.2306,131.3036],from:'מפוקואוקה',t:'1:40',easy:1,d:'מערת הגיר הגדולה ביפן, כבר מעבר למיצר ביאמגוצ׳י. משתלבת עם מוג׳יקו ליום ארוך אחד.'},
- {n:'נגסאקי',ll:[32.7737,129.8637],from:'מפוקואוקה',t:'2:00',easy:0,d:'פארק השלום, שכונת גלובר, נוף הלילה מהר אינאסה, והפלגה לאי הרפאים גונקנג׳ימה. עיר שמצדיקה לילה, ועדיף שניים. כדי להכניס אותה צריך לוותר על טקאצ׳יהו או על לילה בפוקואוקה.'},
- {n:'שימבארה ואונזן',ll:[32.7875,130.3625],from:'מקוממוטו',t:'1:20',easy:0,d:'טירה, מעיינות רותחים על הר אונזן, ומעבורת שחוצה את המפרץ. מוסיף יום שלם, והוא בצד המערבי שאתם לא נוגעים בו.'},
- {n:'קגושימה וסאקוראג׳ימה',ll:[31.5966,130.5571],from:'מאסו',t:'3:00',easy:0,d:'הר געש פעיל שמעשן מול העיר, מעבורת כל 15 דקות, ואמבטיות חול חמות באיבוסוקי בהמשך. דורש שני לילות לפחות, וזה כבר טיול נפרד.'},
- {n:'חוף ניצ׳ינן ואודו ג׳ינגו',ll:[31.6383,131.4619],from:'מטקאצ׳יהו',t:'2:15',easy:0,d:'מקדש אדום בתוך מערה מעל הים, וחוף דרומי עם דקלים. יפה מאוד, אבל דרומה מדי ביחס ללולאה.'},
- {n:'האוס טן בוס',ll:[33.0870,129.7870],from:'מפוקואוקה',t:'2:00',easy:0,d:'פארק בסגנון הולנדי ליד סאסבו, ובנובמבר פסטיבל תאורה גדול. יום שלם, ורק אם אתם אוהבים פארקים.'},
- {n:'יאקושימה',ll:[30.3600,130.5300],from:'מקגושימה',t:'טיסה או מעבורת',easy:0,d:'יער ארזים עתיק שהיה השראה לנסיכה מונונוקה. שלושה ימים לפחות ומזג אוויר גשום. לא ריאלי הפעם.'}
+var SEGS=[
+ ['icn','seoul','train','1:00'],['seoul','kix','fly','1:50'],['kix','osaka','train','0:40'],
+ ['osaka','kyoto','train','0:30'],['kyoto','nagoya','train','0:35'],['nagoya','takayama','train','2:30'],
+ ['takayama','hirayu','car','0:50'],['hirayu','matsumoto','car','1:15'],['matsumoto','fuji','car','2:30'],
+ ['fuji','tokyo','train','1:50'],['tokyo','nrt','train','1:00'],['nrt','icn','fly','2:30']
 ];
-var MATRIX={
- rows:['שדה פוקואוקה','בפו','יופואין','טקאצ׳יהו','אסו','קורוקאווה','קוממוטו','נגסאקי'],
- v:[
- [null,'2:00','1:45','3:30','2:20','2:00','1:30','2:00'],
- ['2:00',null,'0:25','2:45','2:00','1:30','2:45','4:00'],
- ['1:45','0:25',null,'2:30','1:30','1:00','2:20','3:45'],
- ['3:30','2:45','2:30',null,'1:10','1:50','2:15','4:15'],
- ['2:20','2:00','1:30','1:10',null,'0:45','1:10','3:00'],
- ['2:00','1:30','1:00','1:50','0:45',null,'1:30','3:00'],
- ['1:30','2:45','2:20','2:15','1:10','1:30',null,'1:45'],
- ['2:00','4:00','3:45','4:15','3:00','3:00','1:45',null]]
-};
-
-(function(){
-  var h='<table><thead><tr><th></th>';
-  MATRIX.rows.forEach(function(r){h+='<th>'+r+'</th>';});
-  h+='</tr></thead><tbody>';
-  MATRIX.rows.forEach(function(r,i){
-    h+='<tr><td>'+r+'</td>';
-    MATRIX.v[i].forEach(function(c){h+='<td class="tnum">'+(c||'<span style="opacity:.3">·</span>')+'</td>';});
-    h+='</tr>';
-  });
-  document.getElementById('matrix').innerHTML=h+'</tbody></table>';
-
-  function card(a){
-    return '<div class="opt"><div class="oi"><div class="ot tnum">'+a.t+'</div><div class="ok">'+a.from+'</div></div>'
-      +'<div><h4>'+a.n+'</h4><p>'+a.d+'</p>'
-      +'<span class="verdict '+(a.easy?'yes':'maybe')+'">'+(a.easy?'נכנס כעצירה או כטיול יום':'דורש לילה או יותר')+'</span></div></div>';
-  }
-  document.getElementById('optEasy').innerHTML=ALTS.filter(function(a){return a.easy;}).map(card).join('');
-  document.getElementById('optHard').innerHTML=ALTS.filter(function(a){return !a.easy;}).map(card).join('');
-})();
 
 function initMap(){
-  if(initMap.done || typeof L==='undefined' || !document.getElementById('kmap')) return;
+  if(initMap.done || typeof L==='undefined' || !document.getElementById('tmap')) return;
   initMap.done=true;
-  var layers={};
-  var kmap=L.map('kmap',{scrollWheelZoom:false});
-  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:17,attribution:'&copy; OpenStreetMap'}).addTo(kmap);
+  var m=L.map('tmap',{scrollWheelZoom:false});
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:17,attribution:'&copy; OpenStreetMap'}).addTo(m);
+  var hir=STOPS.filter(function(s){return s.g==='stop';})[0].ll;
+  function ll(k){return k==='hirayu'?hir:TP[k].ll;}
+  var COL={train:'#22466F',car:'#AC4E2A',fly:'#15181D'};
 
-  function pin(cls,txt){return L.divIcon({className:'',html:'<div class="pin '+cls+'">'+(txt||'')+'</div>',iconSize:[28,28],iconAnchor:[14,14]});}
-  layers.loop=L.layerGroup().addTo(kmap);
-  layers.alt=L.layerGroup().addTo(kmap);
-  layers.day=L.layerGroup().addTo(kmap);
-
-  var pts=[];
-  ROUTE.forEach(function(seg){
-    var a=NODES[seg[0]].ll, b=NODES[seg[1]].ll;
-    L.polyline([a,b],{color:'#22466F',weight:5,opacity:.85}).addTo(layers.loop);
+  SEGS.forEach(function(s){
+    var a=ll(s[0]), b=ll(s[1]), back=(s[0]==='nrt');
+    L.polyline([a,b],{color:back?'#6B7686':COL[s[2]],weight:s[2]==='fly'?3:5,opacity:.85,dashArray:s[2]==='fly'?'10 8':null}).addTo(m);
     var mid=[(a[0]+b[0])/2,(a[1]+b[1])/2];
-    L.marker(mid,{icon:L.divIcon({className:'',html:'<div class="tlabel">'+seg[2]+'</div>',iconSize:[42,20],iconAnchor:[21,10]}),interactive:false}).addTo(layers.loop);
+    L.marker(mid,{icon:L.divIcon({className:'',html:'<div class="tlabel">'+s[3]+'</div>',iconSize:[42,20],iconAnchor:[21,10]}),interactive:false}).addTo(m);
   });
-
-  Object.keys(NODES).forEach(function(k){
-    var p=NODES[k]; pts.push(p.ll);
-    var ic = p.k==='air' ? pin('pin-air','✈') : p.k==='night' ? pin('pin-night',p.num) : pin('pin-stop');
-    if(k==='hakata') ic=L.divIcon({className:'',html:'<div class="pin pin-night">'+p.num+'</div>',iconSize:[28,28],iconAnchor:[14,46]});
-    L.marker(p.ll,{icon:ic,zIndexOffset:p.k==='stop'?0:400}).addTo(layers.loop).bindPopup('<b>'+p.n+'</b><br>'+p.d);
-  });
-
-  DAYTRIPS.forEach(function(t){
-    L.polyline([NODES.hakata.ll,t.ll],{color:'#6B7686',weight:3,dashArray:'6 7',opacity:.8}).addTo(layers.day);
-    L.marker(t.ll,{icon:L.divIcon({className:'',html:'<div class="pin pin-stop"></div>',iconSize:[14,14],iconAnchor:[7,7]})}).addTo(layers.day)
-      .bindPopup('<b>'+t.n+'</b><br><span class="dist">'+t.t+' מפוקואוקה</span><br>'+t.d);
-  });
-
-  ALTS.forEach(function(a){
-    L.marker(a.ll,{icon:L.divIcon({className:'',html:'<div class="pin pin-alt"></div>',iconSize:[16,16],iconAnchor:[8,8]})}).addTo(layers.alt)
-      .bindPopup('<b>'+a.n+'</b><br><span class="dist">'+a.t+' '+a.from+'</span><br>'+a.d);
-  });
-
-  var loopBounds=L.latLngBounds(pts).pad(.12);
-  kmap.fitBounds(loopBounds);
-  setTimeout(function(){kmap.invalidateSize(); kmap.fitBounds(loopBounds);},250);
-
-  function toggle(btn,key){
-    var b=document.getElementById(btn);
-    b.addEventListener('click',function(){
-      var on=b.getAttribute('aria-pressed')==='true';
-      b.setAttribute('aria-pressed',on?'false':'true');
-      if(on) kmap.removeLayer(layers[key]); else kmap.addLayer(layers[key]);
-    });
-  }
-  toggle('btnLoop','loop'); toggle('btnAlt','alt'); toggle('btnDay','day');
-  document.getElementById('btnFit').addEventListener('click',function(){kmap.fitBounds(loopBounds);});
-
-  var flightLine=null, osaka=[34.4320,135.2304];
-  document.getElementById('btnFlight').addEventListener('click',function(){
-    if(!flightLine){
-      flightLine=L.layerGroup([
-        L.polyline([NODES.fuk.ll,osaka],{color:'#AC4E2A',weight:3,dashArray:'10 8'}),
-        L.marker(osaka,{icon:L.divIcon({className:'',html:'<div class="pin pin-air" style="background:#AC4E2A">✈</div>',iconSize:[30,30],iconAnchor:[15,15]})})
-          .bindPopup('<b>שדה קנסאי, אוסקה</b><br>כאן נוחתים מישראל ב־30.10 בשעה 17:30, וכאן ממריאים לפוקואוקה ב־3.11 בבוקר. טיסה של כשעה ועשר דקות.')
-      ]).addTo(kmap);
+  STOPS.forEach(function(s){
+    if(s.from){
+      L.polyline([TP[s.from].ll,s.ll],{color:s.from==='takayama'?'#AC4E2A':'#6B7686',weight:3,dashArray:'4 7',opacity:.8}).addTo(m);
     }
-    kmap.fitBounds(L.latLngBounds([NODES.fuk.ll,osaka]).pad(.15));
+    L.marker(s.ll,{icon:L.divIcon({className:'',html:'<div class="pin pin-stop"></div>',iconSize:[14,14],iconAnchor:[7,7]})}).addTo(m)
+      .bindPopup('<b>'+s.n+'</b><br>'+s.d);
   });
+  Object.keys(TP).forEach(function(k){
+    var p=TP[k];
+    var ic = p.k==='air' ? L.divIcon({className:'',html:'<div class="pin pin-air">✈</div>',iconSize:[30,30],iconAnchor:[15,15]})
+      : p.k==='via' ? L.divIcon({className:'',html:'<div class="pin pin-via"></div>',iconSize:[12,12],iconAnchor:[6,6]})
+      : L.divIcon({className:'',html:'<div class="pin pin-night">'+p.num+'</div>',iconSize:[28,28],iconAnchor:[14,14]});
+    L.marker(p.ll,{icon:ic,zIndexOffset:p.k==='night'?500:300}).addTo(m).bindPopup('<b>'+p.n+'</b><br>'+p.d);
+  });
+
+  function pts(keys,groups){
+    var a=keys.map(ll);
+    STOPS.forEach(function(s){if(groups.indexOf(s.g)>-1) a.push(s.ll);});
+    return L.latLngBounds(a).pad(.12);
+  }
+  var B={
+    all:pts(Object.keys(TP),[]),
+    seoul:pts(['seoul','gmp'],['seoul']),
+    japan:pts(['kix','osaka','kyoto','takayama','matsumoto','fuji','tokyo','nrt'],['day','stop']),
+    alps:pts(['takayama','matsumoto','fuji','tokyo'],['stop'])
+  };
+  [].slice.call(document.querySelectorAll('[data-fit]')).forEach(function(btn){
+    btn.addEventListener('click',function(){m.fitBounds(B[btn.dataset.fit]);});
+  });
+  m.fitBounds(B.all);
+  setTimeout(function(){m.invalidateSize(); m.fitBounds(B.all);},250);
 }
 window.addEventListener('load',function(){
   var t=document.querySelector('.tab[data-p="map"]');
   if(t && t.getAttribute('aria-selected')==='true') initMap();
 });
-
-/* ---------- day 4.11: map + timelines ---------- */
-var DAYPTS={
- beppu:{n:'בפו, המלון',ll:[33.2831,131.5044],d:'יציאה ב־08:00. צ׳ק אאוט עד 10:00, אז אפשר גם קצת מאוחר יותר.'},
- yufuin:{n:'יופואין',ll:[33.2636,131.3656],d:'30 דקות מבפו. אגם קינרין ורחוב יונוצובו. בשעה 08:30 זה עדיין שקט, מ־10:00 מתמלא באוטובוסים.'},
- harajiri:{n:'מפל הארג׳ירי, אופציונלי',ll:[32.9706,131.4300],d:'אופציונלי. נמצא בדיוק על הציר בין יופואין לטקאצ׳יהו, מפל רחב בצורת פרסה עם גשר תלוי. עצירה של 30 דקות, ואז מגיעים לערוץ ב־13:30 במקום 13:00.'},
- takachiho:{n:'ערוץ טקאצ׳יהו',ll:[32.7128,131.3010],d:'שעה ועשר מהארג׳ירי. הסירות עד 17:00, כניסה אחרונה בערך 16:30, בהזמנה מקוונת לפי חלון שעה.'},
- iwato:{n:'אמאנו איוואטו',ll:[32.7233,131.3603],d:'עשר דקות מהערוץ. מקדש ומערה, טוב לשעה שלפני השקיעה.'},
- shrine:{n:'מקדש טקאצ׳יהו, יוקאגורה',ll:[32.7157,131.3078],d:'מופע כל ערב ב־20:00, כשעה. במרכז הכפר.'},
- takamori:{n:'טקאמורי, הלינה',ll:[32.8231,131.1258],d:'40 דקות מטקאצ׳יהו. כאן הלינה, וזו גם הדרך צפונה ב־5.11.'}
-};
-var DAYLEG=[['beppu','yufuin','0:30'],['yufuin','takachiho','2:30']];
-var DAYLEG2=[['takachiho','takamori','0:40']];
-
-function initDayMap(){
-  if(initDayMap.done || typeof L==='undefined' || !document.getElementById('dmap')) return;
-  initDayMap.done=true;
-  var m=L.map('dmap',{scrollWheelZoom:false});
-  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:17,attribution:'&copy; OpenStreetMap'}).addTo(m);
-  var pts=[];
-  function seg(list,color){
-    list.forEach(function(g){
-      var a=DAYPTS[g[0]].ll,b=DAYPTS[g[1]].ll;
-      L.polyline([a,b],{color:color,weight:5,opacity:.85}).addTo(m);
-      var mid=[(a[0]+b[0])/2,(a[1]+b[1])/2];
-      L.marker(mid,{icon:L.divIcon({className:'',html:'<div class="tlabel">'+g[2]+'</div>',iconSize:[42,20],iconAnchor:[21,10]}),interactive:false}).addTo(m);
-    });
-  }
-  seg(DAYLEG,'#22466F'); seg(DAYLEG2,'#AC4E2A');
-  var order=['beppu','yufuin','takachiho','iwato','shrine','takamori','harajiri'];
-  order.forEach(function(k,i){
-    var p=DAYPTS[k]; pts.push(p.ll);
-    var small=(k==='iwato'||k==='shrine'||k==='harajiri');
-    var ic=small?L.divIcon({className:'',html:'<div class="pin pin-stop"></div>',iconSize:[14,14],iconAnchor:[7,7]})
-                :L.divIcon({className:'',html:'<div class="pin pin-night">'+(k==='beppu'?'צא':k==='takamori'?'לון':i)+'</div>',iconSize:[28,28],iconAnchor:[14,14]});
-    L.marker(p.ll,{icon:ic,zIndexOffset:small?0:400}).addTo(m).bindPopup('<b>'+p.n+'</b><br>'+p.d);
-  });
-  var b=L.latLngBounds(pts).pad(.15);
-  m.fitBounds(b);
-  setTimeout(function(){m.invalidateSize(); m.fitBounds(b);},250);
-}
-
-var TL_START=7*60, TL_END=22*60;
-function drawTL(id,blocks){
-  var el=document.getElementById(id); if(!el) return;
-  var span=TL_END-TL_START, ruler='';
-  for(var h=7;h<22;h++) ruler+='<span>'+h+':00</span>';
-  var t=TL_START, row='';
-  blocks.forEach(function(b){
-    var left=(t-TL_START)/span*100, w=b.m/span*100;
-    row+='<div class="tlblk '+b.k+'" style="right:'+left+'%; width:'+w+'%" title="'+b.l+'">'+(b.m>=45?b.l:'')+'</div>';
-    t+=b.m;
-  });
-  el.innerHTML='<div class="tlruler">'+ruler+'</div><div class="tlrow">'+row+'</div>'
-   +'<div class="tlkey"><span><i style="background:#AC4E2A"></i>נהיגה</span><span><i style="background:#22466F"></i>ביקור</span><span><i style="background:#37795C"></i>אוכל וזמן חופשי</span><span><i style="background:#15181D"></i>יוקאגורה</span></div>';
-}
-drawTL('tlA',[
- {k:'gap',m:60,l:''},
- {k:'drive',m:30,l:'08:00'},
- {k:'act',m:120,l:'08:30 יופואין'},
- {k:'drive',m:150,l:'10:30 נסיעה רצופה דרומה'},
- {k:'eat',m:60,l:'13:00 ארוחה בכפר'},
- {k:'act',m:135,l:'14:00 ערוץ טקאצ׳יהו ושייט'},
- {k:'act',m:75,l:'אמאנו איוואטו'},
- {k:'eat',m:120,l:'18:00 ארוחת ערב'},
- {k:'night',m:60,l:'20:00 יוקאגורה'},
- {k:'drive',m:40,l:'לטקאמורי'}
-]);
-drawTL('tlB',[
- {k:'gap',m:120,l:''},
- {k:'drive',m:30,l:'09:00'},
- {k:'act',m:180,l:'09:30 יופואין ברוגע'},
- {k:'drive',m:75,l:'נסיעה'},
- {k:'act',m:30,l:'הארג׳ירי'},
- {k:'drive',m:90,l:'נסיעה וארוחה'},
- {k:'act',m:105,l:'15:45 אמאנו איוואטו והכפר'},
- {k:'eat',m:150,l:'ארוחת ערב'},
- {k:'night',m:60,l:'20:00 יוקאגורה'},
- {k:'drive',m:40,l:'לטקאמורי'}
-]);
 </script>
 </body>
 </html>

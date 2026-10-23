@@ -272,6 +272,7 @@ footer{margin-top:32px; padding-top:16px; border-top:1px solid var(--line); font
     <nav class="tabs" role="tablist">
       <button class="tab" role="tab" aria-selected="true" data-p="route">מסלול</button>
       <button class="tab" role="tab" aria-selected="false" data-p="seoul">סיאול</button>
+      <button class="tab" role="tab" aria-selected="false" data-p="alt">עם קמיקוצ׳י</button>
       <button class="tab" role="tab" aria-selected="false" data-p="book">הזמנות</button>
       <button class="tab" role="tab" aria-selected="false" data-p="map">מפה</button>
       <button class="tab" role="tab" aria-selected="false" data-p="photos">תמונות</button>
@@ -384,6 +385,56 @@ footer{margin-top:32px; padding-top:16px; border-top:1px solid var(--line); font
       </ul>
     </div>
   </div>
+</section>
+
+<section class="panel" id="p-alt" hidden>
+  <p class="eyebrow">אופציה, לא המסלול הראשי</p>
+  <h2 style="font-size:20px">מסלול חלופי עם קמיקוצ׳י, בלי לחזור על אף קטע</h2>
+  <p class="lede" style="margin-top:6px">קמיקוצ׳י נסגר אחרי 15.11 ויושב בין טקאיאמה למאצומוטו, אז כל מה שלפניו זז ארבעה ימים אחורה. סיאול וטוקיו לא משתנים. המסלול הראשי בטאב מסלול נשאר כמו שהוא.</p>
+
+  <div class="card" style="margin-top:14px">
+    <h3>מה משתנה מול המסלול הראשי</h3>
+    <div class="tablewrap">
+      <table>
+        <thead><tr><th>מקום</th><th>ראשי</th><th>עם קמיקוצ׳י</th></tr></thead>
+        <tbody>
+          <tr><td>אוסקה</td><td class="tnum">4 לילות, 7 עד 10.11</td><td class="tnum"><b>2</b>, 7 עד 8.11</td></tr>
+          <tr><td>קיוטו</td><td class="tnum">4 לילות, 11 עד 14.11</td><td class="tnum"><b>3</b>, 9 עד 11.11</td></tr>
+          <tr><td>קנאזאווה</td><td class="tnum">15.11</td><td class="tnum">12.11</td></tr>
+          <tr><td>טקאיאמה</td><td class="tnum">16 עד 17.11</td><td class="tnum">13 עד 14.11</td></tr>
+          <tr><td>קמיקוצ׳י</td><td>לא נכנס</td><td class="tnum"><b>15.11, יום שלם</b></td></tr>
+          <tr><td>מאצומוטו</td><td>רק עוברים</td><td class="tnum">לילה אחד, 15.11</td></tr>
+          <tr><td>פוג׳י</td><td class="tnum">18.11</td><td class="tnum">16.11</td></tr>
+          <tr><td>הקונה</td><td>לא נכנס</td><td class="tnum"><b>2 לילות, 17 עד 18.11</b></td></tr>
+          <tr><td>טוקיו</td><td class="tnum">6 לילות, 19 עד 24.11</td><td class="tnum">אותו דבר</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="cards two">
+    <div class="card">
+      <h3>מה מרוויחים</h3>
+      <ul class="muted" style="margin-top:8px">
+        <li>קמיקוצ׳י: עמק בין פסגות של 3,000 מטר, נהר טורקיז והליכה שטוחה</li>
+        <li>הקונה בשיא השלכת של סוף נובמבר: אגם אשי, עמק הגופרית ואונסן</li>
+        <li>מסלול בקו אחד ממערב למזרח, בלי אף קטע כפול</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>מה מפסידים, ומה הסיכון</h3>
+      <ul class="muted" style="margin-top:8px">
+        <li>שני לילות באוסקה ולילה בקיוטו. הימג׳י וקובה יוצאות</li>
+        <li>15.11 הוא יום הסגירה של קמיקוצ׳י, יום ראשון, ואין יום גיבוי. שלג מוקדם יכול לסגור לפני</li>
+        <li>הלגש הצהוב כבר נשר, תראו הרים מושלגים ועצים חשופים</li>
+        <li>צריך להזיז שוב את האיירבנב לאוסקה ל־7 עד 9.11, ואת קיוטו ל־9 עד 12.11</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="note blue" style="margin-top:14px"><b>למה בלי רכב עד מאצומוטו:</b> לקמיקוצ׳י אסור להיכנס ברכב פרטי. עם רכב הייתם חונים בהיראיו וחוזרים אליו באותה דרך. באוטובוסים נכנסים מצד אחד ויוצאים מהצד השני, והמזוודות הגדולות ממילא נשלחות לטוקיו. הרכב נאסף במאצומוטו ב־16.11.</div>
+
+  <div class="days" id="altdays"></div>
 </section>
 
 <section class="panel" id="p-book" hidden>
@@ -853,6 +904,31 @@ var LEGS=[
  {d:'2026-11-26',t:'נחיתה בתל אביב 14:45',go:'נחיתה באדיס 07:20, ארבע שעות המתנה, ואז ET 448 ב־11:40.',tags:[['fly','ET 448 · 11:40']],stay:'בבית',li:['בטיסה הזו ליחזקאל עוד אין מושב, לבחור בצ׳ק אין','נחיתה בנתב״ג 14:45']}
 ]}];
 
+var ALT=[
+{name:'אוסקה, גרסה קצרה', cnt:'2 לילות', days:[
+ {d:'2026-11-07',t:'טיסה לאוסקה',go:'סיאול אל קנסאי, ומשם Nankai לנמבה, כמו במסלול הראשי.',tags:[['fly','סיאול אל קנסאי']],stay:'אוסקה',li:['ערב בדוטונבורי']},
+ {d:'2026-11-08',t:'נארה ותערוכת שוסואין',go:'קינטצו מנמבה לנארה, כ־40 דקות.',tags:[['train','45 דקות']],stay:'אוסקה',li:['טודאיג׳י, פארק האיילים ותערוכת שוסואין','ערב באוסקה, אוקונומיאקי']}
+]},
+{name:'קיוטו', cnt:'3 לילות', days:[
+ {d:'2026-11-09',t:'טירת אוסקה, ומעבר לקיוטו',go:'בבוקר באוסקה, אחר הצהריים JR לקיוטו. פושימי אינארי בדרך, תחנה אחת לפני קיוטו בקו נארה.',tags:[['train','כשעה']],stay:'קיוטו',li:['טירת אוסקה ושוק קורומון בבוקר','פושימי אינארי אחר הצהריים, פחות קהל אחרי 16:00']},
+ {d:'2026-11-10',t:'ארשיאמה וביתן הזהב',tags:[['b','יום מלא']],stay:'קיוטו',li:['חורשת הבמבוק מוקדם, טנריו־ג׳י','קינקאקוג׳י וריואנג׳י']},
+ {d:'2026-11-11',t:'היגאשיאמה וגיון, ושליחת מזוודות',tags:[['b','יום מלא']],stay:'קיוטו',li:['קיומיזודרה, סאננזאקה וניננזאקה','שביל הפילוסופים וגינקאקוג׳י','לשלוח את המזוודות הגדולות למלון בטוקיו, ולוודא שהוא מחזיק אותן עד 19.11']}
+]},
+{name:'קנאזאווה, טקאיאמה וקמיקוצ׳י, באוטובוסים', cnt:'4 לילות', days:[
+ {d:'2026-11-12',t:'קיוטו אל קנאזאווה',go:'Thunderbird לצורוגה ושינקנסן הוקוריקו, כשעתיים ועשר.',tags:[['train','כ־2 שעות']],stay:'קנאזאווה',li:['שוק אומיצ׳ו','הטירה וגן קנרוקואן עם חבלי השלג','ערב: Ramen Taiga']},
+ {d:'2026-11-13',t:'שירקאווה גו בדרך לטקאיאמה',go:'אוטובוס Nohi מקנאזאווה לשירקאווה גו, כשעה ורבע, ואחרי כמה שעות אוטובוס לטקאיאמה, כחמישים דקות. מקומות בהזמנה מראש, ויש לוקרים בתחנה בכפר.',tags:[['train','אוטובוס']],stay:'טקאיאמה',li:['כמה שעות בכפר בתי הקש ותצפית שירויאמה','ערב: בקר הידה ראשון']},
+ {d:'2026-11-14',t:'טקאיאמה, יום אוכל וסמטאות',tags:[['b','יום ברגל']],stay:'טקאיאמה',li:['שוק הבוקר מיאגאווה','סאנמאצ׳י סוג׳י, סושי בקר הידה ומבשלות סאקה','ערב: בקר הידה בגרסה הגדולה, להזמין מקום']},
+ {d:'2026-11-15',t:'קמיקוצ׳י, היום האחרון של העונה',go:'אוטובוס מטקאיאמה דרך היראיו לקמיקוצ׳י, כשעה וחצי. ביציאה, אוטובוס לשין שימאשימה, כשעה, ורכבת קמיקוצ׳י לאין למאצומוטו, כחצי שעה.',tags:[['train','אוטובוס פנימה'],['train','אוטובוס ורכבת החוצה']],stay:'מאצומוטו',li:['<b>יציאה מוקדמת</b>, כדי להיות בקמיקוצ׳י עד 10:00','הליכה שטוחה של כשעה וחצי: בריכת טאישו, ביצת טאשירו, ולאורך הנהר עד גשר קאפה','ארוחת צהריים ליד גשר קאפה, ויציאה לא אחרי 15:00','ערב במאצומוטו, הטירה השחורה מוארת'],ons:'<b>אם קמיקוצ׳י סגור בגלל שלג:</b> נשארים על אותו קו. יורדים בהיראיו, עולים ברכבל שין הוטאקה, וממשיכים באוטובוס למאצומוטו. לבדוק מצב באתר הרשמי ב־14.11 בערב.'}
+]},
+{name:'פוג׳י והקונה, עם רכב', cnt:'3 לילות', days:[
+ {d:'2026-11-16',t:'איסוף רכב, ערוץ שוסנקיו, פוג׳י',go:'איסוף ליד תחנת מאצומוטו. כביש צ׳ואו עד קופו, חצי שעה לערוץ, ושעה לאגם.',tags:[['car','איסוף רכב'],['car','כ־3 שעות']],stay:'פוג׳יקאוואגוצ׳יקו',li:['בוקר: רחוב נאקמאצ׳י במאצומוטו','ערוץ שוסנקיו בשלכת, הליכה לאורך הנהר עד מפל סנגטאקי','ערב: מסדרון המייפל המואר']},
+ {d:'2026-11-17',t:'יער אוקיגהרה, ואל הקונה',go:'מהאגם להקונה כשעה ורבע ברכב, דרך גוטמבה.',tags:[['car','כ־1.5 שעות']],stay:'הקונה',li:['בוקר: יער אוקיגהרה ומערת הרוח פוגאקו, ואושינו האקאי','אחר הצהריים: אגם אשי ושער הטורי של מקדש הקונה על המים','ערב באונסן, עדיף אמבט פרטי במלון']},
+ {d:'2026-11-18',t:'הקונה, שלכת והר געש',tags:[['b','יום ברכב קצר']],stay:'הקונה',li:['אוואקודאני, עמק הגופרית, ביצים שחורות מבושלות באדים. נסגר לפעמים בגלל גזים, לבדוק בבוקר','שייט באגם אשי, ופוג׳י מעל האגם ביום בהיר','שלכת בשיא: גן גורה או אזור מיאנושיטה']}
+]},
+{name:'טוקיו', cnt:'6 לילות', days:[
+ {d:'2026-11-19',t:'החזרת רכב ומעבר לטוקיו',go:'מחזירים את הרכב באודאווארה, ורכבת Romancecar לשינג׳וקו, כשעה ורבע.',tags:[['car','החזרה'],['train','כשעה ורבע']],stay:'טוקיו',li:['מכאן והלאה זהה למסלול הראשי, 19 עד 25.11']}
+]}];
+
 var TASKS=[
  {g:'דחוף, בגלל שינוי המסלול', items:[
   {id:'x-beppu',t:'לבטל את YAEZAKI בבפו',w:'ביטול חינם עד 30.10 ב־23:59 שעון יפן, 16:59 בישראל. אישור 6931.472.712',p:'דחוף'},
@@ -934,8 +1010,9 @@ var TASKS=[
   document.getElementById('allocs').innerHTML=ALLOC.map(function(a){
     return '<div class="alloc'+(a.hi?' hi':'')+(a.tot?' tot':'')+'"><div class="n tnum">'+a.n+'</div><div class="l">'+a.l+'</div><div class="d tnum">'+a.d+'</div></div>';
   }).join('');
+  window.renderLegs=function(legs,id){
   var out='';
-  LEGS.forEach(function(leg){
+  legs.forEach(function(leg){
     out+='<div class="leg-head"><h2>'+leg.name+'</h2><span class="rule"></span><span class="cnt">'+leg.cnt+'</span></div>';
     leg.days.forEach(function(d){
       var moving=d.tags.some(function(t){return t[0]==='car'||t[0]==='train'||t[0]==='fly';});
@@ -948,7 +1025,10 @@ var TASKS=[
         +(d.bk?'<div class="bk">'+d.bk+'</div>':'')+(d.ons?'<div class="ons">'+d.ons+'</div>':'')+'</div></article>';
     });
   });
-  document.getElementById('days').innerHTML=out;
+  document.getElementById(id).innerHTML=out;
+  };
+  renderLegs(LEGS,'days');
+  renderLegs(ALT,'altdays');
 })();
 
 (function(){
@@ -956,7 +1036,7 @@ var TASKS=[
   tabs.forEach(function(t){
     t.addEventListener('click',function(){
       tabs.forEach(function(o){o.setAttribute('aria-selected',o===t?'true':'false');});
-      ['route','seoul','book','map','photos','cars','todo','info'].forEach(function(k){document.getElementById('p-'+k).hidden=(k!==t.dataset.p);});
+      ['route','seoul','alt','book','map','photos','cars','todo','info'].forEach(function(k){document.getElementById('p-'+k).hidden=(k!==t.dataset.p);});
       try{localStorage.setItem('jp26tab',t.dataset.p);}catch(e){}
       if(t.dataset.p==='map') setTimeout(initMap,0);
       window.scrollTo(0,0);

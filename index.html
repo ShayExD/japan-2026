@@ -245,6 +245,19 @@ footer{margin-top:32px; padding-top:16px; border-top:1px solid var(--line); font
 .urgent li{margin-top:5px}
 .fl td:first-child{white-space:nowrap; font-weight:700}
 .cards > *{min-width:0}
+.gal{display:grid; gap:14px; margin-top:12px}
+@media(min-width:680px){.gal{grid-template-columns:1fr 1fr}}
+.ph{background:var(--surface); border:1px solid var(--line); border-radius:var(--r); overflow:hidden; box-shadow:var(--shadow)}
+.ph img{display:block; width:100%; aspect-ratio:3/2; object-fit:cover; background:var(--surface-2)}
+.ph .pb{padding:12px 14px}
+.ph h4{font-size:15px; margin:0}
+.ph .pw{display:flex; gap:6px; align-items:center; flex-wrap:wrap; margin:4px 0 6px; font-size:12px; color:var(--muted)}
+.ph p{font-size:13.5px; color:var(--muted)}
+.ph .cr{font-size:10.5px; color:var(--muted); margin-top:7px; opacity:.8}
+.ph .cr a{color:inherit}
+.stp{font-size:11px; padding:1px 8px; border-radius:999px; border:1px solid var(--line); background:var(--surface-2)}
+.stp.plan{color:var(--good); border-color:var(--good); background:var(--good-soft)}
+.stp.opt{color:var(--warm); border-color:var(--warm); background:var(--warm-soft)}
 </style>
 </head>
 <body>
@@ -261,6 +274,7 @@ footer{margin-top:32px; padding-top:16px; border-top:1px solid var(--line); font
       <button class="tab" role="tab" aria-selected="false" data-p="seoul">סיאול</button>
       <button class="tab" role="tab" aria-selected="false" data-p="book">הזמנות</button>
       <button class="tab" role="tab" aria-selected="false" data-p="map">מפה</button>
+      <button class="tab" role="tab" aria-selected="false" data-p="photos">תמונות</button>
       <button class="tab" role="tab" aria-selected="false" data-p="cars">טיסות ורכב</button>
       <button class="tab" role="tab" aria-selected="false" data-p="todo">צ׳קליסט</button>
       <button class="tab" role="tab" aria-selected="false" data-p="info">מידע שימושי</button>
@@ -555,6 +569,13 @@ footer{margin-top:32px; padding-top:16px; border-top:1px solid var(--line); font
     </div>
     <p class="muted" style="font-size:12.5px; margin-top:8px">זמנים נטו בלי עצירות. בהרים באמצע נובמבר כדאי להוסיף עשרה עד עשרים אחוז.</p>
   </div>
+</section>
+
+<section class="panel" id="p-photos" hidden>
+  <p class="eyebrow">מה רואים</p>
+  <h2 style="font-size:20px">האטרקציות באלפים ובפוג׳י, בתמונות</h2>
+  <p class="lede" style="margin-top:6px">ירוק: כבר במסלול. כתום: אופציה שאפשר להכניס. התמונות מ־Wikimedia Commons ברישיון חופשי, וחלקן צולמו בעונה אחרת, זה כתוב ליד.</p>
+  <div id="gallery"></div>
 </section>
 
 <section class="panel" id="p-cars" hidden>
@@ -935,7 +956,7 @@ var TASKS=[
   tabs.forEach(function(t){
     t.addEventListener('click',function(){
       tabs.forEach(function(o){o.setAttribute('aria-selected',o===t?'true':'false');});
-      ['route','seoul','book','map','cars','todo','info'].forEach(function(k){document.getElementById('p-'+k).hidden=(k!==t.dataset.p);});
+      ['route','seoul','book','map','photos','cars','todo','info'].forEach(function(k){document.getElementById('p-'+k).hidden=(k!==t.dataset.p);});
       try{localStorage.setItem('jp26tab',t.dataset.p);}catch(e){}
       if(t.dataset.p==='map') setTimeout(initMap,0);
       window.scrollTo(0,0);
@@ -1021,6 +1042,18 @@ var TASKS=[
   render();
 })();
 
+
+var PHOTOS=[{"g": "קנאזאווה ושירקאווה גו, 15 עד 16.11", "items": [{"k": "kenrokuen", "n": "גן קנרוקואן וחבלי השלג", "st": "plan", "w": "15.11", "d": "אחד משלושת הגנים הגדולים ביפן, צמוד לטירה. החבלים בצורת חרוט מגינים על העצים מפני שלג, ובאמצע נובמבר יש לצידם גם שלכת.", "src": "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/7c/Kenrokuen_Garden%2C_Kanazawa_%2853621201294%29.jpg/960px-Kenrokuen_Garden%2C_Kanazawa_%2853621201294%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail", "page": "https://commons.wikimedia.org/wiki/File:Kenrokuen_Garden,_Kanazawa_(53621201294).jpg", "lic": "CC BY 2.0", "by": "Winniepix"}, {"k": "shirakawa", "n": "שירקאווה גו", "st": "plan", "w": "16.11, בדרך לטקאיאמה", "d": "כפר בתי הקש, אתר מורשת עולמית. התמונה מהתצפית מעל הכפר בסוף הסתיו, בערך מה שתראו כשתגיעו.", "src": "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/aa/Overview_of_Ogimachi%2C_Shirakawa%2C_from_the_Ogimachi_Castle_observation_point.jpg/960px-Overview_of_Ogimachi%2C_Shirakawa%2C_from_the_Ogimachi_Castle_observation_point.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail", "page": "https://commons.wikimedia.org/wiki/File:Overview_of_Ogimachi,_Shirakawa,_from_the_Ogimachi_Castle_observation_point.jpg", "lic": "CC0", "by": "DimiTalen"}]}, {"g": "טקאיאמה, 16 עד 18.11", "items": [{"k": "takayama", "n": "שוק הבוקר מיאגאווה", "st": "plan", "w": "17.11 בבוקר", "d": "דוכנים לאורך הנהר: ירקות, פירות, חמוצים ומלאכת יד. פתוח בערך עד הצהריים.", "src": "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/6a/Morning_market_%2811272886764%29.jpg/960px-Morning_market_%2811272886764%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail", "page": "https://commons.wikimedia.org/wiki/File:Morning_market_(11272886764).jpg", "lic": "CC BY-SA 2.0", "by": "KimonBerlin"}, {"k": "sanmachi", "n": "סאנמאצ׳י סוג׳י", "st": "plan", "w": "16 ו־17.11", "d": "שלושת הרחובות של העיר העתיקה: בתי עץ כהים, מבשלות סאקה, ודוכנים של בקר הידה.", "src": "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/ff/One_of_the_three_main_streets_in_Sanmachi-Suji_%286156038234%29.jpg/960px-One_of_the_three_main_streets_in_Sanmachi-Suji_%286156038234%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail", "page": "https://commons.wikimedia.org/wiki/File:One_of_the_three_main_streets_in_Sanmachi-Suji_(6156038234).jpg", "lic": "CC BY 2.0", "by": "Maarten Heerlien from Voor"}]}, {"g": "טבע באוקוהידה, שעה מטקאיאמה", "items": [{"k": "shinhotaka", "n": "רכבל שין הוטאקה", "st": "opt", "w": "17 או 18.11", "d": "שני שלבים עד 2,156 מטר, ולמעלה מרפסת מול פסגות האלפים. בנובמבר כבר יש שלג כמו בתמונה. פועל כל השנה, תלוי מזג אוויר.", "src": "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c2/Shinhotaka_ropeway01s3200.jpg/960px-Shinhotaka_ropeway01s3200.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail", "page": "https://commons.wikimedia.org/wiki/File:Shinhotaka_ropeway01s3200.jpg", "lic": "CC BY 2.5", "by": "663highland"}, {"k": "hirayu", "n": "מפל היראיו", "st": "opt", "w": "ליד הרכבל", "d": "מפל גבוה בתוך יער, הליכה קצרה מהחניה, ליד מרחצאות היראיו.", "src": "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/8e/Hirayu-Otaki_Waterfall_%E5%B9%B3%E6%B9%AF%E5%A4%A7%E7%80%91%E5%B8%83_-_panoramio.jpg/960px-Hirayu-Otaki_Waterfall_%E5%B9%B3%E6%B9%AF%E5%A4%A7%E7%80%91%E5%B8%83_-_panoramio.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail", "page": "https://commons.wikimedia.org/wiki/File:Hirayu-Otaki_Waterfall_%E5%B9%B3%E6%B9%AF%E5%A4%A7%E7%80%91%E5%B8%83_-_panoramio.jpg", "lic": "CC BY 3.0", "by": "lienyuan lee"}]}, {"g": "טבע סביב פוג׳י, 18 עד 19.11", "items": [{"k": "momiji", "n": "מסדרון המייפל", "st": "plan", "w": "18.11 בערב", "d": "שדרת מייפל בגדה הצפונית של האגם, מוארת בערב בתקופת הפסטיבל.", "src": "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/6a/Kawaguchiko%2C_Part_II_-_Kawaguchiko6811.jpg/960px-Kawaguchiko%2C_Part_II_-_Kawaguchiko6811.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail", "page": "https://commons.wikimedia.org/wiki/File:Kawaguchiko,_Part_II_-_Kawaguchiko6811.jpg", "lic": "CC0", "by": "lumoplank"}, {"k": "chureito", "n": "פגודת צ׳ורייטו", "st": "plan", "w": "19.11 בבוקר", "d": "כ־400 מדרגות למעלה, והנוף הכי מצולם של ההר. בסתיו המייפל מסביב אדום.", "src": "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/71/12-Chureito-pagoda-and-Mount-Fuji-Japan_%2829677439878%29.jpg/960px-12-Chureito-pagoda-and-Mount-Fuji-Japan_%2829677439878%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail", "page": "https://commons.wikimedia.org/wiki/File:12-Chureito-pagoda-and-Mount-Fuji-Japan_(29677439878).jpg", "lic": "CC0", "by": "Dang Son"}, {"k": "oshino", "n": "אושינו האקאי", "st": "plan", "w": "18 או 19.11", "d": "בריכות של מי שלגים מההר, צלולות לגמרי, בכפר קטן עם בתי קש.", "src": "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/22/231028_Waku-ike_Oshino_Hakkai_springs_Oshino_Yamanashi_pref_Japan01s3.jpg/960px-231028_Waku-ike_Oshino_Hakkai_springs_Oshino_Yamanashi_pref_Japan01s3.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail", "page": "https://commons.wikimedia.org/wiki/File:231028_Waku-ike_Oshino_Hakkai_springs_Oshino_Yamanashi_pref_Japan01s3.jpg", "lic": "CC BY-SA 4.0", "by": "663highland"}, {"k": "aokigahara", "n": "יער אוקיגהרה", "st": "opt", "w": "18.11 אחר הצהריים", "d": "יער עבות שגדל על שדה לבה: שורשים על סלעים וטחב בכל מקום. שביל קל של כ־20 דקות בין שתי המערות.", "src": "https://upload.wikimedia.org/wikipedia/commons/2/2f/Aokigahara_forest_04.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled", "page": "https://commons.wikimedia.org/wiki/File:Aokigahara_forest_04.jpg", "lic": "CC BY-SA 2.0", "by": "mtzn"}, {"k": "fugaku", "n": "מערת הרוח פוגאקו", "st": "opt", "w": "באותו שביל", "d": "מערת לבה שהולכים בתוכה, קרה כל השנה. ביקור של כחצי שעה, עם מדרגות.", "src": "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/1f/Fugaku_fuketsu_-_Walking_in_the_cave.jpg/960px-Fugaku_fuketsu_-_Walking_in_the_cave.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail", "page": "https://commons.wikimedia.org/wiki/File:Fugaku_fuketsu_-_Walking_in_the_cave.jpg", "lic": "CC BY-SA 4.0", "by": "Yoshi Canopus"}, {"k": "narusawa", "n": "מערת הקרח נארוסאווה", "st": "opt", "w": "באותו שביל", "d": "נטיפי קרח גם בסתיו. המעבר בפנים נמוך וצריך להתכופף בחלקים, לשקול מול ההורים.", "src": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/de/Icicle_in_Narusawa_Ice_Cave.jpg/960px-Icicle_in_Narusawa_Ice_Cave.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail", "page": "https://commons.wikimedia.org/wiki/File:Icicle_in_Narusawa_Ice_Cave.jpg", "lic": "CC BY-SA 4.0", "by": "Osumi Akari"}, {"k": "subaru", "n": "התחנה החמישית, Subaru Line", "st": "opt", "w": "19.11 בבוקר", "d": "2,300 מטר על ההר עצמו, נוף על האגמים. התמונה מהקיץ, בנובמבר יהיה שלג ופחות אנשים. הכביש נסגר כשיורד שלג.", "src": "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/3e/Fuji_Subaru_Line_5th_Station%2C_Mount_Fuji_%2842361741530%29.jpg/960px-Fuji_Subaru_Line_5th_Station%2C_Mount_Fuji_%2842361741530%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail", "page": "https://commons.wikimedia.org/wiki/File:Fuji_Subaru_Line_5th_Station,_Mount_Fuji_(42361741530).jpg", "lic": "CC BY 2.0", "by": "Fabio Achilli from Milano,"}]}, {"g": "אופציות גדולות יותר", "items": [{"k": "murodo", "n": "רמת מורודו, Tateyama Kurobe", "st": "opt", "w": "פתוח עד 30.11", "d": "אגם מיקוריגאיקה מתחת לפסגת טאטייאמה, בתוך פארק לאומי. התמונה מהקיץ, בנובמבר הכל לבן. דורש יום שלם מקנאזאווה.", "src": "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/f0/20_Tateyama_from_Mikurigaike_1998-7-17.jpg/960px-20_Tateyama_from_Mikurigaike_1998-7-17.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail", "page": "https://commons.wikimedia.org/wiki/File:20_Tateyama_from_Mikurigaike_1998-7-17.jpg", "lic": "Public domain", "by": "Alpsdake"}, {"k": "kamikochi", "n": "קמיקוצ׳י", "st": "closed", "w": "נסגר ב־15.11", "d": "גשר קאפה מעל נהר אזוסה. בתאריכים הנוכחיים סגור, ייכנס רק אם מקדימים את האלפים ביום.", "src": "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/88/150920_Kappa-bashi_Kamikochi_Japan01n.jpg/960px-150920_Kappa-bashi_Kamikochi_Japan01n.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail", "page": "https://commons.wikimedia.org/wiki/File:150920_Kappa-bashi_Kamikochi_Japan01n.jpg", "lic": "CC BY 2.5", "by": "663highland"}]}];
+(function(){
+  var L={plan:'במסלול',opt:'אופציה',closed:'סגור בתאריכים שלכם'};
+  document.getElementById('gallery').innerHTML=PHOTOS.map(function(g){
+    return '<h3 style="font-size:16px; margin-top:22px">'+g.g+'</h3><div class="gal">'+g.items.map(function(p){
+      return '<article class="ph"><img loading="lazy" src="'+p.src+'" alt="'+p.n+'"><div class="pb"><h4>'+p.n+'</h4>'
+        +'<div class="pw"><span class="stp '+p.st+'">'+L[p.st]+'</span><span class="tnum">'+p.w+'</span></div><p>'+p.d+'</p>'
+        +'<div class="cr">צילום: '+p.by+', <a href="'+p.page+'" target="_blank" rel="noopener">'+p.lic+'</a></div></div></article>';
+    }).join('')+'</div>';
+  }).join('');
+})();
 /* ---------- trip map ---------- */
 var TP={
  icn:{n:'שדה אינצ׳ון',ll:[37.4602,126.4407],k:'air',d:'נחיתה מאדיס אבבה ב־4.11 ב־15:45, טרמינל 1. וגם עצירת הביניים בדרך הביתה, 25.11 בלילה.'},
